@@ -9,7 +9,7 @@ import java.util.List;
 @Entity
 public class Client extends User {
 
-    @OneToMany(mappedBy = "owner")
+    @OneToMany(mappedBy = "client")
     private List<Account> bankAccounts;
 
     public Client(String firstName, String password) {

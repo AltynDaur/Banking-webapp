@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "USERS")
+@NamedQuery(name = "User.findByName", query = "SELECT u from User u where u.firstName=?1 and u.password=?2")
 public abstract class User {
     @Id
     @GeneratedValue

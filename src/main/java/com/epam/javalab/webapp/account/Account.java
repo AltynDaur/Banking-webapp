@@ -15,7 +15,7 @@ public class Account {
     @NotNull
     @ManyToOne
     @JoinColumn(name = "USERID")
-    private Client owner;
+    private Client client;
     @NotNull
     @OneToOne
     @JoinColumn(name = "ACCTYPEID")
@@ -25,7 +25,7 @@ public class Account {
 
 
     public Account(Client owner, AccountType accType, long amount) {
-        this.owner = owner;
+        this.client = owner;
         this.acctype = accType;
         this.amount = amount;
     }
@@ -40,11 +40,11 @@ public class Account {
     }
 
     public Client getOwner() {
-        return owner;
+        return client;
     }
 
     public void setOwner(Client owner) {
-        this.owner = owner;
+        this.client = owner;
     }
 
     public AccountType getAcctype() {

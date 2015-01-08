@@ -29,10 +29,10 @@ public class H2AccountDAO implements AccountDAO {
             while (accountsSet.next()) {
                 currentAccount = new Account();
                 currentAccount.setId(accountsSet.getInt(1));
-                currentAccount.setOwner(accountsSet.getString(2));
-                currentAccount.setAcctype(accountsSet.getString(3));
+                //currentAccount.setOwner(accountsSet.getString(2));
+                //currentAccount.setAcctype(accountsSet.getString(3));
                 currentAccount.setAmount(accountsSet.getLong(4));
-                currentAccount.setExchangeRate(accountsSet.getString(5),accountsSet.getInt(6));
+                //currentAccount.setExchangeRate(accountsSet.getString(5),accountsSet.getInt(6));
 
                 resultList.add(currentAccount);
             }
@@ -181,7 +181,7 @@ public class H2AccountDAO implements AccountDAO {
             preparedStatement.close();
             connection.commit();
         } catch (SQLException e) {
-            throw new DAOException(e);
+
             try {
                 connection.rollback(savepoint);
             } catch (SQLException e1) {

@@ -2,7 +2,7 @@ package com.epam.javalab.webapp.action.login;
 
 import com.epam.javalab.webapp.action.Action;
 import com.epam.javalab.webapp.action.ActionResult;
-import com.epam.javalab.webapp.dao.H2UserDAO;
+//import com.epam.javalab.webapp.dao.H2UserDAO;
 import com.epam.javalab.webapp.security.EncryptByMD5;
 import com.epam.javalab.webapp.user.Role;
 import com.epam.javalab.webapp.user.User;
@@ -37,8 +37,8 @@ public class UserInfoChangeAction implements Action {
         Role role = currentUser.getRole();
         int userID = currentUser.getId();
         if (currentUser.getPassword().equals(oldPass)) {
-            H2UserDAO h2UserDAO = new H2UserDAO();
-            h2UserDAO.update(firstName, password, email, role, userID);
+            //H2UserDAO h2UserDAO = new H2UserDAO();
+            //h2UserDAO.update(firstName, password, email, role, userID);
             req.setAttribute("message", "updateSuccess");
             result.setRedirect(true);
             chooseRole(role, result);

@@ -2,7 +2,7 @@ package com.epam.javalab.webapp.action.login;
 
 import com.epam.javalab.webapp.action.Action;
 import com.epam.javalab.webapp.action.ActionResult;
-import com.epam.javalab.webapp.dao.H2UserDAO;
+//import com.epam.javalab.webapp.dao.H2UserDAO;
 import com.epam.javalab.webapp.security.EncryptByMD5;
 import com.epam.javalab.webapp.user.Role;
 
@@ -23,9 +23,9 @@ public class RegisterAction implements Action {
         ResourceBundle text = ResourceBundle.getBundle("text",currentLocale);
 
         if(password.equals(repeatPass)){
-            H2UserDAO h2UserDAO = new H2UserDAO();
+            //H2UserDAO h2UserDAO = new H2UserDAO();
             password = EncryptByMD5.encrypt(password,firstName);
-            h2UserDAO.add(firstName, password, Role.CLIENT, email);
+            //h2UserDAO.add(firstName, password, Role.CLIENT, email);
             result.setPath("loginPage");
             result.setRedirect(true);
         } else {
