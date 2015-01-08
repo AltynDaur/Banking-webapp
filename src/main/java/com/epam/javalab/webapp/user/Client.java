@@ -1,17 +1,26 @@
 package com.epam.javalab.webapp.user;
 
+import com.epam.javalab.webapp.account.Account;
+
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import java.util.List;
 
+@Entity
 public class Client extends User {
-    private List bankAccounts;
+
+    @OneToMany(mappedBy = "owner")
+    private List<Account> bankAccounts;
 
     public Client(String firstName, String password) {
 
         super(firstName, password);
     }
-    public Client(){};
 
-    public void setBankAccounts(List bankAccounts) {
+    public Client() {
+    }
+
+    public void setBankAccounts(List<Account> bankAccounts) {
         this.bankAccounts = bankAccounts;
     }
 

@@ -1,10 +1,27 @@
 package com.epam.javalab.webapp.account;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
+@Entity
+@Table(name = "TRANSACTIONHISTORY")
 public class TransactionHistoryRecord {
+    @Id
+    @GeneratedValue
+    @Column(name = "ID")
     private int id;
+    @NotNull
+    @Column
     private int startAcc;
+    @NotNull
+    @Column
     private int finalAcc;
+    @NotNull
+    @Column
     private long amount;
+    @NotNull
+    @OneToOne
+    @JoinColumn(name = "CURRENCYID")
     private ExchangeRate currency;
 
     public TransactionHistoryRecord(int currentAccID, int targetAccID, long amount, String transactionCurrency) {

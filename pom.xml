@@ -3,11 +3,12 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>Webapp-1.0</groupId>
     <artifactId>Webapp</artifactId>
-    <packaging></packaging>
+    <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
     <name>Webapp Maven Webapp</name>
     <url>http://maven.apache.org</url>
     <dependencies>
+
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
@@ -35,6 +36,12 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>7.0</version>
+        </dependency>
+
     </dependencies>
     <build>
         <finalName>Webapp</finalName>

@@ -1,13 +1,28 @@
 package com.epam.javalab.webapp.user;
 
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
-
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "USERS")
 public abstract class User {
+    @Id
+    @GeneratedValue
+    @Column(name = "ID")
     private int id;
+    @NotNull
+    @Column(name = "NAME")
     private String firstName;
+    @NotNull
+    @Column(name = "PASSWORD")
     private String password;
+    @Enumerated
+    @Column(name = "ROLE")
     private Role role;
+    @NotNull
+    @Column(name = "EMAIL")
     private String email;
 
     public User(String firstName, String password) {

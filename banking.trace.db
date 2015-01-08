@@ -10833,3 +10833,6 @@ SELECT a.ID, b.NAME, c.ACCNAME,  a.AMOUNT,d.CURRENCY, d.VALUE FROM ACCOUNTS a IN
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
 	at java.lang.Thread.run(Thread.java:744)
+01-08 14:27:13 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "DELETE *[*] FROM  TRANSACTIONHISTORY"; expected "identifier"; SQL statement:
+DELETE * FROM  TRANSACTIONHISTORY [42001-175]

@@ -1,10 +1,22 @@
 package com.epam.javalab.webapp.account;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "ACCOUNTSTYPE")
 public class AccountType {
+    @Id
+    @GeneratedValue
+    @Column
     private int id;
+    @Column(name = "ACCNAME")
     private String name;
+    @Column(name = "PERCENT")
     private int percent;
+    @Column(name = "PERIOD")
     private int period;
+    @OneToOne
+    @JoinColumn(name = "CURRENCYID")
     private ExchangeRate currency;
 
     public int getId() {

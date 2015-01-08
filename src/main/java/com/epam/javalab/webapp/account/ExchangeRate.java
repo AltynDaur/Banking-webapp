@@ -1,8 +1,23 @@
 package com.epam.javalab.webapp.account;
 
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
+@Entity
+@Table(name = "EXCHANGERATESTOTENGE")
 public class ExchangeRate {
+    @Id
+    @GeneratedValue
+    @Column(name = "ID", unique = true)
     private int id;
+
+    @NotNull
+    @Column(name = "CURRENCY")
     private String currency;
+
+    @NotNull
+    @Column(name = "VALUE")
     private  int value;
 
     public ExchangeRate(String currency, int exchangeValue) {

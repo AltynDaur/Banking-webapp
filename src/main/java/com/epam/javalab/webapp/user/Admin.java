@@ -1,5 +1,8 @@
 package com.epam.javalab.webapp.user;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Admin extends User{
 
     public Admin(String firstName, String password) {
@@ -7,5 +10,6 @@ public class Admin extends User{
     }
     public Admin(){
         super();
-    };
+    }
+
 }

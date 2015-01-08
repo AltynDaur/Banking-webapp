@@ -1,17 +1,32 @@
 package com.epam.javalab.webapp.account;
 
+import com.epam.javalab.webapp.user.Client;
 import com.epam.javalab.webapp.user.User;
 
-public class Account {
-    private int id;
-    private String owner;
-    private String acctype;
-    private long amount;
-    private ExchangeRate currency;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
-    public Account(String ownerID,String accTypeID,long amount){
-        this.owner = String.valueOf(ownerID);
-        this.acctype = String.valueOf(accTypeID);
+@Entity
+@Table(name = "ACCOUNTS")
+public class Account {
+    @Id
+    @GeneratedValue
+    private int id;
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "USERID")
+    private Client owner;
+    @NotNull
+    @OneToOne
+    @JoinColumn(name = "ACCTYPEID")
+    private AccountType acctype;
+    @NotNull
+    private long amount;
+
+
+    public Account(Client owner, AccountType accType, long amount) {
+        this.owner = owner;
+        this.acctype = accType;
         this.amount = amount;
     }
     public Account(){}
@@ -24,19 +39,19 @@ public class Account {
         this.id = id;
     }
 
-    public String getOwner() {
+    public Client getOwner() {
         return owner;
     }
 
-    public void setOwner(String owner) {
+    public void setOwner(Client owner) {
         this.owner = owner;
     }
 
-    public String getAcctype() {
+    public AccountType getAcctype() {
         return acctype;
     }
 
-    public void setAcctype(String acctype) {
+    public void setAcctype(AccountType acctype) {
         this.acctype = acctype;
     }
 
@@ -48,24 +63,6 @@ public class Account {
         this.amount = amount;
     }
 
-    public String getCurrency() {
-        return currency.getCurrency();
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = new ExchangeRate(currency);
-    }
 
 
-    public void setExchangeValue(int exchangeValue) {
-        this.currency.setValue(exchangeValue);
-    }
-
-    public int getExchangeValue(){
-        return currency.getValue();
-    }
-
-    public void setExchangeRate(String string, int anInt) {
-        this.currency = new ExchangeRate(string,anInt);
-    }
 }

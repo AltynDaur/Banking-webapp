@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
-  <data-source source="LOCAL" name="database-banking" uuid="f4629e5e-45ac-434b-b1b0-a20cea18c131">
+  <data-source name="database-banking" uuid="f4629e5e-45ac-434b-b1b0-a20cea18c131">
     <database-info product="H2" version="1.3.175 (2014-01-18)" jdbc-version="4.0" driver-name="H2 JDBC Driver" driver-version="1.3.175 (2014-01-18)">
       <identifier-quote-string>&quot;</identifier-quote-string>
     </database-info>
@@ -342,17 +342,12 @@
       <column name="VALUE" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="CONSTRAINT_D" columns="ID"/>
     </table>
-    <table name="ROLES" schema="PUBLIC" catalog="BANKING" type="TABLE">
-      <column name="ID" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfRjFFNDNGOTZfNDhBMF80QjI5XzhCQ0VfOERDQjg5QjdGOUVGKQ==" autoIncrement="true"/>
-      <column name="ROLE" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
-      <primary-key name="CONSTRAINT_4A" columns="ID"/>
-    </table>
     <table name="TRANSACTIONHISTORY" schema="PUBLIC" catalog="BANKING" type="TABLE">
       <column name="ID" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfQzMyNDNENzNfQzA0Rl80RTg5Xzk5QjZfQjUxN0JBRUQwNTI3KQ==" autoIncrement="true"/>
       <column name="STARTACC" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="FINALACC" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="AMOUNT" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
-      <column name="CURRENCY" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CURRENCYID" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="CONSTRAINT_1" columns="ID"/>
     </table>
     <table name="USERS" schema="PUBLIC" catalog="BANKING" type="TABLE">
@@ -360,7 +355,7 @@
       <column name="NAME" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
       <column name="PASSWORD" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
       <column name="EMAIL" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
-      <column name="ROLEID" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="ROLE" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="CONSTRAINT_4" columns="ID"/>
     </table>
   </data-source>
