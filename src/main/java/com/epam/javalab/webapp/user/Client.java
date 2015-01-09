@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 public class Client extends User {
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private List<Account> bankAccounts;
 
     public Client(String firstName, String password) {
