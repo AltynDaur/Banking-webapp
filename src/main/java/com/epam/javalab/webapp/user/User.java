@@ -1,12 +1,13 @@
 package com.epam.javalab.webapp.user;
 
 
+import org.hibernate.validator.constraints.Email;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "USERS")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @NamedQuery(name = "User.findByName", query = "SELECT u from User u where u.firstName=?1 and u.password=?2")
 public abstract class User {
     @Id
@@ -24,6 +25,7 @@ public abstract class User {
     private Role role;
     @NotNull
     @Column(name = "EMAIL")
+    @Email
     private String email;
 
     public User(String firstName, String password) {

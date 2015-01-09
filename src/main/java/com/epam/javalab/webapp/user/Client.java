@@ -2,13 +2,11 @@ package com.epam.javalab.webapp.user;
 
 import com.epam.javalab.webapp.account.Account;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 public class Client extends User {
-
     @OneToMany(mappedBy = "client")
     private List<Account> bankAccounts;
 
@@ -21,6 +19,9 @@ public class Client extends User {
     }
 
     public void setBankAccounts(List<Account> bankAccounts) {
+        while (bankAccounts.iterator().hasNext()) {
+            bankAccounts.iterator().next().setOwner(this);
+        }
         this.bankAccounts = bankAccounts;
     }
 

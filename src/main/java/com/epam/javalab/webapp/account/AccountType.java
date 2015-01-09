@@ -16,7 +16,6 @@ public class AccountType {
     @Column(name = "PERIOD")
     private int period;
     @OneToOne
-    @JoinColumn(name = "CURRENCYID")
     private ExchangeRate currency;
 
     public int getId() {

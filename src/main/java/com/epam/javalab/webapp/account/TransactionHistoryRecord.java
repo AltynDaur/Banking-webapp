@@ -21,7 +21,7 @@ public class TransactionHistoryRecord {
     private long amount;
     @NotNull
     @OneToOne
-    @JoinColumn(name = "CURRENCYID")
+    @JoinColumn(name = "ID")
     private ExchangeRate currency;
 
     public TransactionHistoryRecord(int currentAccID, int targetAccID, long amount, String transactionCurrency) {

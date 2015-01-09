@@ -3,7 +3,7 @@
     <meta name="author" content="Altynbekov Dauren, altyndaur.krg@mail.ru"/>
     <meta name="keywords" content="Banking, accounts"/>
     <title>Banking: Thanks for visiting</title>
-    <base href="/banking/">
+    <base href="/Webapp/">
     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <fmt:setLocale value="${language}"/>

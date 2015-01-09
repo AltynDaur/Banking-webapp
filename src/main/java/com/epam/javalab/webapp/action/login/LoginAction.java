@@ -3,6 +3,7 @@ package com.epam.javalab.webapp.action.login;
 import com.epam.javalab.webapp.action.Action;
 import com.epam.javalab.webapp.action.ActionResult;
 //import com.epam.javalab.webapp.dao.H2UserDAO;
+import com.epam.javalab.webapp.exception.DAOException;
 import com.epam.javalab.webapp.security.EncryptByMD5;
 import com.epam.javalab.webapp.service.UserService;
 import com.epam.javalab.webapp.user.Role;
@@ -20,6 +21,7 @@ public class LoginAction implements Action {
         String password = EncryptByMD5.encrypt(req.getParameter("password"), firstName);
         UserService service = new UserService();
         User currentUser = (User) service.findByName(firstName, password);
+
         //H2UserDAO h2UserDAO = new H2UserDAO();
         //User currentUser = h2UserDAO.findUser(firstName,password);
         ActionResult result = new ActionResult();

@@ -12,13 +12,11 @@ public class Account {
     @Id
     @GeneratedValue
     private int id;
-    @NotNull
     @ManyToOne
-    @JoinColumn(name = "USERID")
     private Client client;
     @NotNull
     @OneToOne
-    @JoinColumn(name = "ACCTYPEID")
+    @JoinColumn(referencedColumnName = "ID")
     private AccountType acctype;
     @NotNull
     private long amount;
