@@ -6,8 +6,8 @@ import org.hibernate.validator.constraints.Email;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-@Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Entity(name = "users")
+@Inheritance(strategy = InheritanceType.JOINED)
 @NamedQuery(name = "User.findByName", query = "SELECT u from User u where u.firstName=?1 and u.password=?2")
 public abstract class User {
     @Id
@@ -16,7 +16,7 @@ public abstract class User {
     private int id;
     @NotNull
     @Column(name = "NAME")
-    private String firstName;
+    private String name;
     @NotNull
     @Column(name = "PASSWORD")
     private String password;
@@ -30,7 +30,7 @@ public abstract class User {
 
     public User(String firstName, String password) {
 
-        this.firstName = firstName;
+        this.name = firstName;
         this.password = password;
     }
 
@@ -42,9 +42,6 @@ public abstract class User {
         return id;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
 
     public String getPassword() {
         return password;
@@ -62,9 +59,6 @@ public abstract class User {
         this.id = id;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
 
     public void setPassword(String password) {
         this.password = password;
@@ -94,7 +88,7 @@ public abstract class User {
 
         if (id != user.id) return false;
         if (email != null ? !email.equals(user.email) : user.email != null) return false;
-        if (firstName != null ? !firstName.equals(user.firstName) : user.firstName != null) return false;
+        if (name != null ? !name.equals(user.name) : user.name != null) return false;
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
         if (role != user.role) return false;
 
@@ -104,10 +98,18 @@ public abstract class User {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (role != null ? role.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         return result;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

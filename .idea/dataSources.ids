@@ -26,22 +26,6 @@
       <exported-key name="FK_OQ4YYJPARIANTSF3UJVEENUN1" table="ACCOUNTS" schema="PUBLIC" catalog="BANKING" columns="ACCTYPE_ID"/>
       <index name="FK_HU3JSQICX8YDR5PQ1XM2ESSN4_INDEX_C" unique="false" columns="CURRENCY_ID"/>
     </table>
-    <table name="ADMIN" schema="PUBLIC" catalog="BANKING" type="TABLE">
-      <column name="ID" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="EMAIL" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <column name="NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <column name="PASSWORD" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <column name="ROLE" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <primary-key name="CONSTRAINT_3" columns="ID"/>
-    </table>
-    <table name="CLIENT" schema="PUBLIC" catalog="BANKING" type="TABLE">
-      <column name="ID" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="EMAIL" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <column name="NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <column name="PASSWORD" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <column name="ROLE" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <primary-key name="CONSTRAINT_7" columns="ID"/>
-    </table>
     <table name="EXCHANGERATESTOTENGE" schema="PUBLIC" catalog="BANKING" type="TABLE">
       <column name="ID" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfRkQ1NUU0M0ZfMDdDRF80QkVEX0ExMTVfOTYxN0U2MDU2OTg5KQ==" autoIncrement="true"/>
       <column name="CURRENCY" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>

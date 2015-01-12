@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 public class Client extends User {
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+
     private List<Account> bankAccounts;
 
     public Client(String firstName, String password) {
@@ -25,7 +25,9 @@ public class Client extends User {
         this.bankAccounts = bankAccounts;
     }
 
-    public List getBankAccounts() {
+    @OneToMany(targetEntity = Account.class, mappedBy = "client", cascade = CascadeType.ALL)
+    @JoinTable(name = "USER_ACCOUNTS", joinColumns = {@JoinColumn(name = "client_id")}, inverseJoinColumns = {@JoinColumn(name = "bankAccounts_id")})
+    public List<Account> getBankAccounts() {
         return bankAccounts;
     }
 

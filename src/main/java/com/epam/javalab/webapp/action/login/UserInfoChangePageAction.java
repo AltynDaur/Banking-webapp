@@ -11,7 +11,7 @@ public class UserInfoChangePageAction implements Action {
     @Override
     public com.epam.javalab.webapp.action.ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
         User currentUser = (User) req.getSession().getAttribute("user");
-        req.setAttribute("firstName",currentUser.getFirstName());
+        req.setAttribute("firstName", currentUser.getName());
         req.setAttribute("password",currentUser.getPassword());
         req.setAttribute("email",currentUser.getEmail());
         req.setAttribute("role",currentUser.getRole().toString().toLowerCase());

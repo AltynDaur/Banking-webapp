@@ -13,10 +13,9 @@ public class Account {
     @GeneratedValue
     private int id;
     @ManyToOne
+    @JoinColumn(name = "id")
     private Client client;
-    @NotNull
     @OneToOne
-    @JoinColumn(referencedColumnName = "ID")
     private AccountType acctype;
     @NotNull
     private long amount;
