@@ -6,9 +6,9 @@ import org.hibernate.validator.constraints.Email;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-@Entity(name = "users")
+@Entity(name = "USERS")
 @Inheritance(strategy = InheritanceType.JOINED)
-@NamedQuery(name = "User.findByName", query = "SELECT u from User u where u.firstName=?1 and u.password=?2")
+@NamedQuery(name = "User.findByName", query = "SELECT u from Admin u where u.name=?1 and u.password=?2")
 public abstract class User {
     @Id
     @GeneratedValue

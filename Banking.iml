@@ -16,7 +16,6 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
-          <factory-entry name="Banking" value="f4629e5e-45ac-434b-b1b0-a20cea18c131" />
           <factory-entry name="noname-a.xml@0" value="f4629e5e-45ac-434b-b1b0-a20cea18c131" />
           <factory-entry name="primary" value="f4629e5e-45ac-434b-b1b0-a20cea18c131" />
         </datasource-mapping>

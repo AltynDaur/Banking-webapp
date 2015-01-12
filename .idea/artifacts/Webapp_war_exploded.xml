@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="Webapp:war exploded">
-    <output-path>$PROJECT_DIR$/target/Webapp</output-path>
+    <output-path>$PROJECT_DIR$/target/Webapp.war</output-path>
     <root id="root">
       <element id="javaee-facet-resources" facet="Banking/web/Web" />
       <element id="directory" name="WEB-INF">

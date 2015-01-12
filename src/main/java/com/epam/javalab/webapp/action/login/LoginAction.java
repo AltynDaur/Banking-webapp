@@ -20,7 +20,7 @@ public class LoginAction implements Action {
         String firstName = req.getParameter("firstName");
         String password = EncryptByMD5.encrypt(req.getParameter("password"), firstName);
         UserService service = new UserService();
-        User currentUser = (User) service.findByName(firstName, password);
+        User currentUser = service.findByName(firstName, password);
 
         //H2UserDAO h2UserDAO = new H2UserDAO();
         //User currentUser = h2UserDAO.findUser(firstName,password);
