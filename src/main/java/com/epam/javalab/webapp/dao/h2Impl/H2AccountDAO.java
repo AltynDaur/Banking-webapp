@@ -1,7 +1,8 @@
-package com.epam.javalab.webapp.dao;
+package com.epam.javalab.webapp.dao.h2Impl;
 
 import com.epam.javalab.webapp.account.Account;
-import com.epam.javalab.webapp.exception.DAOException;
+import com.epam.javalab.webapp.dao.AccountDAO;
+import com.epam.javalab.webapp.dao.ConnectionPool;
 import org.apache.log4j.Logger;
 
 import java.sql.*;

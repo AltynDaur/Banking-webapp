@@ -8,7 +8,8 @@ public interface AccountTypeDAO {
     public List<AccountType> findAll();
     public void add(AccountType accountType);
     public void update(AccountType targetAccType);
-    public void delete(int accTypeID);
+
+    public void delete(AccountType accountType);
 
     public AccountType findAccTypeByID(int accTypeID);
 }

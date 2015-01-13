@@ -13,6 +13,7 @@
       <column name="AMOUNT" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
       <primary-key name="CONSTRAINT_A" columns="ID"/>
       <foreign-key name="FK_OQ4YYJPARIANTSF3UJVEENUN1" columns="ACCTYPE_ID" ref-table="ACCOUNTSTYPE" ref-schema="PUBLIC" ref-catalog="BANKING" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
+      <foreign-key name="CONSTRAINT_AF" columns="CLIENT_ID" ref-table="USERS" ref-schema="PUBLIC" ref-catalog="BANKING" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
       <index name="FK_OQ4YYJPARIANTSF3UJVEENUN1_INDEX_A" unique="false" columns="ACCTYPE_ID"/>
     </table>
     <table name="ACCOUNTSTYPE" schema="PUBLIC" catalog="BANKING" type="TABLE">
@@ -49,8 +50,9 @@
       <column name="NAME" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
       <column name="PASSWORD" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
       <column name="EMAIL" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
-      <column name="ROLE" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ROLE" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="CONSTRAINT_4" columns="ID"/>
+      <exported-key name="CONSTRAINT_AF" table="ACCOUNTS" schema="PUBLIC" catalog="BANKING" columns="CLIENT_ID"/>
     </table>
   </data-source>
   <data-source name="H2 - test" uuid="854a15d6-e3e3-4043-842c-32836a6ca680">

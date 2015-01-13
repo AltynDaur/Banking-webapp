@@ -5,10 +5,9 @@ import com.epam.javalab.webapp.account.Account;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity
+
 public class Client extends User {
-    @OneToMany(targetEntity = Account.class, mappedBy = "client", cascade = CascadeType.ALL)
-    //@JoinTable(name = "CLIENT_ACCOUNTS", joinColumns = {@JoinColumn(name = "account_id")}, inverseJoinColumns = {@JoinColumn(name = "client_id")})
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private List<Account> bankAccounts;
 
     public Client(String firstName, String password) {

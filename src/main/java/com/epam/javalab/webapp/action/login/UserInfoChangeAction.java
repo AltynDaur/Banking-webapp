@@ -2,7 +2,7 @@ package com.epam.javalab.webapp.action.login;
 
 import com.epam.javalab.webapp.action.Action;
 import com.epam.javalab.webapp.action.ActionResult;
-//import com.epam.javalab.webapp.dao.H2UserDAO;
+//import com.epam.javalab.webapp.dao.h2Impl.H2UserDAO;
 import com.epam.javalab.webapp.security.EncryptByMD5;
 import com.epam.javalab.webapp.user.Role;
 import com.epam.javalab.webapp.user.User;

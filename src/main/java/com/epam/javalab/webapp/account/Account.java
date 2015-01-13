@@ -1,6 +1,6 @@
 package com.epam.javalab.webapp.account;
 
-import com.epam.javalab.webapp.user.Client;
+
 import com.epam.javalab.webapp.user.User;
 
 import javax.persistence.*;
@@ -13,14 +13,14 @@ public class Account {
     @GeneratedValue
     private int id;
     @ManyToOne
-    private Client client;
+    private User client;
     @OneToOne
     private AccountType acctype;
     @NotNull
     private long amount;
 
 
-    public Account(Client owner, AccountType accType, long amount) {
+    public Account(User owner, AccountType accType, long amount) {
         this.client = owner;
         this.acctype = accType;
         this.amount = amount;
@@ -35,11 +35,11 @@ public class Account {
         this.id = id;
     }
 
-    public Client getOwner() {
+    public User getOwner() {
         return client;
     }
 
-    public void setOwner(Client owner) {
+    public void setOwner(User owner) {
         this.client = owner;
     }
 

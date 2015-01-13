@@ -6,10 +6,13 @@ import com.epam.javalab.webapp.user.User;
 import java.util.List;
 
 public interface UserDAO {
-    public List getAll();
-    public void add(String firstName, String password, Role role, String email);
-    public void deleteByID(int userID);
-    public void update(String firstName, String password, String email, Role role, int userID);
+    public List<User> getAll();
 
-    public User findUserByID(int accID);
+    public void add(User user);
+
+    public void delete(User user);
+
+    public void update(User user);
+
+    public User findByNameAndPass(String name, String password);
 }

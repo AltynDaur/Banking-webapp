@@ -2,7 +2,8 @@ package com.epam.javalab.webapp.action.admin.user;
 
 import com.epam.javalab.webapp.action.Action;
 import com.epam.javalab.webapp.action.ActionResult;
-import com.epam.javalab.webapp.dao.H2UserDAO;
+import com.epam.javalab.webapp.dao.UserDAO;
+import com.epam.javalab.webapp.dao.h2Impl.H2UserDAO;
 import com.epam.javalab.webapp.security.EncryptByMD5;
 import com.epam.javalab.webapp.user.Role;
 
@@ -23,7 +24,7 @@ public class UserUpdateAction implements Action {
         String email = req.getParameter("email");
         int userID = Integer.parseInt(req.getParameter("userID"));
         Role role = Role.valueOf(req.getParameter("role").toUpperCase());
-        H2UserDAO h2UserDAO = new H2UserDAO();
+        UserDAO h2UserDAO = new H2UserDAO();
         h2UserDAO.update(userName,password,email,role,userID);
         ActionResult result = new ActionResult("admin/users", true);
         return result;

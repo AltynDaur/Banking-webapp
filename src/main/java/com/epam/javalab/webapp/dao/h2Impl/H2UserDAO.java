@@ -1,5 +1,7 @@
-package com.epam.javalab.webapp.dao;
+package com.epam.javalab.webapp.dao.h2Impl;
 
+import com.epam.javalab.webapp.dao.ConnectionPool;
+import com.epam.javalab.webapp.dao.UserDAO;
 import com.epam.javalab.webapp.user.Admin;
 import com.epam.javalab.webapp.user.Client;
 import com.epam.javalab.webapp.user.Role;
@@ -36,7 +38,7 @@ public class H2UserDAO implements UserDAO {
                 }
 
                 currentUser.setId(usersSet.getInt(1));
-                currentUser.setFirstName(usersSet.getString(2));
+                currentUser.setName(usersSet.getString(2));
                 currentUser.setPassword(usersSet.getString(3));
                 currentUser.setRole(usersSet.getString(5));
                 currentUser.setEmail(usersSet.getString(4));
@@ -70,7 +72,7 @@ public class H2UserDAO implements UserDAO {
                 }
 
                 currentUser.setId(usersSet.getInt(1));
-                currentUser.setFirstName(usersSet.getString(2));
+                currentUser.setName(usersSet.getString(2));
                 currentUser.setPassword(usersSet.getString(3));
                 currentUser.setRole(usersSet.getInt(5));
                 currentUser.setEmail(usersSet.getString(4));
@@ -181,7 +183,7 @@ public class H2UserDAO implements UserDAO {
                 }
 
                 currentUser.setId(resultSet.getInt(1));
-                currentUser.setFirstName(resultSet.getString(2));
+                currentUser.setName(resultSet.getString(2));
                 currentUser.setPassword(resultSet.getString(3));
                 currentUser.setRole(resultSet.getString(5));
                 currentUser.setEmail(resultSet.getString(4));

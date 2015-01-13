@@ -1,6 +1,8 @@
-package com.epam.javalab.webapp.dao;
+package com.epam.javalab.webapp.dao.h2Impl;
 
 import com.epam.javalab.webapp.account.AccountType;
+import com.epam.javalab.webapp.dao.AccountTypeDAO;
+import com.epam.javalab.webapp.dao.ConnectionPool;
 import org.apache.log4j.Logger;
 
 import java.sql.*;

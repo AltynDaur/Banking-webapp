@@ -1,15 +1,16 @@
 package com.epam.javalab.webapp.user;
 
 
+import com.epam.javalab.webapp.account.Account;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity(name = "USERS")
-@Inheritance(strategy = InheritanceType.JOINED)
-@NamedQuery(name = "User.findByName", query = "SELECT u from Admin u where u.name=?1 and u.password=?2")
-public abstract class User {
+@NamedQuery(name = "User.findByName", query = "SELECT u from USERS u where u.name=?1 and u.password=?2")
+public class User {
     @Id
     @GeneratedValue
     @Column(name = "ID")
@@ -27,6 +28,8 @@ public abstract class User {
     @Column(name = "EMAIL")
     @Email
     private String email;
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    private List<Account> bankAccounts;
 
     public User(String firstName, String password) {
 
@@ -77,6 +80,18 @@ public abstract class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setBankAccounts(List<Account> bankAccounts) {
+        while (bankAccounts.iterator().hasNext()) {
+            bankAccounts.iterator().next().setOwner(this);
+        }
+        this.bankAccounts = bankAccounts;
+    }
+
+
+    public List<Account> getBankAccounts() {
+        return bankAccounts;
     }
 
     @Override

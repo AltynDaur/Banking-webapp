@@ -1,6 +1,8 @@
-package com.epam.javalab.webapp.dao;
+package com.epam.javalab.webapp.dao.h2Impl;
 
 import com.epam.javalab.webapp.account.ExchangeRate;
+import com.epam.javalab.webapp.dao.ConnectionPool;
+import com.epam.javalab.webapp.dao.ExchangeRateDAO;
 import org.apache.log4j.Logger;
 
 import java.sql.*;
@@ -8,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class H2ExchangeRateDAO implements ExchangeRateDAO{
+public class H2ExchangeRateDAO implements ExchangeRateDAO {
     ConnectionPool connectionPool = ConnectionPool.getInstance();
     private static final Logger LOGGER = Logger.getLogger(H2ExchangeRateDAO.class);
     ResourceBundle sqlBundle = ResourceBundle.getBundle("sql");
