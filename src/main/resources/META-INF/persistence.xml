@@ -5,8 +5,9 @@
         http://xmlns.jcp.org/xml/ns/persistence
         http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
     <persistence-unit name="Banking">
-        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <non-jta-data-source>java:jboss/datasources/BankingDS</non-jta-data-source>
+
+        <jta-data-source>java:jboss/datasources/BankingDS</jta-data-source>
+
         <class>com.epam.javalab.webapp.user.User</class>
         <class>com.epam.javalab.webapp.account.Account</class>
         <class>com.epam.javalab.webapp.account.AccountType</class>
@@ -14,6 +15,8 @@
         <class>com.epam.javalab.webapp.account.TransactionHistoryRecord</class>
         <properties>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.transaction.jta.platform"
+                      value="org.hibernate.service.jta.platform.internal.JBossStandAloneJtaPlatform"/>
             <property name="hibernate.show_sql" value="false"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
         </properties>

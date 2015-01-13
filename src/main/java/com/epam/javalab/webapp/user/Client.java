@@ -10,9 +10,9 @@ public class Client extends User {
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private List<Account> bankAccounts;
 
-    public Client(String firstName, String password) {
+    public Client(String firstName, String password, String email, Role role) {
 
-        super(firstName, password);
+        super(firstName, password, email, role);
     }
 
     public Client() {

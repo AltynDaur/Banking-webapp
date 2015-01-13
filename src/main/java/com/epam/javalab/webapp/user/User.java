@@ -31,10 +31,12 @@ public class User {
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private List<Account> bankAccounts;
 
-    public User(String firstName, String password) {
+    public User(String firstName, String password, String email, Role role) {
 
         this.name = firstName;
         this.password = password;
+        this.email = email;
+        this.role = role;
     }
 
     public User() {
