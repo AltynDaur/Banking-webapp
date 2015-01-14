@@ -3,15 +3,21 @@ package com.epam.javalab.webapp.controller;
 import com.epam.javalab.webapp.action.Action;
 import com.epam.javalab.webapp.action.ActionFactory;
 import com.epam.javalab.webapp.action.ActionResult;
+import com.epam.javalab.webapp.action.login.LoginAction;
+import com.epam.javalab.webapp.dao.JPAImpl.JPAUserDAO;
 import org.apache.log4j.Logger;
 
+import javax.enterprise.inject.Model;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class Controller extends HttpServlet {
+
     ActionFactory actionFactory = new ActionFactory();
     private static final Logger LOGGER = Logger.getLogger(Controller.class);
 
@@ -22,6 +28,8 @@ public class Controller extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) {
+
+
         String actionName = getActionName(req);
         LOGGER.debug(actionName);
         Action currentAction = actionFactory.getAction(actionName);

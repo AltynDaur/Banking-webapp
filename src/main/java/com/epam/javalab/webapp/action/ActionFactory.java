@@ -25,12 +25,12 @@ import java.util.Map;
 public class ActionFactory {
     Map<String,Action> actions = new HashMap<>();
     {
-        actions.put("login",new LoginAction());
+        /*actions.put("login",new LoginAction());
         actions.put("loginPage", new LoginPageAction());
         actions.put("register", new RegisterAction());
         actions.put("registerPage", new RegisterPageAction());
         actions.put("admin/adminMainPage", new AdminMainPageAction());
-        /*actions.put("client/clientMainPage",new ClientMainPageAction());
+        actions.put("client/clientMainPage",new ClientMainPageAction());
         actions.put("admin/users", new UsersListAction());
         actions.put("client/accountsInfo", new AccountsInfoAction());
         actions.put("client/accountsTypeInfo", new AccountsTypeInfoAction());

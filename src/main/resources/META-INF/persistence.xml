@@ -15,8 +15,8 @@
         <class>com.epam.javalab.webapp.account.TransactionHistoryRecord</class>
         <properties>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
-            <property name="hibernate.transaction.jta.platform"
-                      value="org.hibernate.service.jta.platform.internal.JBossStandAloneJtaPlatform"/>
+            <!--<property name="hibernate.transaction.jta.platform"-->
+            <!--value="org.hibernate.service.jta.platform.internal.JBossStandAloneJtaPlatform"/>-->
             <property name="hibernate.show_sql" value="false"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
         </properties>

@@ -3,12 +3,20 @@ package com.epam.javalab.webapp.action.login;
 import com.epam.javalab.webapp.action.Action;
 import com.epam.javalab.webapp.action.ActionResult;
 
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
-public class LoginPageAction implements Action {
+@WebServlet("controller/loginPage")
+public class LoginPageAction extends HttpServlet {
+
     @Override
-    public com.epam.javalab.webapp.action.ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
-        return new ActionResult("loginPage");
+    public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        req.getRequestDispatcher("/WEB-INF/jsp/loginPage.jsp").forward(req, res);
     }
 }
