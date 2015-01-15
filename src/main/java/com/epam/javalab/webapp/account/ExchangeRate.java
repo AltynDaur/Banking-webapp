@@ -5,7 +5,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "EXCHANGERATESTOTENGE")
+@Table(name = "EXCHANGERATESTOTENGE", uniqueConstraints = @UniqueConstraint(columnNames = "currency"))
 public class ExchangeRate {
     @Id
     @GeneratedValue

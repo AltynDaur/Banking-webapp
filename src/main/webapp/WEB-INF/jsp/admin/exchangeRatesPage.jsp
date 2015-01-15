@@ -40,17 +40,17 @@
     <c:when test="${action == 'update'}">
         <div class="container" style="margin-top: 80px">
             <form action="controller/admin/updateExchangeRate" method="post">
-                <input type="hidden" name="rateID" value="${rateID}">
+                <input type="hidden" name="exchangeRate" value="${exchangeRate}">
                 <table class="table">
                     <tr>
                         <td><fmt:message key="currency"/></td>
-                        <td><input type="text" readonly value="${currency}"></td>
+                        <td><input type="text" readonly value="${exchangeRate.getCurrency()}"></td>
 
                     </tr>
 
                     <tr>
                         <td><fmt:message key="rate"/></td>
-                        <td><input type="text" name="rate" value="${rate}"></td>
+                        <td><input type="text" name="rate" value="${exchangeRate.getValue()}"></td>
                     </tr>
 
                 </table>

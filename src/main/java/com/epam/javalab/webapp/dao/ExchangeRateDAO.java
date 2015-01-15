@@ -2,13 +2,18 @@ package com.epam.javalab.webapp.dao;
 
 import com.epam.javalab.webapp.account.AccountType;
 import com.epam.javalab.webapp.account.ExchangeRate;
+import com.epam.javalab.webapp.exception.DAOException;
 
 import java.util.List;
 
 public interface ExchangeRateDAO {
-    public List<ExchangeRate> findAll();
-    public void add(ExchangeRate rate);
+    public List<ExchangeRate> findAll() throws DAOException;
 
-    public void delete(AccountType accountType);
-    public void update(ExchangeRate rate);
+    public void add(ExchangeRate rate) throws DAOException;
+
+    public void delete(ExchangeRate rate) throws DAOException;
+
+    public void update(ExchangeRate rate) throws DAOException;
+
+    public ExchangeRate findByID(int currencyID) throws DAOException;
 }

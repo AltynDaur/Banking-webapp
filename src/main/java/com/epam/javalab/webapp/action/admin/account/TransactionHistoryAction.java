@@ -1,21 +1,30 @@
 package com.epam.javalab.webapp.action.admin.account;
 
 import com.epam.javalab.webapp.account.TransactionHistoryRecord;
-import com.epam.javalab.webapp.action.Action;
-import com.epam.javalab.webapp.action.ActionResult;
-import com.epam.javalab.webapp.dao.H2TransactionHistoryDAO;
+import com.epam.javalab.webapp.dao.JPA;
+import com.epam.javalab.webapp.dao.TransactionHistoryDAO;
 
+import javax.inject.Inject;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
-public class TransactionHistoryAction implements Action {
+@WebServlet("/admin/transactionHistory")
+public class TransactionHistoryAction extends HttpServlet {
+
+    @Inject
+    @JPA
+    private TransactionHistoryDAO historyDAO;
+
     @Override
-    public ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
-        H2TransactionHistoryDAO h2TransactionHistoryDAO = new H2TransactionHistoryDAO();
-        List<TransactionHistoryRecord> currentList = h2TransactionHistoryDAO.findAll();
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<TransactionHistoryRecord> currentList = historyDAO.findAll();
         req.setAttribute("transRecordsList", currentList);
-        ActionResult result = new ActionResult("admin/adminMainPage");
-        return result;
+        req.getRequestDispatcher("/WEB-INF/jsp/admin/adminMainPage.jsp").forward(req, resp);
     }
+
 }

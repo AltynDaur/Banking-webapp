@@ -30,10 +30,6 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
-      <excludeFolder url="file://$MODULE_DIR$/src/main/java/com/epam/javalab/webapp/action/admin/account" />
-      <excludeFolder url="file://$MODULE_DIR$/src/main/java/com/epam/javalab/webapp/action/admin/accountType" />
-      <excludeFolder url="file://$MODULE_DIR$/src/main/java/com/epam/javalab/webapp/action/admin/exchangeRates" />
-      <excludeFolder url="file://$MODULE_DIR$/src/main/java/com/epam/javalab/webapp/action/admin/user" />
       <excludeFolder url="file://$MODULE_DIR$/src/main/java/com/epam/javalab/webapp/action/client" />
       <excludeFolder url="file://$MODULE_DIR$/src/main/java/com/epam/javalab/webapp/dao/h2Impl" />
       <excludeFolder url="file://$MODULE_DIR$/target" />

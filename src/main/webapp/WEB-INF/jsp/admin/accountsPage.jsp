@@ -19,7 +19,13 @@
                         </tr>
                         <tr>
                             <td><fmt:message key="accTypeName"/></td>
-                            <td><input type="text" name="accTypeName" value=""></td>
+                            <td>
+                                <select name="accType">
+                                    <c:forEach items="${accountTypes}" var="accType">
+                                        <option value="${accType}">${accType.getName()}</option>
+                                    </c:forEach>
+                                </select>
+                            </td>
                         </tr>
                         <tr>
                             <td><fmt:message key="amount"/></td>
@@ -44,20 +50,20 @@
     <c:when test="${action == 'update'}">
         <div class="container" style="margin-top: 80px">
             <form action="controller/admin/updateAccount" method="post">
-                <input type="hidden" name="accID" value="${accID}">
+                <input type="hidden" name="account" value="${account}">
                 <table class="table">
                     <tr>
                         <td><fmt:message key="owner"/></td>
-                        <td><input type="text" readonly value="${owner}"></td>
+                        <td><input type="text" readonly value="${account.getOwner().getName()}"></td>
 
                     </tr>
                     <tr>
                         <td><fmt:message key="accTypeName"/></td>
-                        <td><input type="text" readonly value="${accType}"/></td>
+                        <td><input type="text" readonly value="${account.getAcctype.getName()}"/></td>
                     </tr>
                     <tr>
                         <td><fmt:message key="amount"/></td>
-                        <td><input type="text" name="amount" value="${amount}"></td>
+                        <td><input type="text" name="amount" value="${account.getAmount}"></td>
                     </tr>
 
                 </table>

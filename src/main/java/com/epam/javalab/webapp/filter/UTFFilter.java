@@ -3,9 +3,11 @@ package com.epam.javalab.webapp.filter;
 import com.sun.deploy.net.HttpResponse;
 
 import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+@WebFilter("/controller/*")
 public class UTFFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

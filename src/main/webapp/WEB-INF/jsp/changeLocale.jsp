@@ -2,7 +2,7 @@
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="text"/>
 <div class="container row span2 well">
-    <form action="controller/changeLocale" id="changeLocale" method="post">
+    <form action="changeLocale" id="changeLocale" method="post">
         <select id="language" name="language" onchange="document.getElementById('changeLocale').submit()"
                 class="span2">
             <option value="ru" ${language == 'ru' ? 'selected' : ''}><fmt:message key="russian"/></option>

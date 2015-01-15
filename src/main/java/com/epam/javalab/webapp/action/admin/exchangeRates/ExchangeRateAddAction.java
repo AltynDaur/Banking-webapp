@@ -1,22 +1,38 @@
 package com.epam.javalab.webapp.action.admin.exchangeRates;
 
 import com.epam.javalab.webapp.account.ExchangeRate;
-import com.epam.javalab.webapp.action.Action;
-import com.epam.javalab.webapp.action.ActionResult;
-import com.epam.javalab.webapp.dao.H2ExchangeRateDAO;
+import com.epam.javalab.webapp.dao.ExchangeRateDAO;
+import com.epam.javalab.webapp.dao.JPA;
+import com.epam.javalab.webapp.exception.DAOException;
 
+import javax.inject.Inject;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
-public class ExchangeRateAddAction implements Action {
+@WebServlet("/admin/addExchangeRate")
+public class ExchangeRateAddAction extends HttpServlet {
+
+    @Inject
+    @JPA
+    private ExchangeRateDAO exchangeRateDAO;
+
     @Override
-    public ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String currency = req.getParameter("currency");
         int exchangeValue = Integer.parseInt(req.getParameter("exchangeValue"));
         ExchangeRate rate = new ExchangeRate(currency,exchangeValue);
-        H2ExchangeRateDAO h2ExchangeRateDAO = new H2ExchangeRateDAO();
-        h2ExchangeRateDAO.add(rate);
-        ActionResult result = new ActionResult("admin/exchangeRates",true);
-        return result;
+        try {
+            exchangeRateDAO.add(rate);
+            req.setAttribute("message", "Exchange rate successfully added");
+        } catch (DAOException e) {
+            req.setAttribute("message", "Database problems");
+            resp.sendRedirect("admin/exchangeRates");
+        }
+        resp.sendRedirect("admin/exchangeRates");
     }
+
 }

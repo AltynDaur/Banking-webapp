@@ -3,14 +3,20 @@ package com.epam.javalab.webapp.action.login;
 import com.epam.javalab.webapp.action.Action;
 import com.epam.javalab.webapp.action.ActionResult;
 
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
-public class LogOutAction implements Action {
+@WebServlet("/logout")
+public class LogOutAction extends HttpServlet {
+
     @Override
-    public ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getSession().setAttribute("user",null);
-        ActionResult result = new ActionResult("loginPage",true);
-        return result;
+        resp.sendRedirect("loginPage");
     }
+
 }

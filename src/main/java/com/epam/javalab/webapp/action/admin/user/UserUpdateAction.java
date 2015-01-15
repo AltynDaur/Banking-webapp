@@ -1,18 +1,30 @@
 package com.epam.javalab.webapp.action.admin.user;
 
-import com.epam.javalab.webapp.action.Action;
-import com.epam.javalab.webapp.action.ActionResult;
+
+import com.epam.javalab.webapp.dao.JPA;
 import com.epam.javalab.webapp.dao.UserDAO;
-import com.epam.javalab.webapp.dao.h2Impl.H2UserDAO;
+import com.epam.javalab.webapp.exception.DAOException;
 import com.epam.javalab.webapp.security.EncryptByMD5;
 import com.epam.javalab.webapp.user.Role;
+import com.epam.javalab.webapp.user.User;
 
+import javax.inject.Inject;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
-public class UserUpdateAction implements Action {
+@WebServlet("/admin/updateUser")
+public class UserUpdateAction extends HttpServlet {
+
+    @Inject
+    @JPA
+    private UserDAO userDAO;
+
     @Override
-    public ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String userName = req.getParameter("userName");
         String password = null;
         if(req.getParameter("password").equals(req.getParameter("currentPass"))){
@@ -24,9 +36,16 @@ public class UserUpdateAction implements Action {
         String email = req.getParameter("email");
         int userID = Integer.parseInt(req.getParameter("userID"));
         Role role = Role.valueOf(req.getParameter("role").toUpperCase());
-        UserDAO h2UserDAO = new H2UserDAO();
-        h2UserDAO.update(userName,password,email,role,userID);
-        ActionResult result = new ActionResult("admin/users", true);
-        return result;
+        User user = new User(userName, password, email, role);
+        user.setId(userID);
+        try {
+            userDAO.update(user);
+            req.setAttribute("message", "User successfully updated");
+        } catch (DAOException e) {
+            req.setAttribute("message", "Database problems");
+            resp.sendRedirect("admin/users");
+        }
+        resp.sendRedirect("admin/users");
     }
+
 }

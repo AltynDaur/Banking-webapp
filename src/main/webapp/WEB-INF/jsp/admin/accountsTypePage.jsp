@@ -47,27 +47,26 @@
     <c:when test="${action == 'update'}">
         <div class="container" style="margin-top: 80px">
             <form action="controller/admin/updateAccType" method="post">
-                <input type="hidden" name="accTypeID" value="${accTypeID}">
+                <input type="hidden" name="accType" value="${accType}">
                 <table class="table">
                     <tr>
                         <td><fmt:message key="accTypeName"/></td>
-                        <td><input type="text" name="accTypeName" value="${accTypeName}"></td>
+                        <td><input type="text" name="accTypeName" value="${accType.getName()}"></td>
                     </tr>
                     <tr>
                         <td><fmt:message key="percent"/></td>
-                        <td><input type="text" name="percent" value="${percent}"></td>
+                        <td><input type="text" name="percent" value="${accType.getPercent}"></td>
                     </tr>
                     <tr>
                         <td><fmt:message key="period"/></td>
-                        <td><input type="text" name="period" value="${period}"></td>
+                        <td><input type="text" name="period" value="${accType.getPeriod}"></td>
                     </tr>
                     <tr>
                         <td><fmt:message key="currency"/></td>
                         <td><select name="currency">
-                            <option value="dollar"><fmt:message key="dollar"/></option>
-                            <option value="euro"><fmt:message key="euro"/></option>
-                            <option value="rusrub"><fmt:message key="rusrub"/></option>
-                            <option value="kazten"><fmt:message key="kazten"/></option>
+                            <c:forEach items="${exchangeRates}" var="exchangeRate">
+                                <option value="${exchangeRate}">${exchangeRate.getCurrency}</option>
+                            </c:forEach>
                         </select></td>
                     </tr>
                 </table>

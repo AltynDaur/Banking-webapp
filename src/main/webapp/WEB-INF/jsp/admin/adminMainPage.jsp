@@ -14,6 +14,7 @@
 </c:if>
 
 <c:choose>
+
     <c:when test="${not empty requestScope.accTypeList}">
 
         <div class="container" style="margin-top: 80px">
@@ -39,7 +40,7 @@
                         <td>${accType.getCurrency()}</td>
                         <td>
                             <form action="controller/admin/accountsTypePage" method="post">
-                                <input type="hidden" name="accTypeID" value="${accType.getId()}">
+                                <input type="hidden" name="accType" value="${accType}">
                                 <input type="hidden" name="action" value="update">
                                 <input type="submit"
                                        value="<fmt:message key="update"/>" class="btn btn-warning">
@@ -47,7 +48,7 @@
                         </td>
                         <td>
                             <form action="controller/admin/deleteAccType" method="post">
-                                <input type="hidden" name="accTypeID" value="${accType.getId()}">
+                                <input type="hidden" name="accType" value="${accType}">
                                 <input type="submit"
                                        value="<fmt:message key="delete"/>" class="btn btn-danger">
                             </form>
@@ -75,6 +76,7 @@
                     <td><fmt:message key="delete"/></td>
                 </tr>
                 <c:forEach items="${accList}" var="account">
+
                     <tr>
                         <td>${account.getId()}</td>
                         <td>${account.getOwner()}</td>
@@ -83,7 +85,7 @@
                         <td>${account.getCurrency()}</td>
                         <td>
                             <form action="controller/admin/accountsPage" method="post">
-                                <input type="hidden" name="accID" value="${account.getId()}">
+                                <input type="hidden" name="accID" value="${account}">
                                 <input type="hidden" name="action" value="update">
                                 <input type="submit"
                                        value="<fmt:message key="update"/>" class="btn btn-warning">
@@ -91,7 +93,7 @@
                         </td>
                         <td>
                             <form action="controller/admin/deleteAccount" method="post">
-                                <input type="hidden" name="accID" value="${account.getId()}">
+                                <input type="hidden" name="accID" value="${account}">
                                 <input type="submit"
                                        value="<fmt:message key="delete"/>" class="btn btn-danger">
                             </form>
@@ -118,7 +120,7 @@
                 </tr>
                 <c:forEach items="${usersList}" var="user">
                     <tr>
-                        <td>${user.getFirstName()}</td>
+                        <td>${user.getName()}</td>
                         <td>${user.getEmail()}</td>
                         <td>${user.getRole()}</td>
                         <td>
@@ -131,7 +133,7 @@
                         </td>
                         <td>
                             <form action="controller/admin/deleteUser" method="post">
-                                <input type="hidden" name="userID" value="${user.getId()}">
+                                <input type="hidden" name="user" value="${user}">
                                 <input type="submit"
                                        value="<fmt:message key="delete"/>" class="btn-danger">
                             </form>
@@ -159,7 +161,7 @@
                         <td>${rate.getValue()}</td>
                         <td>
                             <form action="controller/admin/exchangeRatesPage" method="post">
-                                <input type="hidden" name="currency" value="${rate.getCurrency()}">
+                                <input type="hidden" name="currencyID" value="${rate.getId()}">
                                 <input type="hidden" name="action" value="update">
                                 <input type="submit"
                                        value="<fmt:message key="update"/>" class="btn-warning">
@@ -167,7 +169,7 @@
                         </td>
                         <td>
                             <form action="controller/admin/deleteExchangeRate" method="post">
-                                <input type="hidden" name="exchangeRateID" value="${rate.getId()}">
+                                <input type="hidden" name="exchangeRate" value="${rate}">
                                 <input type="submit"
                                        value="<fmt:message key="delete"/>" class="btn-danger">
                             </form>

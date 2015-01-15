@@ -1,18 +1,23 @@
 package com.epam.javalab.webapp.dao;
 
-import com.epam.javalab.webapp.user.Role;
+
+import com.epam.javalab.webapp.exception.DAOException;
 import com.epam.javalab.webapp.user.User;
+
 
 import java.util.List;
 
 public interface UserDAO {
-    public List<User> getAll();
 
-    public void add(User user);
+    public List<User> getAll() throws DAOException;
 
-    public void delete(User user);
+    public void add(User user) throws DAOException;
 
-    public void update(User user);
+    public void delete(User user) throws DAOException;
 
-    public User findByNameAndPass(String name, String password);
+    public void update(User user) throws DAOException;
+
+    public User findByNameAndPass(String name, String password) throws DAOException;
+
+    public User findUserByID(int userID) throws DAOException;
 }

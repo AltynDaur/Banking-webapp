@@ -1,21 +1,38 @@
 package com.epam.javalab.webapp.action.admin.exchangeRates;
 
 import com.epam.javalab.webapp.account.ExchangeRate;
-import com.epam.javalab.webapp.action.Action;
-import com.epam.javalab.webapp.action.ActionResult;
-import com.epam.javalab.webapp.dao.H2ExchangeRateDAO;
+import com.epam.javalab.webapp.dao.ExchangeRateDAO;
+import com.epam.javalab.webapp.dao.JPA;
+import com.epam.javalab.webapp.exception.DAOException;
 
+import javax.inject.Inject;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
-public class ExchangeRatesAction implements Action {
+@WebServlet("/admin/exchangeRates")
+public class ExchangeRatesAction extends HttpServlet {
+
+    @Inject
+    @JPA
+    private ExchangeRateDAO exchangeRateDAO;
+
     @Override
-    public ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
-        H2ExchangeRateDAO h2ExchangeRateDAO = new H2ExchangeRateDAO();
-        List<ExchangeRate> currentList = h2ExchangeRateDAO.findAll();
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        List<ExchangeRate> currentList = null;
+        try {
+            currentList = exchangeRateDAO.findAll();
+        } catch (DAOException e) {
+            req.setAttribute("message", "Database problems");
+            resp.sendRedirect("admin/adminMainPage");
+        }
         req.setAttribute("exchangeRates", currentList);
-        ActionResult actionResult = new ActionResult("admin/adminMainPage");
-        return actionResult;
+        req.getRequestDispatcher("/WEB-INF/jsp/admin/adminMainPage.jsp").forward(req, resp);
     }
+
 }

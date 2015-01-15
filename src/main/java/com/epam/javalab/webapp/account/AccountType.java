@@ -18,6 +18,16 @@ public class AccountType {
     @OneToOne
     private ExchangeRate currency;
 
+    public AccountType(String accTypeName, int percent, int period, ExchangeRate exchangeRate) {
+        this.name = accTypeName;
+        this.percent = percent;
+        this.period = period;
+        this.currency = exchangeRate;
+    }
+
+    public AccountType() {
+    }
+
     public int getId() {
         return id;
     }

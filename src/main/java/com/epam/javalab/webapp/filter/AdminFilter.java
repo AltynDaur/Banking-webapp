@@ -7,11 +7,13 @@ import com.sun.deploy.net.HttpResponse;
 import org.apache.log4j.Logger;
 
 import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+@WebFilter("/controller/admin/*")
 public class AdminFilter  implements Filter{
     private static final Logger LOGGER = Logger.getLogger(AdminFilter.class);
     @Override

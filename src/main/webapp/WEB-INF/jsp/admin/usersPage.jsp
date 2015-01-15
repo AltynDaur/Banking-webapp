@@ -32,8 +32,9 @@
                         <tr>
                             <td><fmt:message key="role"/></td>
                             <td><select name="role">
-                                <option value="admin"><fmt:message key="admin"/></option>
-                                <option value="client"><fmt:message key="client"/></option>
+                                <c:forEach items="${roles}" var="role">
+                                    <option value="${role}">${role}</option>
+                                </c:forEach>
                             </select></td>
                         </tr>
                         <tr>
@@ -59,21 +60,21 @@
             <div class="span4 offset4">
 
                 <form action="controller/admin/updateUser" method="post">
-                    <input type="hidden" name="userID" value="${userID}">
-                    <input type="hidden" name="currentPass" value="${currentPass}">
-                    <input type="hidden" name="role" value="${role}">
+                    <input type="hidden" name="userID" value="${user.getId()}">
+                    <input type="hidden" name="currentPass" value="${user.getPassword()}">
+                    <input type="hidden" name="role" value="${user.getRole()}">
                     <table>
                         <tr>
                             <td><fmt:message key="login"/></td>
-                            <td><input type="text" name="userName" value="${firstName}"></td>
+                            <td><input type="text" name="userName" value="${user.getName()}"></td>
                         </tr>
                         <tr>
                             <td><fmt:message key="password"/></td>
-                            <td><input type="text" name="password" value="${password}"></td>
+                            <td><input type="text" name="password" value="${user.getPassword()}"></td>
                         </tr>
                         <tr>
                             <td><fmt:message key="email"/></td>
-                            <td><input type="text" name="email" value="${email}"></td>
+                            <td><input type="text" name="email" value="${user.getEmail()}"></td>
                         </tr>
                         <tr>
                             <td></td>

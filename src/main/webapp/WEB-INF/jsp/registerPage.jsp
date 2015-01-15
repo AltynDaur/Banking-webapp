@@ -11,7 +11,7 @@
     <div class="row">
         <div class="span4 offset4 log">
             <legend><fmt:message key="registration"/> </legend>
-            <form action="controller/register" name="register" method="post">
+            <form action="register" name="register" method="post">
                 <input type="text" name="firstName" value="" placeholder="<fmt:message key="login"/>" class="span4">
                 <input type="text" name="password" value="" placeholder="<fmt:message key="password"/>" class="span4">
                 <input type="text" name="repeatPass" value="" placeholder="<fmt:message key="repeatPass"/>" class="span4">

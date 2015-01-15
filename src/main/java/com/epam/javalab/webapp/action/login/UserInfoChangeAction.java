@@ -3,18 +3,30 @@ package com.epam.javalab.webapp.action.login;
 import com.epam.javalab.webapp.action.Action;
 import com.epam.javalab.webapp.action.ActionResult;
 //import com.epam.javalab.webapp.dao.h2Impl.H2UserDAO;
+import com.epam.javalab.webapp.dao.JPA;
+import com.epam.javalab.webapp.dao.JPAImpl.JPAUserDAO;
+import com.epam.javalab.webapp.dao.UserDAO;
 import com.epam.javalab.webapp.security.EncryptByMD5;
 import com.epam.javalab.webapp.user.Role;
 import com.epam.javalab.webapp.user.User;
 
+import javax.inject.Inject;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
-public class UserInfoChangeAction implements Action {
+@WebServlet("/userInfoChange")
+public class UserInfoChangeAction extends HttpServlet {
+
+    @Inject
+    @JPA
+    private UserDAO userDAO;
+
     @Override
-    public com.epam.javalab.webapp.action.ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
-        EncryptByMD5 security = new EncryptByMD5();
-        ActionResult result = new ActionResult();
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String firstName = req.getParameter("firstName");
         User currentUser = (User) req.getSession().getAttribute("user");
         String password = null;
@@ -24,36 +36,34 @@ public class UserInfoChangeAction implements Action {
             if(req.getParameter("password").equals(req.getParameter("repeatPassword"))){
                 password = EncryptByMD5.encrypt(req.getParameter("password"),firstName);
             }   else {
-                result.setPath("userChangeInfoPage");
-                return result;
+                resp.sendRedirect("userInfoChangePage");
             }
 
         }
-
-
         String email = req.getParameter("email");
         String oldPass = EncryptByMD5.encrypt(req.getParameter("oldPass"),firstName);
 
         Role role = currentUser.getRole();
         int userID = currentUser.getId();
         if (currentUser.getPassword().equals(oldPass)) {
-            //H2UserDAO h2UserDAO = new H2UserDAO();
-            //h2UserDAO.update(firstName, password, email, role, userID);
+            currentUser.setName(firstName);
+            currentUser.setPassword(password);
+            currentUser.setEmail(email);
+            userDAO.update(currentUser);
             req.setAttribute("message", "updateSuccess");
-            result.setRedirect(true);
-            chooseRole(role, result);
+            resp.sendRedirect(chooseRole(role));
         } else {
             req.setAttribute("message", "errorChange");
-            chooseRole(role, result);
+            resp.sendRedirect(chooseRole(role));
         }
-        return result;
+
     }
 
-    private void chooseRole(Role role, ActionResult result) {
+    private String chooseRole(Role role) {
         if (role.equals(Role.ADMIN)) {
-            result.setPath("admin/adminMainPage");
+            return "admin/adminMainPage";
         } else {
-            result.setPath("client/clientMainPage");
+            return "client/clientMainPage";
         }
 
     }
