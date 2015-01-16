@@ -11,11 +11,11 @@ public class TransactionHistoryRecord {
     @Column(name = "ID")
     private int id;
     @NotNull
-    @Column
-    private int startAcc;
+    @OneToOne
+    private Account startAcc;
     @NotNull
-    @Column
-    private int finalAcc;
+    @OneToOne
+    private Account finalAcc;
     @NotNull
     @Column
     private long amount;
@@ -24,30 +24,30 @@ public class TransactionHistoryRecord {
     @JoinColumn(name = "ID")
     private ExchangeRate currency;
 
-    public TransactionHistoryRecord(int currentAccID, int targetAccID, long amount, String transactionCurrency) {
+    public TransactionHistoryRecord(Account currentAccID, Account targetAccID, long amount, ExchangeRate transactionCurrency) {
         this.startAcc = currentAccID;
         this.finalAcc = targetAccID;
         this.amount = amount;
-        this.currency = new ExchangeRate(transactionCurrency);
+        this.currency = transactionCurrency;
     }
 
     public TransactionHistoryRecord() {
 
     }
 
-    public int getStartAcc() {
+    public Account getStartAcc() {
         return startAcc;
     }
 
-    public void setStartAcc(int startAcc) {
+    public void setStartAcc(Account startAcc) {
         this.startAcc = startAcc;
     }
 
-    public int getFinalAcc() {
+    public Account getFinalAcc() {
         return finalAcc;
     }
 
-    public void setFinalAcc(int finalAcc) {
+    public void setFinalAcc(Account finalAcc) {
         this.finalAcc = finalAcc;
     }
 
@@ -75,6 +75,7 @@ public class TransactionHistoryRecord {
         this.id = id;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -83,17 +84,19 @@ public class TransactionHistoryRecord {
         TransactionHistoryRecord that = (TransactionHistoryRecord) o;
 
         if (amount != that.amount) return false;
-        if (finalAcc != that.finalAcc) return false;
-        if (startAcc != that.startAcc) return false;
-        if (currency != that.currency) return false;
+        if (id != that.id) return false;
+        if (currency != null ? !currency.equals(that.currency) : that.currency != null) return false;
+        if (finalAcc != null ? !finalAcc.equals(that.finalAcc) : that.finalAcc != null) return false;
+        if (startAcc != null ? !startAcc.equals(that.startAcc) : that.startAcc != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = startAcc;
-        result = 31 * result + finalAcc;
+        int result = id;
+        result = 31 * result + (startAcc != null ? startAcc.hashCode() : 0);
+        result = 31 * result + (finalAcc != null ? finalAcc.hashCode() : 0);
         result = 31 * result + (int) (amount ^ (amount >>> 32));
         result = 31 * result + (currency != null ? currency.hashCode() : 0);
         return result;

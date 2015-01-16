@@ -6,7 +6,7 @@
 <body>
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="text"/>
-<fmt:message key="hello"/> ,${sessionScope.user.getFirstName()}
+<fmt:message key="hello"/> ,${sessionScope.user.getName()}
 <jsp:include page="clientNavBar.jsp"/>
 <jsp:include page="../changeLocale.jsp"/>
 <c:choose>
@@ -46,7 +46,7 @@
                         <td>${account.getAmount()}</td>
                         <td>${account.getCurrency()}</td>
                         <td>
-                            <form action="controller/client/transactionPage" method="post">
+                            <form action="client/transactionPage" method="post">
                                 <input type="hidden" name="accID" value="${account.getId()}">
                                 <input type="submit" value="<fmt:message key="transaction"/>" class="btn btn-primary">
                             </form>

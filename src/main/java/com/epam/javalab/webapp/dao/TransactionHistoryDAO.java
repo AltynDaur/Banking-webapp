@@ -9,7 +9,7 @@ public interface TransactionHistoryDAO {
 
     public void add(TransactionHistoryRecord record) throws DAOException;
 
-    public List<TransactionHistoryRecord> findByAccID(int id) throws DAOException;
+    public List<TransactionHistoryRecord> findByUserID(int id) throws DAOException;
 
     public List<TransactionHistoryRecord> findAll() throws DAOException;
 

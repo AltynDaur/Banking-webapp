@@ -11,7 +11,7 @@
     <c:when test="${action == 'add'}">
         <div class="container" style="margin-top: 80px">
             <div class="span6 offset2">
-                <form action="controller/admin/addExchangeRate" method="post">
+                <form action="admin/addExchangeRate" method="post">
                     <table class="table">
                         <tr>
                             <td><fmt:message key="currency"/></td>
@@ -39,7 +39,7 @@
     </c:when>
     <c:when test="${action == 'update'}">
         <div class="container" style="margin-top: 80px">
-            <form action="controller/admin/updateExchangeRate" method="post">
+            <form action="admin/updateExchangeRate" method="post">
                 <input type="hidden" name="exchangeRate" value="${exchangeRate}">
                 <table class="table">
                     <tr>

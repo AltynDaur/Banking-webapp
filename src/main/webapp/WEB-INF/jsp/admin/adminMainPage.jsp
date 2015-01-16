@@ -19,7 +19,7 @@
 
         <div class="container" style="margin-top: 80px">
             <legend><fmt:message key="accountsTypes"/></legend>
-            <form action="controller/admin/accountsTypePage" method="post">
+            <form action="admin/accountsTypePage" method="post">
                 <input type="hidden" name="action" value="add">
                 <input type="submit" value="<fmt:message key="add"/>" class="btn btn-primary">
             </form>
@@ -37,18 +37,18 @@
                         <td>${accType.getName()}</td>
                         <td>${accType.getPercent()}</td>
                         <td>${accType.getPeriod()}</td>
-                        <td>${accType.getCurrency()}</td>
+                        <td>${accType.getExchangeRate().getCurrency()}</td>
                         <td>
-                            <form action="controller/admin/accountsTypePage" method="post">
-                                <input type="hidden" name="accType" value="${accType}">
+                            <form action="admin/accountsTypePage" method="post">
+                                <input type="hidden" name="accTypeID" value="${accType.getId()}">
                                 <input type="hidden" name="action" value="update">
                                 <input type="submit"
                                        value="<fmt:message key="update"/>" class="btn btn-warning">
                             </form>
                         </td>
                         <td>
-                            <form action="controller/admin/deleteAccType" method="post">
-                                <input type="hidden" name="accType" value="${accType}">
+                            <form action="admin/deleteAccType" method="post">
+                                <input type="hidden" name="accTypeID" value="${accType.getId()}">
                                 <input type="submit"
                                        value="<fmt:message key="delete"/>" class="btn btn-danger">
                             </form>
@@ -61,7 +61,7 @@
     <c:when test="${not empty accList}">
         <div class="container" style="margin-top: 80px">
             <legend><fmt:message key="accounts"/></legend>
-            <form action="controller/admin/accountsPage" method="post">
+            <form action="admin/accountsPage" method="post">
                 <input type="hidden" name="action" value="add">
                 <input type="submit" value="<fmt:message key="add"/>" class="btn btn-primary">
             </form>
@@ -79,21 +79,21 @@
 
                     <tr>
                         <td>${account.getId()}</td>
-                        <td>${account.getOwner()}</td>
-                        <td>${account.getAcctype()}</td>
+                        <td>${account.getOwner().getName()}</td>
+                        <td>${account.getAcctype().getName()}</td>
                         <td>${account.getAmount()}</td>
-                        <td>${account.getCurrency()}</td>
+                        <td>${account.getAcctype().getExchangeRate().getCurrency()}</td>
                         <td>
-                            <form action="controller/admin/accountsPage" method="post">
-                                <input type="hidden" name="accID" value="${account}">
+                            <form action="admin/accountsPage" method="post">
+                                <input type="hidden" name="accountID" value="${account.getId()}">
                                 <input type="hidden" name="action" value="update">
                                 <input type="submit"
                                        value="<fmt:message key="update"/>" class="btn btn-warning">
                             </form>
                         </td>
                         <td>
-                            <form action="controller/admin/deleteAccount" method="post">
-                                <input type="hidden" name="accID" value="${account}">
+                            <form action="admin/deleteAccount" method="post">
+                                <input type="hidden" name="accountID" value="${account.getId()}">
                                 <input type="submit"
                                        value="<fmt:message key="delete"/>" class="btn btn-danger">
                             </form>
@@ -106,7 +106,7 @@
     <c:when test="${not empty usersList}">
         <div class="container" style="margin-top: 80px">
             <legend><fmt:message key="users"/></legend>
-            <form action="controller/admin/usersPage" method="post">
+            <form action="admin/usersPage" method="post">
                 <input type="hidden" name="action" value="add">
                 <input type="submit" value="<fmt:message key="add"/>" class="btn btn-primary">
             </form>
@@ -124,7 +124,7 @@
                         <td>${user.getEmail()}</td>
                         <td>${user.getRole()}</td>
                         <td>
-                            <form action="controller/admin/usersPage" method="post">
+                            <form action="admin/usersPage" method="post">
                                 <input type="hidden" name="userID" value="${user.getId()}">
                                 <input type="hidden" name="action" value="update">
                                 <input type="submit"
@@ -132,8 +132,8 @@
                             </form>
                         </td>
                         <td>
-                            <form action="controller/admin/deleteUser" method="post">
-                                <input type="hidden" name="user" value="${user}">
+                            <form action="admin/deleteUser" method="post">
+                                <input type="hidden" name="userID" value="${user.getId()}">
                                 <input type="submit"
                                        value="<fmt:message key="delete"/>" class="btn-danger">
                             </form>
@@ -146,7 +146,7 @@
     <c:when test="${not empty exchangeRates}">
         <div class="container" style="margin-top: 80px">
             <legend><fmt:message key="exchangeRates"/></legend>
-            <form action="controller/admin/exchangeRatesPage" method="post">
+            <form action="admin/exchangeRatesPage" method="post">
                 <input type="hidden" name="action" value="add">
                 <input type="submit" value="<fmt:message key="add"/>" class="btn btn-primary">
             </form>
@@ -160,16 +160,16 @@
                         <td>${rate.getCurrency()}</td>
                         <td>${rate.getValue()}</td>
                         <td>
-                            <form action="controller/admin/exchangeRatesPage" method="post">
-                                <input type="hidden" name="currencyID" value="${rate.getId()}">
+                            <form action="admin/exchangeRatesPage" method="post">
+                                <input type="hidden" name="exchangeRateID" value="${rate.getId()}">
                                 <input type="hidden" name="action" value="update">
                                 <input type="submit"
                                        value="<fmt:message key="update"/>" class="btn-warning">
                             </form>
                         </td>
                         <td>
-                            <form action="controller/admin/deleteExchangeRate" method="post">
-                                <input type="hidden" name="exchangeRate" value="${rate}">
+                            <form action="admin/deleteExchangeRate" method="post">
+                                <input type="hidden" name="exchangeRateID" value="${rate}">
                                 <input type="submit"
                                        value="<fmt:message key="delete"/>" class="btn-danger">
                             </form>
@@ -188,7 +188,9 @@
                 <tr>
                     <td><fmt:message key="transHistRecord"/></td>
                     <td><fmt:message key="from"/></td>
+                    <td><fmt:message key="owner"/></td>
                     <td><fmt:message key="finalAcc"/></td>
+                    <td><fmt:message key="owner"/></td>
                     <td><fmt:message key="amount"/></td>
                     <td><fmt:message key="currency"/></td>
 
@@ -196,10 +198,12 @@
                 <c:forEach items="${transRecordsList}" var="transRecord">
                     <tr>
                         <td>${transRecord.getId()}</td>
-                        <td>${transRecord.getStartAcc()}</td>
-                        <td>${transRecord.getFinalAcc()}</td>
+                        <td>${transRecord.getStartAcc().getId()}</td>
+                        <td>${transRecord.getStartAcc().getOwner().getName()}</td>
+                        <td>${transRecord.getFinalAcc().getId()}</td>
+                        <td>${transRecord.getFinalAcc().getOwner().getName()}</td>
                         <td>${transRecord.getAmount()}</td>
-                        <td>${transRecord.getCurrency()}</td>
+                        <td>${transRecord.getExchangeRate().getCurrency()}</td>
                     </tr>
                 </c:forEach>
             </table>

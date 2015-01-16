@@ -6,6 +6,7 @@ import com.sun.deploy.net.HttpRequest;
 import com.sun.deploy.net.HttpResponse;
 import org.apache.log4j.Logger;
 
+import javax.inject.Inject;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -13,9 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter("/controller/admin/*")
+@WebFilter("/admin/*")
 public class AdminFilter  implements Filter{
-    private static final Logger LOGGER = Logger.getLogger(AdminFilter.class);
+    @Inject
+    private Logger LOGGER;
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         LOGGER.debug("Starting Admin Filter");

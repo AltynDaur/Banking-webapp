@@ -7,7 +7,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter("/controller/*")
+@WebFilter("/*")
 public class UTFFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

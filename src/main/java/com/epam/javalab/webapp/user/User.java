@@ -23,6 +23,7 @@ public class User {
     private String password;
     @Enumerated
     @Column(name = "ROLE")
+    @NotNull
     private Role role;
     @NotNull
     @Column(name = "EMAIL")

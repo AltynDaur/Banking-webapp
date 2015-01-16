@@ -15,7 +15,7 @@
 
             <div class="span4 offset4">
 
-                <form action="controller/admin/addUser" method="post">
+                <form action="admin/addUser" method="post">
                     <table class="table">
                         <tr>
                             <td><fmt:message key="login"/></td>
@@ -59,7 +59,7 @@
 
             <div class="span4 offset4">
 
-                <form action="controller/admin/updateUser" method="post">
+                <form action="admin/updateUser" method="post">
                     <input type="hidden" name="userID" value="${user.getId()}">
                     <input type="hidden" name="currentPass" value="${user.getPassword()}">
                     <input type="hidden" name="role" value="${user.getRole()}">

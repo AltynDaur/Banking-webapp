@@ -28,11 +28,10 @@
                     </tr>
                     <tr>
                         <td><fmt:message key="currency"/></td>
-                        <td><select name="currency">
-                            <option value="dollar"><fmt:message key="dollar"/></option>
-                            <option value="euro"><fmt:message key="euro"/></option>
-                            <option value="rusrub"><fmt:message key="rusrub"/></option>
-                            <option value="kazten"><fmt:message key="kazten"/></option>
+                        <td><select name="exchangeRateID">
+                            <c:forEach items="exchangeRates" var="exchangeRate">
+                                <option value="${exchangeRate.getId()}">${exchangeRate.getCurrency()}</option>
+                            </c:forEach>
                         </select></td>
                     </tr>
                 </table>

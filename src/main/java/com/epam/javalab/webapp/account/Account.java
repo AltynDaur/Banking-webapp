@@ -13,8 +13,10 @@ public class Account {
     @GeneratedValue
     private int id;
     @ManyToOne
+    @NotNull
     private User client;
     @OneToOne
+    @NotNull
     private AccountType acctype;
     @NotNull
     private long amount;
@@ -25,7 +27,9 @@ public class Account {
         this.acctype = accType;
         this.amount = amount;
     }
-    public Account(){}
+
+    public Account() {
+    }
 
     public int getId() {
         return id;

@@ -11,7 +11,7 @@
     <c:when test="${action == 'add'}">
         <div class="container" style="margin-top: 80px">
             <div class="span6 offset2">
-                <form action="controller/admin/addAccount" method="post">
+                <form action="admin/addAccount" method="post">
                     <table class="table">
                         <tr>
                             <td><fmt:message key="owner"/></td>
@@ -20,9 +20,9 @@
                         <tr>
                             <td><fmt:message key="accTypeName"/></td>
                             <td>
-                                <select name="accType">
+                                <select name="accTypeID">
                                     <c:forEach items="${accountTypes}" var="accType">
-                                        <option value="${accType}">${accType.getName()}</option>
+                                        <option value="${accType.getId()}">${accType.getName()}</option>
                                     </c:forEach>
                                 </select>
                             </td>
@@ -49,7 +49,7 @@
     </c:when>
     <c:when test="${action == 'update'}">
         <div class="container" style="margin-top: 80px">
-            <form action="controller/admin/updateAccount" method="post">
+            <form action="admin/updateAccount" method="post">
                 <input type="hidden" name="account" value="${account}">
                 <table class="table">
                     <tr>

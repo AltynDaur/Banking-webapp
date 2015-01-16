@@ -16,7 +16,7 @@
     <div class="row">
         <div class="span6 offset3 log">
 
-            <form action="controller/userInfoChange" name="userInfoChange" method="post">
+            <form action="userInfoChange" name="userInfoChange" method="post">
                 <table border="0" class="table">
                     <tr>
                         <td><fmt:message key="login"/>:</td>

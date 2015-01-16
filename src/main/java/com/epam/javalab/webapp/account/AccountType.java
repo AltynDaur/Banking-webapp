@@ -1,6 +1,7 @@
 package com.epam.javalab.webapp.account;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "ACCOUNTSTYPE")
@@ -10,12 +11,16 @@ public class AccountType {
     @Column
     private int id;
     @Column(name = "ACCNAME")
+    @NotNull
     private String name;
     @Column(name = "PERCENT")
+    @NotNull
     private int percent;
     @Column(name = "PERIOD")
+    @NotNull
     private int period;
     @OneToOne
+    @NotNull
     private ExchangeRate currency;
 
     public AccountType(String accTypeName, int percent, int period, ExchangeRate exchangeRate) {
@@ -46,6 +51,10 @@ public class AccountType {
 
     public int getPercent() {
         return percent;
+    }
+
+    public ExchangeRate getExchangeRate() {
+        return currency;
     }
 
     public void setPercent(int percent) {

@@ -1,4 +1,5 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <jsp:include page="../header.jsp"/>
@@ -9,7 +10,7 @@
 <div class="container" style="margin-top: 80px">
     <table class="table">
         <fmt:message key="transaction"/>
-        <form action="controller/client/transaction" method="post">
+        <form action="client/transaction" method="post">
             <tr>
                 <td><fmt:message key="from"/>:</td>
                 <td><input type="text" name="currentAccID" value="${currentAccID}" readonly></td>
@@ -25,11 +26,10 @@
             <tr>
                 <td><fmt:message key="currency"/></td>
                 <td>
-                    <select name="currency">
-                        <option value="dollar"><fmt:message key="dollar"/></option>
-                        <option value="euro"><fmt:message key="euro"/></option>
-                        <option value="rusrub"><fmt:message key="rusrub"/></option>
-                        <option value="kazten"><fmt:message key="kazten"/></option>
+                    <select name="exchangeRateID">
+                        <c:forEach items="${exchangeRates}" var="exchangeRate">
+                            <option value="${exchangeRate.getId()}">${exchangeRate.getCurrency()}</option>
+                        </c:forEach>
                     </select>
                 </td>
             </tr>
