@@ -14,6 +14,8 @@
       <primary-key name="CONSTRAINT_A" columns="ID"/>
       <foreign-key name="FK_OQ4YYJPARIANTSF3UJVEENUN1" columns="ACCTYPE_ID" ref-table="ACCOUNTSTYPE" ref-schema="PUBLIC" ref-catalog="BANKING" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
       <foreign-key name="CONSTRAINT_AF" columns="CLIENT_ID" ref-table="USERS" ref-schema="PUBLIC" ref-catalog="BANKING" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
+      <exported-key name="FK_44XN3JBC9ND90VLKLGLR4QL1H" table="TRANSACTIONHISTORY" schema="PUBLIC" catalog="BANKING" columns="STARTACC_ID"/>
+      <exported-key name="FK_EIH6YE1QKSD50IIK93M333E9W" table="TRANSACTIONHISTORY" schema="PUBLIC" catalog="BANKING" columns="FINALACC_ID"/>
       <index name="FK_OQ4YYJPARIANTSF3UJVEENUN1_INDEX_A" unique="false" columns="ACCTYPE_ID"/>
     </table>
     <table name="ACCOUNTSTYPE" schema="PUBLIC" catalog="BANKING" type="TABLE">
@@ -27,23 +29,46 @@
       <exported-key name="FK_OQ4YYJPARIANTSF3UJVEENUN1" table="ACCOUNTS" schema="PUBLIC" catalog="BANKING" columns="ACCTYPE_ID"/>
       <index name="FK_HU3JSQICX8YDR5PQ1XM2ESSN4_INDEX_C" unique="false" columns="CURRENCY_ID"/>
     </table>
+    <table name="ADMIN" schema="PUBLIC" catalog="BANKING" type="TABLE">
+      <column name="ID" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="EMAIL" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="PASSWORD" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ROLE" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="CONSTRAINT_3" columns="ID"/>
+      <foreign-key name="FK_7PNWT9CH4QW3WS4DIEWNW8O2B" columns="ID" ref-table="USERS" ref-schema="PUBLIC" ref-catalog="BANKING" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
+    </table>
+    <table name="CLIENT" schema="PUBLIC" catalog="BANKING" type="TABLE">
+      <column name="ID" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="EMAIL" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="PASSWORD" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ROLE" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="CONSTRAINT_7" columns="ID"/>
+      <foreign-key name="FK_T2QLEFRBXBKW18TSFJAUIF8HR" columns="ID" ref-table="USERS" ref-schema="PUBLIC" ref-catalog="BANKING" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
+    </table>
     <table name="EXCHANGERATESTOTENGE" schema="PUBLIC" catalog="BANKING" type="TABLE">
       <column name="ID" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfRkQ1NUU0M0ZfMDdDRF80QkVEX0ExMTVfOTYxN0U2MDU2OTg5KQ==" autoIncrement="true"/>
       <column name="CURRENCY" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
-      <column name="VALUE" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="VALUE" sqlType="DOUBLE" precision="17" scale="0" nullable="true" jdbcType="8"/>
       <primary-key name="CONSTRAINT_D" columns="ID"/>
       <exported-key name="FK_HU3JSQICX8YDR5PQ1XM2ESSN4" table="ACCOUNTSTYPE" schema="PUBLIC" catalog="BANKING" columns="CURRENCY_ID"/>
-      <exported-key name="FK_ANNPC19ARQNIFM2N7048QL7UF" table="TRANSACTIONHISTORY" schema="PUBLIC" catalog="BANKING" columns="CURRENCY_ID"/>
+      <exported-key name="FK_ANNPC19ARQNIFM2N7048QL7UF" table="TRANSACTIONHISTORY" schema="PUBLIC" catalog="BANKING" columns="EXCHANGERATE_ID"/>
+      <index name="UK_MNPGNMQW4WVL4PFHQ5F6MBT2K_INDEX_D" unique="true" columns="CURRENCY"/>
     </table>
     <table name="TRANSACTIONHISTORY" schema="PUBLIC" catalog="BANKING" type="TABLE">
       <column name="ID" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfQzMyNDNENzNfQzA0Rl80RTg5Xzk5QjZfQjUxN0JBRUQwNTI3KQ==" autoIncrement="true"/>
-      <column name="STARTACC" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="FINALACC" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="AMOUNT" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
-      <column name="CURRENCY_ID" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="EXCHANGERATE_ID" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="FINALACC_ID" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="STARTACC_ID" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="CONSTRAINT_1" columns="ID"/>
-      <foreign-key name="FK_ANNPC19ARQNIFM2N7048QL7UF" columns="CURRENCY_ID" ref-table="EXCHANGERATESTOTENGE" ref-schema="PUBLIC" ref-catalog="BANKING" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
-      <index name="FK_ANNPC19ARQNIFM2N7048QL7UF_INDEX_1" unique="false" columns="CURRENCY_ID"/>
+      <foreign-key name="FK_44XN3JBC9ND90VLKLGLR4QL1H" columns="STARTACC_ID" ref-table="ACCOUNTS" ref-schema="PUBLIC" ref-catalog="BANKING" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
+      <foreign-key name="FK_EIH6YE1QKSD50IIK93M333E9W" columns="FINALACC_ID" ref-table="ACCOUNTS" ref-schema="PUBLIC" ref-catalog="BANKING" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
+      <foreign-key name="FK_ANNPC19ARQNIFM2N7048QL7UF" columns="EXCHANGERATE_ID" ref-table="EXCHANGERATESTOTENGE" ref-schema="PUBLIC" ref-catalog="BANKING" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
+      <index name="FK_44XN3JBC9ND90VLKLGLR4QL1H_INDEX_C" unique="false" columns="STARTACC_ID"/>
+      <index name="FK_ANNPC19ARQNIFM2N7048QL7UF_INDEX_C" unique="false" columns="EXCHANGERATE_ID"/>
+      <index name="FK_EIH6YE1QKSD50IIK93M333E9W_INDEX_C" unique="false" columns="FINALACC_ID"/>
     </table>
     <table name="USERS" schema="PUBLIC" catalog="BANKING" type="TABLE">
       <column name="ID" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfNTgzOTE4RTVfQTY2NV80NDQ1XzgxOTJfQUQ3OEFFMkM1NDE1KQ==" autoIncrement="true"/>
@@ -53,6 +78,8 @@
       <column name="ROLE" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="CONSTRAINT_4" columns="ID"/>
       <exported-key name="CONSTRAINT_AF" table="ACCOUNTS" schema="PUBLIC" catalog="BANKING" columns="CLIENT_ID"/>
+      <exported-key name="FK_7PNWT9CH4QW3WS4DIEWNW8O2B" table="ADMIN" schema="PUBLIC" catalog="BANKING" columns="ID"/>
+      <exported-key name="FK_T2QLEFRBXBKW18TSFJAUIF8HR" table="CLIENT" schema="PUBLIC" catalog="BANKING" columns="ID"/>
     </table>
   </data-source>
   <data-source name="H2 - test" uuid="854a15d6-e3e3-4043-842c-32836a6ca680">

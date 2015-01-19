@@ -12,7 +12,7 @@ public interface AccountTypeDAO {
 
     public void update(AccountType targetAccType) throws DAOException;
 
-    public void delete(AccountType accountType) throws DAOException;
+    public void delete(int accountTypeID) throws DAOException;
 
     public AccountType findAccTypeByID(int accTypeID) throws DAOException;
 }

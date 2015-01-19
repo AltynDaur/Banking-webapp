@@ -22,14 +22,14 @@ public class ExchangeRateUpdateAction extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int exchangeRateID = (int) req.getAttribute("exchangeRateID");
-        int exchangeValue = Integer.parseInt(req.getParameter("exchangeValue"));
+        int exchangeRateID = Integer.parseInt(req.getParameter("exchangeRateID"));
+        double exchangeValue = Double.parseDouble(req.getParameter("rate"));
 
         try {
             ExchangeRate exchangeRate = exchangeRateDAO.findByID(exchangeRateID);
             exchangeRate.setValue(exchangeValue);
             exchangeRateDAO.update(exchangeRate);
-            req.setAttribute("message", "Database problems");
+            req.setAttribute("message", "Exchange Rate successfully updated");
         } catch (DAOException e) {
             req.setAttribute("message", "Database problems");
             resp.sendRedirect("exchangeRates");

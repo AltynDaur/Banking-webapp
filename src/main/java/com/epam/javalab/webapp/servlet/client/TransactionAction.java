@@ -40,7 +40,7 @@ public class TransactionAction extends HttpServlet {
         int exchangeRateID = Integer.parseInt(req.getParameter("exchangeRateID"));
         try {
             ExchangeRate transactionExchangeRate = exchangeRateDAO.findByID(exchangeRateID);
-            long amountForTransaction = amount * transactionExchangeRate.getValue();
+            long amountForTransaction = (long) (amount * transactionExchangeRate.getValue());
             Account currentAccount = accountDAO.findByID(currentAccID);
             Account targetAccount = accountDAO.findByID(targetAccID);
             boolean transactionStatusOK = accountDAO.transaction(currentAccount, targetAccount, amountForTransaction);
@@ -52,7 +52,7 @@ public class TransactionAction extends HttpServlet {
         } catch (DAOException e) {
             e.printStackTrace();
         }
-        resp.sendRedirect("client/accountsInfo");
+        resp.sendRedirect("accountsInfo");
 
     }
 

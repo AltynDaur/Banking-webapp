@@ -42,9 +42,9 @@
                 <c:forEach items="${accList}" var="account">
                     <tr>
                         <td>${account.getId()}</td>
-                        <td>${account.getAcctype()}</td>
+                        <td>${account.getAcctype().getName()}</td>
                         <td>${account.getAmount()}</td>
-                        <td>${account.getCurrency()}</td>
+                        <td>${account.getAcctype().getExchangeRate().getCurrency()}</td>
                         <td>
                             <form action="client/transactionPage" method="post">
                                 <input type="hidden" name="accID" value="${account.getId()}">
@@ -69,10 +69,10 @@
                 <c:forEach items="${transHistoryRecords}" var="transRecord">
                     <tr>
                         <td>${transRecord.getId()}</td>
-                        <td>${transRecord.getStartAcc()}</td>
-                        <td>${transRecord.getFinalAcc()}</td>
+                        <td>${transRecord.getStartAcc().getId()}</td>
+                        <td>${transRecord.getFinalAcc().getId()}</td>
                         <td>${transRecord.getAmount()}</td>
-                        <td>${transRecord.getCurrency()}</td>
+                        <td>${transRecord.getExchangeRate().getCurrency()}</td>
                     </tr>
                 </c:forEach>
             </table>

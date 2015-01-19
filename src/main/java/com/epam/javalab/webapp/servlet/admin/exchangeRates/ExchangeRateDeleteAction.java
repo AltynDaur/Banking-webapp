@@ -22,10 +22,10 @@ public class ExchangeRateDeleteAction extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int exchangeRateID = (int) req.getAttribute("exchangeRateID");
+        int exchangeRateID = Integer.parseInt(req.getParameter("exchangeRateID"));
         try {
-            ExchangeRate exchangeRate = exchangeRateDAO.findByID(exchangeRateID);
-            exchangeRateDAO.delete(exchangeRate);
+
+            exchangeRateDAO.delete(exchangeRateID);
             req.setAttribute("message", "Exchange rate successfully deleted");
         } catch (DAOException e) {
             req.setAttribute("message", "Database problems");

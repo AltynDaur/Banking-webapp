@@ -23,10 +23,10 @@ public class AccTypeDeleteAction extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int accountTypeID = (int) req.getAttribute("accTypeID");
+        int accountTypeID = Integer.parseInt(req.getParameter("accTypeID"));
         try {
-            AccountType accountType = accountTypeDAO.findAccTypeByID(accountTypeID);
-            accountTypeDAO.delete(accountType);
+
+            accountTypeDAO.delete(accountTypeID);
             req.setAttribute("message", "AccountType successfully deleted");
         } catch (DAOException e) {
             req.setAttribute("message", "Database problems");

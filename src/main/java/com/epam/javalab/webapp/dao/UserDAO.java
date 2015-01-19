@@ -13,11 +13,13 @@ public interface UserDAO {
 
     public void add(User user) throws DAOException;
 
-    public void delete(User user) throws DAOException;
+    public void delete(int userID) throws DAOException;
 
     public void update(User user) throws DAOException;
 
     public User findByNameAndPass(String name, String password) throws DAOException;
 
     public User findUserByID(int userID) throws DAOException;
+
+    public User findByName(String name) throws DAOException;
 }

@@ -22,7 +22,7 @@ public class AccountUpdateAction extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int accountID = (int) req.getAttribute("accountID");
+        int accountID = Integer.parseInt(req.getParameter("accountID"));
         long amount = Long.parseLong(req.getParameter("amount"));
         Account account = null;
 

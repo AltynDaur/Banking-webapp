@@ -18,7 +18,7 @@ public class ExchangeRate {
 
     @NotNull
     @Column(name = "VALUE")
-    private  int value;
+    private double value;
 
     public ExchangeRate(String currency, int exchangeValue) {
         this.currency=currency;
@@ -48,11 +48,11 @@ public class ExchangeRate {
         this.currency = currency;
     }
 
-    public int getValue() {
+    public double getValue() {
         return value;
     }
 
-    public void setValue(int value) {
+    public void setValue(double value) {
         this.value = value;
     }
 }

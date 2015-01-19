@@ -14,7 +14,7 @@ public interface AccountDAO {
 
     public void update(Account account) throws DAOException;
 
-    public void delete(Account account) throws DAOException;
+    public void delete(int accountID) throws DAOException;
 
     public void add(Account account) throws DAOException;
 

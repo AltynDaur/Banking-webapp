@@ -40,7 +40,7 @@
     <c:when test="${action == 'update'}">
         <div class="container" style="margin-top: 80px">
             <form action="admin/updateExchangeRate" method="post">
-                <input type="hidden" name="exchangeRate" value="${exchangeRate}">
+                <input type="hidden" name="exchangeRateID" value="${exchangeRate.getId()}">
                 <table class="table">
                     <tr>
                         <td><fmt:message key="currency"/></td>

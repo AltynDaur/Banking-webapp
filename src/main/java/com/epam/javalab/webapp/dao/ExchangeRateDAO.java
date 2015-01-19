@@ -11,7 +11,7 @@ public interface ExchangeRateDAO {
 
     public void add(ExchangeRate rate) throws DAOException;
 
-    public void delete(ExchangeRate rate) throws DAOException;
+    public void delete(int rateID) throws DAOException;
 
     public void update(ExchangeRate rate) throws DAOException;
 

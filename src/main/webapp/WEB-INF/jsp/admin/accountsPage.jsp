@@ -59,11 +59,11 @@
                     </tr>
                     <tr>
                         <td><fmt:message key="accTypeName"/></td>
-                        <td><input type="text" readonly value="${account.getAcctype.getName()}"/></td>
+                        <td><input type="text" readonly value="${account.getAcctype().getName()}"/></td>
                     </tr>
                     <tr>
                         <td><fmt:message key="amount"/></td>
-                        <td><input type="text" name="amount" value="${account.getAmount}"></td>
+                        <td><input type="text" name="amount" value="${account.getAmount()}"></td>
                     </tr>
 
                 </table>

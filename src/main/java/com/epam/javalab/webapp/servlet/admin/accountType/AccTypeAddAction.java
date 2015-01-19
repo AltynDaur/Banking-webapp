@@ -30,7 +30,7 @@ public class AccTypeAddAction extends HttpServlet {
         String accTypeName = req.getParameter("accTypeName");
         int percent = Integer.parseInt(req.getParameter("percent"));
         int period = Integer.parseInt(req.getParameter("period"));
-        int exchangeRateID = (int) req.getAttribute("exchangeRateID");
+        int exchangeRateID = Integer.parseInt(req.getParameter("exchangeRateID"));
         ExchangeRate exchangeRate = null;
         try {
             exchangeRate = exchangeRateDAO.findByID(exchangeRateID);

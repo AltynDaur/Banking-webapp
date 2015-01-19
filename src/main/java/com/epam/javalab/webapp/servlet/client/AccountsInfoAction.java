@@ -27,7 +27,7 @@ public class AccountsInfoAction extends HttpServlet {
         int currentID = currentUser.getId();
         List<Account> currentAccList = accountDAO.findAllByUserID(currentID);
         req.setAttribute("accList", currentAccList);
-        req.getRequestDispatcher("client/clientMainPage").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/jsp/client/clientMainPage.jsp").forward(req, resp);
     }
 
 }

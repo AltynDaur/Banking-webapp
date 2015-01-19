@@ -28,15 +28,16 @@ public class ExchangeRatesPageAction extends HttpServlet {
 
         } else if (action.equals("update")) {
             req.setAttribute("action", "update");
-            int exchangeRateID = Integer.parseInt(req.getParameter("currencyID"));
-            ExchangeRate rate = null;
+            int exchangeRateID = Integer.parseInt(req.getParameter("exchangeRateID"));
+
             try {
-                rate = exchangeRateDAO.findByID(exchangeRateID);
+                ExchangeRate rate = exchangeRateDAO.findByID(exchangeRateID);
+                req.setAttribute("exchangeRate", rate);
             } catch (DAOException e) {
                 req.setAttribute("message", "Database problems");
                 resp.sendRedirect("admin/exchangeRates");
             }
-            req.setAttribute("exchangeRate", rate);
+
         }
         req.getRequestDispatcher("/WEB-INF/jsp/admin/exchangeRatesPage.jsp").forward(req, resp);
     }

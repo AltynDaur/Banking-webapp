@@ -24,8 +24,8 @@ public class UserDeleteAction extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int userID = Integer.parseInt(req.getParameter("userID"));
         try {
-            User user = userDAO.findUserByID(userID);
-            userDAO.delete(user);
+
+            userDAO.delete(userID);
             req.setAttribute("message", "User successfully deleted");
         } catch (DAOException e) {
             req.setAttribute("message", "Database problems");

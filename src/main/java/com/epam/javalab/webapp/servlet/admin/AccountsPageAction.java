@@ -42,7 +42,7 @@ public class AccountsPageAction extends HttpServlet {
             req.setAttribute("action","add");
         } else if(action.equals("update")){
             req.setAttribute("action","update");
-            int accID = Integer.parseInt(req.getParameter("accID"));
+            int accID = Integer.parseInt(req.getParameter("accountID"));
             Account targetAccount = null;
             try {
                 targetAccount = accountDAO.findByID(accID);

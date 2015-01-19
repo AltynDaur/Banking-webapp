@@ -12,7 +12,7 @@
 <c:choose>
     <c:when test="${action == 'add'}">
         <div class="container" style="margin-top: 80px">
-            <form action="controller/admin/addAccType" method="post">
+            <form action="admin/addAccType" method="post">
                 <table class="table">
                     <tr>
                         <td><fmt:message key="accTypeName"/></td>
@@ -29,7 +29,7 @@
                     <tr>
                         <td><fmt:message key="currency"/></td>
                         <td><select name="exchangeRateID">
-                            <c:forEach items="exchangeRates" var="exchangeRate">
+                            <c:forEach items="${exchangeRates}" var="exchangeRate">
                                 <option value="${exchangeRate.getId()}">${exchangeRate.getCurrency()}</option>
                             </c:forEach>
                         </select></td>
@@ -45,8 +45,8 @@
     </c:when>
     <c:when test="${action == 'update'}">
         <div class="container" style="margin-top: 80px">
-            <form action="controller/admin/updateAccType" method="post">
-                <input type="hidden" name="accType" value="${accType}">
+            <form action="admin/updateAccType" method="post">
+                <input type="hidden" name="accTypeID" value="${accType.getId()}">
                 <table class="table">
                     <tr>
                         <td><fmt:message key="accTypeName"/></td>
@@ -54,17 +54,17 @@
                     </tr>
                     <tr>
                         <td><fmt:message key="percent"/></td>
-                        <td><input type="text" name="percent" value="${accType.getPercent}"></td>
+                        <td><input type="text" name="percent" value="${accType.getPercent()}"></td>
                     </tr>
                     <tr>
                         <td><fmt:message key="period"/></td>
-                        <td><input type="text" name="period" value="${accType.getPeriod}"></td>
+                        <td><input type="text" name="period" value="${accType.getPeriod()}"></td>
                     </tr>
                     <tr>
                         <td><fmt:message key="currency"/></td>
-                        <td><select name="currency">
+                        <td><select name="currencyID">
                             <c:forEach items="${exchangeRates}" var="exchangeRate">
-                                <option value="${exchangeRate}">${exchangeRate.getCurrency}</option>
+                                <option value="${exchangeRate.getId()}">${exchangeRate.getCurrency()}</option>
                             </c:forEach>
                         </select></td>
                     </tr>

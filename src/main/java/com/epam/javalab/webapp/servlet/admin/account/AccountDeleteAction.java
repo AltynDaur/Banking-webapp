@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("admin/deleteAccount")
+@WebServlet("/admin/deleteAccount")
 public class AccountDeleteAction extends HttpServlet {
 
     @Inject
@@ -22,10 +22,10 @@ public class AccountDeleteAction extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int accountID = (int) req.getAttribute("accID");
+        int accountID = Integer.parseInt(req.getParameter("accountID"));
         try {
-            Account account = accountDAO.findByID(accountID);
-            accountDAO.delete(account);
+
+            accountDAO.delete(accountID);
         } catch (DAOException e) {
             req.setAttribute("message", "Database problems");
             resp.sendRedirect("accounts");

@@ -5,6 +5,7 @@ import com.epam.javalab.webapp.account.AccountType;
 import com.epam.javalab.webapp.dao.AccountDAO;
 import com.epam.javalab.webapp.dao.AccountTypeDAO;
 import com.epam.javalab.webapp.dao.JPA;
+import com.epam.javalab.webapp.dao.UserDAO;
 import com.epam.javalab.webapp.exception.DAOException;
 import com.epam.javalab.webapp.user.User;
 
@@ -25,27 +26,26 @@ public class AccountAddAction extends HttpServlet {
     @Inject
     @JPA
     private AccountTypeDAO accountTypeDAO;
+    @Inject
+    @JPA
+    private UserDAO userDAO;
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User user = (User) req.getSession().getAttribute("user");
+        String userName = req.getParameter("userName");
         int accTypeID = Integer.parseInt(req.getParameter("accTypeID"));
         long amount = Long.parseLong(req.getParameter("amount"));
         AccountType accType = null;
         try {
             accType = accountTypeDAO.findAccTypeByID(accTypeID);
-        } catch (DAOException e) {
-            req.setAttribute("message", "Can't find this Account type!");
-            resp.sendRedirect("accounts");
-        }
-        Account targetAccount = new Account(user, accType, amount);
-        try {
+            User user = userDAO.findByName(userName);
+            Account targetAccount = new Account(user, accType, amount);
             accountDAO.add(targetAccount);
-
         } catch (DAOException e) {
-            req.setAttribute("message", "Account adding error!");
+            req.setAttribute("message", "Database problems!");
             resp.sendRedirect("accounts");
         }
+
         req.setAttribute("message", "Account successfully added");
         resp.sendRedirect("accounts");
     }

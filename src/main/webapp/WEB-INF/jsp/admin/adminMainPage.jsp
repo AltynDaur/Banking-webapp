@@ -169,7 +169,7 @@
                         </td>
                         <td>
                             <form action="admin/deleteExchangeRate" method="post">
-                                <input type="hidden" name="exchangeRateID" value="${rate}">
+                                <input type="hidden" name="exchangeRateID" value="${rate.getId()}">
                                 <input type="submit"
                                        value="<fmt:message key="delete"/>" class="btn-danger">
                             </form>

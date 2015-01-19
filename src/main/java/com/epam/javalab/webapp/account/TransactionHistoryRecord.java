@@ -21,14 +21,13 @@ public class TransactionHistoryRecord {
     private long amount;
     @NotNull
     @OneToOne
-    @JoinColumn(name = "ID")
-    private ExchangeRate currency;
+    private ExchangeRate exchangeRate;
 
     public TransactionHistoryRecord(Account currentAccID, Account targetAccID, long amount, ExchangeRate transactionCurrency) {
         this.startAcc = currentAccID;
         this.finalAcc = targetAccID;
         this.amount = amount;
-        this.currency = transactionCurrency;
+        this.exchangeRate = transactionCurrency;
     }
 
     public TransactionHistoryRecord() {
@@ -59,12 +58,12 @@ public class TransactionHistoryRecord {
         this.amount = amount;
     }
 
-    public String getCurrency() {
-        return currency.getCurrency();
+    public ExchangeRate getExchangeRate() {
+        return exchangeRate;
     }
 
-    public void setCurrency(String currency) {
-        this.currency = new ExchangeRate(currency);
+    public void setExchangeRate(ExchangeRate exchangeRate) {
+        this.exchangeRate = exchangeRate;
     }
 
     public int getId() {
@@ -85,7 +84,7 @@ public class TransactionHistoryRecord {
 
         if (amount != that.amount) return false;
         if (id != that.id) return false;
-        if (currency != null ? !currency.equals(that.currency) : that.currency != null) return false;
+        if (exchangeRate != null ? !exchangeRate.equals(that.exchangeRate) : that.exchangeRate != null) return false;
         if (finalAcc != null ? !finalAcc.equals(that.finalAcc) : that.finalAcc != null) return false;
         if (startAcc != null ? !startAcc.equals(that.startAcc) : that.startAcc != null) return false;
 
@@ -98,7 +97,7 @@ public class TransactionHistoryRecord {
         result = 31 * result + (startAcc != null ? startAcc.hashCode() : 0);
         result = 31 * result + (finalAcc != null ? finalAcc.hashCode() : 0);
         result = 31 * result + (int) (amount ^ (amount >>> 32));
-        result = 31 * result + (currency != null ? currency.hashCode() : 0);
+        result = 31 * result + (exchangeRate != null ? exchangeRate.hashCode() : 0);
         return result;
     }
 }

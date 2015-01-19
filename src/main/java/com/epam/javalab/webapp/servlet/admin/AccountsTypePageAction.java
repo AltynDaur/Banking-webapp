@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/admin/accountTypesPage")
+@WebServlet("/admin/accountsTypePage")
 public class AccountsTypePageAction extends HttpServlet {
 
     @Inject
@@ -32,6 +32,14 @@ public class AccountsTypePageAction extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
         if (action.equals("add")) {
+            List<ExchangeRate> exchangeRates = null;
+            try {
+                exchangeRates = exchangeRateDAO.findAll();
+            } catch (DAOException e) {
+                req.setAttribute("message", "Database problems");
+                resp.sendRedirect("admin/accountTypes");
+            }
+            req.setAttribute("exchangeRates", exchangeRates);
             req.setAttribute("action", "add");
 
         } else if (action.equals("update")) {
