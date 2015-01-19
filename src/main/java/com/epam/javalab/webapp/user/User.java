@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity(name = "USERS")
@@ -17,6 +18,7 @@ public class User {
     private int id;
     @NotNull
     @Column(name = "NAME")
+    @Size(min = 3, max = 25)
     private String name;
     @NotNull
     @Column(name = "PASSWORD")

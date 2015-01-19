@@ -10,7 +10,8 @@
 <jsp:include page="adminNavBar.jsp"/>
 <jsp:include page="../changeLocale.jsp"/>
 <c:if test="${not empty message}">
-    <fmt:message key="${message}"/>
+    <a>${message}</a>
+    <%--<fmt:message key="${message}"/>--%>
 </c:if>
 
 <c:choose>

@@ -10,6 +10,8 @@ import com.epam.javalab.webapp.user.User;
 
 import javax.inject.Inject;
 
+import javax.persistence.NoResultException;
+import javax.persistence.PersistenceException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,8 +35,9 @@ public class LoginAction extends HttpServlet {
         try {
             currentUser = userDAO.findByNameAndPass(name, password);
         } catch (DAOException e) {
-            req.setAttribute("message", "Database problems");
-            res.sendRedirect("loginPage");
+
+            req.setAttribute("message", "Current User not found!");
+            req.getRequestDispatcher("/WEB-INF/jsp/loginPage.jsp").forward(req, res);
         }
 
         if (currentUser != null) {
@@ -47,7 +50,7 @@ public class LoginAction extends HttpServlet {
             }
 
         } else {
-            req.setAttribute("errorMessage", "ERROR!!!");
+            req.setAttribute("message", "ERROR!!!");
             req.getRequestDispatcher("/WEB-INF/jsp/loginPage.jsp").forward(req, res);
 
         }

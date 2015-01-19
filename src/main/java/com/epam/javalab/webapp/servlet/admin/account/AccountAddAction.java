@@ -35,9 +35,9 @@ public class AccountAddAction extends HttpServlet {
         String userName = req.getParameter("userName");
         int accTypeID = Integer.parseInt(req.getParameter("accTypeID"));
         long amount = Long.parseLong(req.getParameter("amount"));
-        AccountType accType = null;
+
         try {
-            accType = accountTypeDAO.findAccTypeByID(accTypeID);
+            AccountType accType = accountTypeDAO.findAccTypeByID(accTypeID);
             User user = userDAO.findByName(userName);
             Account targetAccount = new Account(user, accType, amount);
             accountDAO.add(targetAccount);

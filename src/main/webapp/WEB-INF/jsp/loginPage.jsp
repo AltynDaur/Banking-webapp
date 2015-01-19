@@ -6,6 +6,7 @@
 <fmt:setLocale value="${language}" />
 <fmt:setBundle basename="text"/>
 <jsp:include page="changeLocale.jsp"/>
+${message}
     <div class="container">
         <div class="row">
             <div class="span4 offset4 log">

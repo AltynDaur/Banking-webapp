@@ -36,7 +36,7 @@ public class AccTypeAddAction extends HttpServlet {
             exchangeRate = exchangeRateDAO.findByID(exchangeRateID);
         } catch (DAOException e) {
             req.setAttribute("message", "Database problems");
-            resp.sendRedirect("accountTypes");
+            req.getRequestDispatcher("").forward(req, resp);
         }
         AccountType targetAccType = new AccountType(accTypeName, percent, period, exchangeRate);
         try {

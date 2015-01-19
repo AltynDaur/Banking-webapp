@@ -20,7 +20,7 @@ public class AdminFilter  implements Filter{
     private Logger LOGGER;
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        LOGGER.debug("Starting Admin Filter");
+        LOGGER.info("Starting Admin Filter");
     }
 
     @Override

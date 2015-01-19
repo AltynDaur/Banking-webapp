@@ -3,6 +3,7 @@ package com.epam.javalab.webapp.servlet.client;
 import com.epam.javalab.webapp.account.Account;
 import com.epam.javalab.webapp.dao.AccountDAO;
 import com.epam.javalab.webapp.dao.JPA;
+import com.epam.javalab.webapp.exception.DAOException;
 import com.epam.javalab.webapp.user.User;
 
 import javax.inject.Inject;
@@ -25,7 +26,12 @@ public class AccountsInfoAction extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User currentUser = (User) req.getSession().getAttribute("user");
         int currentID = currentUser.getId();
-        List<Account> currentAccList = accountDAO.findAllByUserID(currentID);
+        List<Account> currentAccList = null;
+        try {
+            currentAccList = accountDAO.findAllByUserID(currentID);
+        } catch (DAOException e) {
+            e.printStackTrace();
+        }
         req.setAttribute("accList", currentAccList);
         req.getRequestDispatcher("/WEB-INF/jsp/client/clientMainPage.jsp").forward(req, resp);
     }

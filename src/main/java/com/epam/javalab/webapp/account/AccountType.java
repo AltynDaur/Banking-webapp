@@ -1,7 +1,9 @@
 package com.epam.javalab.webapp.account;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "ACCOUNTSTYPE")
@@ -12,12 +14,15 @@ public class AccountType {
     private int id;
     @Column(name = "ACCNAME")
     @NotNull
+    @Size(min = 3, max = 50)
     private String name;
     @Column(name = "PERCENT")
     @NotNull
+    @Max(100)
     private int percent;
     @Column(name = "PERIOD")
     @NotNull
+    @Max(100)
     private int period;
     @OneToOne
     @NotNull

@@ -6,7 +6,7 @@ import com.epam.javalab.webapp.exception.DAOException;
 import java.util.List;
 
 public interface AccountDAO {
-    public List<Account> findAllByUserID(int id);
+    public List<Account> findAllByUserID(int id) throws DAOException;
 
     public List<Account> findAll() throws DAOException;
 

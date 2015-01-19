@@ -4,7 +4,7 @@
 
 <div class="navbar navbar-inverse navbar-fixed-top">
     <nav class="navbar-inner">
-        <div class="offset2"/>
+        <div class="offset3"/>
         <a class="brand" href="admin/adminMainPage"><fmt:message key="adminMain"/></a>
         <ul class="nav">
             <li class="divider-vertical"></li>
