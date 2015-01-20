@@ -9,17 +9,17 @@ import java.util.List;
 
 public interface UserDAO {
 
-    public List<User> getAll() throws DAOException;
+    public List<User> getAll();
 
     public void add(User user) throws DAOException;
 
-    public void delete(int userID) throws DAOException;
+    public void delete(int userID);
 
     public void update(User user) throws DAOException;
 
-    public User findByNameAndPass(String name, String password) throws DAOException;
+    public User findByNameAndPass(String name, String password);
 
-    public User findUserByID(int userID) throws DAOException;
+    public User findUserByID(int userID);
 
-    public User findByName(String name) throws DAOException;
+    public User findByName(String name);
 }

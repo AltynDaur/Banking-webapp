@@ -7,6 +7,7 @@ import com.epam.javalab.webapp.exception.DAOException;
 import com.epam.javalab.webapp.user.User;
 
 import javax.inject.Inject;
+import javax.persistence.NoResultException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,7 +30,7 @@ public class AccountsInfoAction extends HttpServlet {
         List<Account> currentAccList = null;
         try {
             currentAccList = accountDAO.findAllByUserID(currentID);
-        } catch (DAOException e) {
+        } catch (NoResultException e) {
             e.printStackTrace();
         }
         req.setAttribute("accList", currentAccList);

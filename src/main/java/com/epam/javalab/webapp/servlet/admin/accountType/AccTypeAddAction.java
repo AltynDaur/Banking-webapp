@@ -8,6 +8,8 @@ import com.epam.javalab.webapp.dao.JPA;
 import com.epam.javalab.webapp.exception.DAOException;
 
 import javax.inject.Inject;
+import javax.persistence.NoResultException;
+import javax.persistence.PersistenceException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,7 +36,7 @@ public class AccTypeAddAction extends HttpServlet {
         ExchangeRate exchangeRate = null;
         try {
             exchangeRate = exchangeRateDAO.findByID(exchangeRateID);
-        } catch (DAOException e) {
+        } catch (NoResultException e) {
             req.setAttribute("message", "Database problems");
             req.getRequestDispatcher("").forward(req, resp);
         }
@@ -42,7 +44,7 @@ public class AccTypeAddAction extends HttpServlet {
         try {
             accountTypeDAO.add(targetAccType);
             req.setAttribute("message", "Account type successfully added");
-        } catch (DAOException e) {
+        } catch (PersistenceException e) {
             req.setAttribute("message", "Database problems");
             resp.sendRedirect("accountTypes");
         }

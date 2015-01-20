@@ -7,10 +7,10 @@ import java.util.List;
 
 public interface TransactionHistoryDAO {
 
-    public void add(TransactionHistoryRecord record) throws DAOException;
+    public void add(TransactionHistoryRecord record);
 
-    public List<TransactionHistoryRecord> findByUserID(int id) throws DAOException;
+    public List<TransactionHistoryRecord> findByUserID(int id);
 
-    public List<TransactionHistoryRecord> findAll() throws DAOException;
+    public List<TransactionHistoryRecord> findAll();
 
 }

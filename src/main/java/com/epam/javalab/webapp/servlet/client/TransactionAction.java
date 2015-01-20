@@ -39,7 +39,7 @@ public class TransactionAction extends HttpServlet {
         int targetAccID = Integer.parseInt(req.getParameter("targetAccID"));
         long amount = Long.parseLong(req.getParameter("amount"));
         int exchangeRateID = Integer.parseInt(req.getParameter("exchangeRateID"));
-        try {
+
             ExchangeRate transactionExchangeRate = exchangeRateDAO.findByID(exchangeRateID);
             long amountForTransaction = (long) (amount * transactionExchangeRate.getValue());
             Account currentAccount = accountDAO.findByID(currentAccID);
@@ -48,11 +48,11 @@ public class TransactionAction extends HttpServlet {
             if (transactionStatusOK) {
                 TransactionHistoryRecord record = new TransactionHistoryRecord(currentAccount, targetAccount, amount, transactionExchangeRate);
                 transactionHistoryDAO.add(record);
+            } else {
+                req.setAttribute("message", "Transaction failed");
+                req.getRequestDispatcher("/WEB-INF/jsp/client/clientMainPage.jsp").forward(req, resp);
             }
 
-        } catch (DAOException e) {
-            e.printStackTrace();
-        }
         resp.sendRedirect("accountsInfo");
 
     }

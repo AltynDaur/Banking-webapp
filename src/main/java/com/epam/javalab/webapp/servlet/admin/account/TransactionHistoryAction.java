@@ -27,7 +27,7 @@ public class TransactionHistoryAction extends HttpServlet {
         List<TransactionHistoryRecord> currentList = null;
         try {
             currentList = historyDAO.findAll();
-        } catch (DAOException e) {
+        } catch (PersistenceException e) {
             req.setAttribute("message", "Database problems");
             resp.sendRedirect("adminMainPage");
         }

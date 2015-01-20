@@ -29,7 +29,7 @@ public class AccTypeDeleteAction extends HttpServlet {
 
             accountTypeDAO.delete(accountTypeID);
             req.setAttribute("message", "AccountType successfully deleted");
-        } catch (DAOException e) {
+        } catch (PersistenceException e) {
             req.setAttribute("message", "Database problems");
             resp.sendRedirect("accountTypes");
         }

@@ -6,17 +6,17 @@ import com.epam.javalab.webapp.exception.DAOException;
 import java.util.List;
 
 public interface AccountDAO {
-    public List<Account> findAllByUserID(int id) throws DAOException;
+    public List<Account> findAllByUserID(int id);
 
-    public List<Account> findAll() throws DAOException;
+    public List<Account> findAll();
 
-    public Account findByID(int id) throws DAOException;
+    public Account findByID(int id);
 
-    public void update(Account account) throws DAOException;
+    public void update(Account account);
 
-    public void delete(int accountID) throws DAOException;
+    public void delete(int accountID);
 
-    public void add(Account account) throws DAOException;
+    public void add(Account account);
 
-    boolean transaction(Account currentAccount, Account targetAccount, long amount) throws DAOException;
+    boolean transaction(Account currentAccount, Account targetAccount, long amount);
 }

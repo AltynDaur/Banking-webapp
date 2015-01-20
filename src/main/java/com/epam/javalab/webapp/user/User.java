@@ -18,7 +18,7 @@ public class User {
     private int id;
     @NotNull
     @Column(name = "NAME")
-    @Size(min = 3, max = 25)
+    @Size(min = 3, max = 50, message = "Name too small or too big")
     private String name;
     @NotNull
     @Column(name = "PASSWORD")

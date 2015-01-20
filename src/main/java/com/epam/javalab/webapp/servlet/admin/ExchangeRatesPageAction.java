@@ -6,6 +6,7 @@ import com.epam.javalab.webapp.dao.JPA;
 import com.epam.javalab.webapp.exception.DAOException;
 
 import javax.inject.Inject;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,7 +35,7 @@ public class ExchangeRatesPageAction extends HttpServlet {
             try {
                 ExchangeRate rate = exchangeRateDAO.findByID(exchangeRateID);
                 req.setAttribute("exchangeRate", rate);
-            } catch (DAOException e) {
+            } catch (NoResultException e) {
                 req.setAttribute("message", "Database problems");
                 resp.sendRedirect("admin/exchangeRates");
             }

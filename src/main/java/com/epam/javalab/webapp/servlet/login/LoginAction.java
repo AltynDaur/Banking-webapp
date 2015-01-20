@@ -34,7 +34,7 @@ public class LoginAction extends HttpServlet {
         User currentUser = null;
         try {
             currentUser = userDAO.findByNameAndPass(name, password);
-        } catch (DAOException e) {
+        } catch (NoResultException e) {
 
             req.setAttribute("message", "Current User not found!");
             req.getRequestDispatcher("/WEB-INF/jsp/loginPage.jsp").forward(req, res);

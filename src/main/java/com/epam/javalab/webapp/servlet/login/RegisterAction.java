@@ -14,8 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Locale;
-import java.util.ResourceBundle;
 
 @WebServlet("/register")
 public class RegisterAction extends HttpServlet {
@@ -38,7 +36,8 @@ public class RegisterAction extends HttpServlet {
                 userDAO.add(currentUser);
             } catch (DAOException e) {
                 req.setAttribute("message", "Database problems");
-                resp.sendRedirect("loginPage");
+                req.setAttribute("errorSet", e.getErrorSet());
+                req.getRequestDispatcher("/WEB-INF/jsp/loginPage.jsp").forward(req, resp);
             }
             req.setAttribute("message", "User successfully registered");
         } else {

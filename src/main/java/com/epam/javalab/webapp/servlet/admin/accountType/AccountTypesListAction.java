@@ -26,7 +26,7 @@ public class AccountTypesListAction extends HttpServlet {
         List accountTypes = null;
         try {
             accountTypes = accountTypeDAO.findAll();
-        } catch (DAOException e) {
+        } catch (PersistenceException e) {
             req.setAttribute("message", "Database problems");
             resp.sendRedirect("adminMainPage");
         }

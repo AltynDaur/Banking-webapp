@@ -28,7 +28,7 @@ public class ExchangeRateDeleteAction extends HttpServlet {
 
             exchangeRateDAO.delete(exchangeRateID);
             req.setAttribute("message", "Exchange rate successfully deleted");
-        } catch (DAOException e) {
+        } catch (PersistenceException e) {
             req.setAttribute("message", "Database problems");
             resp.sendRedirect("admin/exchangeRates");
         }

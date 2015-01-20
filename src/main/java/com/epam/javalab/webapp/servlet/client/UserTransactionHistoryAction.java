@@ -7,6 +7,7 @@ import com.epam.javalab.webapp.exception.DAOException;
 import com.epam.javalab.webapp.user.User;
 
 import javax.inject.Inject;
+import javax.persistence.NoResultException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,7 +31,7 @@ public class UserTransactionHistoryAction extends HttpServlet {
         try {
             List<TransactionHistoryRecord> historyRecords = transactionHistoryDAO.findByUserID(currentID);
             req.setAttribute("transHistoryRecords", historyRecords);
-        } catch (DAOException e) {
+        } catch (NoResultException e) {
             e.printStackTrace();
         }
         req.getRequestDispatcher("/WEB-INF/jsp/client/clientMainPage.jsp").forward(req, resp);

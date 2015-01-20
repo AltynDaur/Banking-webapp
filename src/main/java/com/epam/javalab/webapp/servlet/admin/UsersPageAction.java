@@ -7,6 +7,7 @@ import com.epam.javalab.webapp.user.Role;
 import com.epam.javalab.webapp.user.User;
 
 import javax.inject.Inject;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -42,7 +43,7 @@ public class UsersPageAction extends HttpServlet {
             User targetUser = null;
             try {
                 targetUser = userDAO.findUserByID(userID);
-            } catch (DAOException e) {
+            } catch (NoResultException e) {
                 req.setAttribute("message", "Database problems");
                 resp.sendRedirect("admin/users");
             }

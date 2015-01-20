@@ -8,6 +8,7 @@ import com.epam.javalab.webapp.dao.JPA;
 import com.epam.javalab.webapp.exception.DAOException;
 
 import javax.inject.Inject;
+import javax.persistence.NoResultException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,7 +36,7 @@ public class AccountsTypePageAction extends HttpServlet {
             List<ExchangeRate> exchangeRates = null;
             try {
                 exchangeRates = exchangeRateDAO.findAll();
-            } catch (DAOException e) {
+            } catch (NoResultException e) {
                 req.setAttribute("message", "Database problems");
                 resp.sendRedirect("admin/accountTypes");
             }
@@ -51,7 +52,7 @@ public class AccountsTypePageAction extends HttpServlet {
                 req.setAttribute("accType", targetAccType);
                 List<ExchangeRate> exchangeRates = exchangeRateDAO.findAll();
                 req.setAttribute("exchangeRates", exchangeRates);
-            } catch (DAOException e) {
+            } catch (NoResultException e) {
                 req.setAttribute("message", "Database problems");
                 resp.sendRedirect("admin/accountTypes");
             }

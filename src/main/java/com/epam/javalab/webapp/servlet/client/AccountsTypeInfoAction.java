@@ -6,6 +6,7 @@ import com.epam.javalab.webapp.dao.JPA;
 import com.epam.javalab.webapp.exception.DAOException;
 
 import javax.inject.Inject;
+import javax.persistence.NoResultException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,7 +28,7 @@ public class AccountsTypeInfoAction extends HttpServlet {
         try {
             List<AccountType> accountTypeList = accountTypeDAO.findAll();
             req.setAttribute("accTypeList", accountTypeList);
-        } catch (DAOException e) {
+        } catch (NoResultException e) {
             e.printStackTrace();
         }
         req.getRequestDispatcher("/WEB-INF/jsp/client/clientMainPage.jsp").forward(req, resp);

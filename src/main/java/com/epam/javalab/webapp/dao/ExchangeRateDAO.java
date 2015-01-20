@@ -7,13 +7,13 @@ import com.epam.javalab.webapp.exception.DAOException;
 import java.util.List;
 
 public interface ExchangeRateDAO {
-    public List<ExchangeRate> findAll() throws DAOException;
+    public List<ExchangeRate> findAll();
 
-    public void add(ExchangeRate rate) throws DAOException;
+    public void add(ExchangeRate rate);
 
-    public void delete(int rateID) throws DAOException;
+    public void delete(int rateID);
 
-    public void update(ExchangeRate rate) throws DAOException;
+    public void update(ExchangeRate rate);
 
-    public ExchangeRate findByID(int currencyID) throws DAOException;
+    public ExchangeRate findByID(int currencyID);
 }

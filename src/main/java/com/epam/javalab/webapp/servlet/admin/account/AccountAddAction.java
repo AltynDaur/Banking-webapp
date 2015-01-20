@@ -10,6 +10,7 @@ import com.epam.javalab.webapp.exception.DAOException;
 import com.epam.javalab.webapp.user.User;
 
 import javax.inject.Inject;
+import javax.persistence.PersistenceException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -41,7 +42,7 @@ public class AccountAddAction extends HttpServlet {
             User user = userDAO.findByName(userName);
             Account targetAccount = new Account(user, accType, amount);
             accountDAO.add(targetAccount);
-        } catch (DAOException e) {
+        } catch (PersistenceException e) {
             req.setAttribute("message", "Database problems!");
             resp.sendRedirect("accounts");
         }

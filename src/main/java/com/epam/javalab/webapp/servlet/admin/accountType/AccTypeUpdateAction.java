@@ -8,6 +8,7 @@ import com.epam.javalab.webapp.dao.JPA;
 import com.epam.javalab.webapp.exception.DAOException;
 
 import javax.inject.Inject;
+import javax.persistence.PersistenceException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,7 +40,7 @@ public class AccTypeUpdateAction extends HttpServlet {
             targetAccType.setId(accTypeID);
             accountTypeDAO.update(targetAccType);
             req.setAttribute("message", "Account type successfully updated");
-        } catch (DAOException e) {
+        } catch (PersistenceException e) {
             req.setAttribute("message", "Database problems");
             resp.sendRedirect("accountTypes");
         }
