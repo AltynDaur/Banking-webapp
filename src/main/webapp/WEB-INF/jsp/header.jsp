@@ -8,11 +8,11 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <fmt:setLocale value="${language}"/>
     <fmt:setBundle basename="text"/>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.css">
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
     <style>
         body {
-            background-image: url(${pageContext.request.contextPath}/images/background.jpg);
+            background-image: url(${pageContext.request.contextPath}/resources/images/background.jpg);
             background-color: #a9a9a9;
         }
         .well{
