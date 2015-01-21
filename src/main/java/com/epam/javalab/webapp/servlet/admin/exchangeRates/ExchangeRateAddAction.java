@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 @WebServlet("/admin/addExchangeRate")
 public class ExchangeRateAddAction extends HttpServlet {
@@ -25,7 +26,8 @@ public class ExchangeRateAddAction extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String currency = req.getParameter("currency");
         int exchangeValue = Integer.parseInt(req.getParameter("exchangeValue"));
-        ExchangeRate rate = new ExchangeRate(currency,exchangeValue);
+        LocalDateTime localDateTime = LocalDateTime.now();
+        ExchangeRate rate = new ExchangeRate(currency,exchangeValue,localDateTime);
         try {
             exchangeRateDAO.add(rate);
             req.setAttribute("message", "Exchange rate successfully added");

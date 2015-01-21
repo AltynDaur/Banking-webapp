@@ -2,6 +2,7 @@ package com.epam.javalab.webapp.user;
 
 
 import com.epam.javalab.webapp.account.Account;
+import com.epam.javalab.webapp.security.EncryptByMD5;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
@@ -69,12 +70,13 @@ public class User {
 
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = EncryptByMD5.encrypt(password, this.name);
     }
 
     public void setRole(String role) {
         this.role = Role.valueOf(role.toUpperCase());
     }
+
     public void setRole(int roleId){
         if(roleId == 1){
             this.role = Role.ADMIN;

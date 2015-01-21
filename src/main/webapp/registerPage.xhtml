@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="/WEB-INF/templates/startTemplate.xhtml">
+    <ui:define name="content">
+        <div class="container">
+            <div class="row">
+                <div class="span4 offset4 log">
+                    <h2>#{text.register}</h2>
+
+                    <form action="register" name="register" method="post">
+                        <input type="text" name="firstName" value="" placeholder="#{text.enterLogin}" class="span4"/>
+                        <input type="text" name="password" value="" placeholder="#{text.enterPass}" class="span4"/>
+                        <input type="text" name="repeatPass" value="" placeholder="#{text.repeatPass}>" class="span4"/>
+                        <input type="text" name="email" value="" placeholder="#{text.email}" class="span4"/>
+
+                        <div class="btn-group span4">
+                            <input type="submit" value="#{text.register}" class="btn btn-success"/>
+                            <input type="reset" value="#{text.reset}" class="btn btn-danger"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

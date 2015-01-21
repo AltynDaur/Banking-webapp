@@ -38,6 +38,7 @@
                     <td><fmt:message key="accTypeName"/></td>
                     <td><fmt:message key="amount"/></td>
                     <td><fmt:message key="currency"/></td>
+                    <td><fmt:message key="lastUpdated"/></td>
                 </tr>
                 <c:forEach items="${accList}" var="account">
                     <tr>
@@ -45,6 +46,7 @@
                         <td>${account.getAcctype().getName()}</td>
                         <td>${account.getAmount()}</td>
                         <td>${account.getAcctype().getExchangeRate().getCurrency()}</td>
+                        <td>${account.getLocalDateTime()}</td>
                         <td>
                             <form action="client/transactionPage" method="post">
                                 <input type="hidden" name="accID" value="${account.getId()}">
@@ -62,17 +64,23 @@
                 <tr>
                     <td><fmt:message key="transHistRecord"/> </td>
                     <td><fmt:message key="from"/></td>
+                    <td><fmt:message key="owner"/></td>
                     <td><fmt:message key="finalAcc"/></td>
+                    <td><fmt:message key="owner"/></td>
                     <td><fmt:message key="amount"/></td>
                     <td><fmt:message key="currency"/></td>
+                    <td><fmt:message key="time"/></td>
                 </tr>
                 <c:forEach items="${transHistoryRecords}" var="transRecord">
                     <tr>
                         <td>${transRecord.getId()}</td>
                         <td>${transRecord.getStartAcc().getId()}</td>
+                        <td>${transRecord.getStartAcc().getOwner().getName()}</td>
                         <td>${transRecord.getFinalAcc().getId()}</td>
+                        <td>${transRecord.getFinalAcc().getOwner().getName()}</td>
                         <td>${transRecord.getAmount()}</td>
                         <td>${transRecord.getExchangeRate().getCurrency()}</td>
+                        <td>${transRecord.getLocalDateTime()}</td>
                     </tr>
                 </c:forEach>
             </table>

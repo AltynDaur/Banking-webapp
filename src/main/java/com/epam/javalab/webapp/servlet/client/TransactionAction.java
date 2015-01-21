@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 @WebServlet("/client/transaction")
 public class TransactionAction extends HttpServlet {
@@ -46,7 +47,8 @@ public class TransactionAction extends HttpServlet {
             Account targetAccount = accountDAO.findByID(targetAccID);
             boolean transactionStatusOK = accountDAO.transaction(currentAccount, targetAccount, amountForTransaction);
             if (transactionStatusOK) {
-                TransactionHistoryRecord record = new TransactionHistoryRecord(currentAccount, targetAccount, amount, transactionExchangeRate);
+
+                TransactionHistoryRecord record = new TransactionHistoryRecord(currentAccount, targetAccount, amount, transactionExchangeRate, LocalDateTime.now());
                 transactionHistoryDAO.add(record);
             } else {
                 req.setAttribute("message", "Transaction failed");

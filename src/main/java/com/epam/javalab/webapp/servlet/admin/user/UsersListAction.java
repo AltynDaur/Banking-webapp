@@ -7,6 +7,7 @@ import com.epam.javalab.webapp.exception.DAOException;
 import com.epam.javalab.webapp.user.User;
 
 import javax.inject.Inject;
+import javax.persistence.PersistenceException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,7 +30,7 @@ public class UsersListAction extends HttpServlet {
         List<User> resultList = null;
         try {
             resultList = userDAO.getAll();
-        } catch (DAOException e) {
+        } catch (PersistenceException e) {
             req.setAttribute("message", "Database problems");
             resp.sendRedirect("adminMainPage");
         }

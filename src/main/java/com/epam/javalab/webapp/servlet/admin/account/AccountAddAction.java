@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 @WebServlet("/admin/addAccount")
 public class AccountAddAction extends HttpServlet {
@@ -40,7 +41,8 @@ public class AccountAddAction extends HttpServlet {
         try {
             AccountType accType = accountTypeDAO.findAccTypeByID(accTypeID);
             User user = userDAO.findByName(userName);
-            Account targetAccount = new Account(user, accType, amount);
+            LocalDateTime currentTime = LocalDateTime.now();
+            Account targetAccount = new Account(user, accType, amount,currentTime);
             accountDAO.add(targetAccount);
         } catch (PersistenceException e) {
             req.setAttribute("message", "Database problems!");

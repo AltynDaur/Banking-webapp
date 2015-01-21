@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 @WebServlet("/admin/updateExchangeRate")
 public class ExchangeRateUpdateAction extends HttpServlet {
@@ -25,10 +26,11 @@ public class ExchangeRateUpdateAction extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int exchangeRateID = Integer.parseInt(req.getParameter("exchangeRateID"));
         double exchangeValue = Double.parseDouble(req.getParameter("rate"));
-
+        LocalDateTime currentTime = LocalDateTime.now();
         try {
             ExchangeRate exchangeRate = exchangeRateDAO.findByID(exchangeRateID);
             exchangeRate.setValue(exchangeValue);
+            exchangeRate.setLocalDateTime(currentTime);
             exchangeRateDAO.update(exchangeRate);
             req.setAttribute("message", "Exchange Rate successfully updated");
         } catch (PersistenceException e) {

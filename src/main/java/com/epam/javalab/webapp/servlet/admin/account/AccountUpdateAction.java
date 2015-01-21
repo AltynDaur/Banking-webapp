@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 @WebServlet("/admin/updateAccount")
 public class AccountUpdateAction extends HttpServlet {
@@ -30,6 +31,7 @@ public class AccountUpdateAction extends HttpServlet {
         try {
             accountDAO.findByID(accountID);
             account.setAmount(amount);
+            account.setLocalDateTime(LocalDateTime.now());
             accountDAO.update(account);
         } catch (PersistenceException e) {
             req.setAttribute("message", "Database problems");

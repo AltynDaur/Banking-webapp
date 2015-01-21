@@ -50,7 +50,7 @@
     <c:when test="${action == 'update'}">
         <div class="container" style="margin-top: 80px">
             <form action="admin/updateAccount" method="post">
-                <input type="hidden" name="account" value="${account}">
+                <input type="hidden" name="accountID" value="${account.getId()}">
                 <table class="table">
                     <tr>
                         <td><fmt:message key="owner"/></td>

@@ -3,6 +3,7 @@ package com.epam.javalab.webapp.account;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "EXCHANGERATESTOTENGE", uniqueConstraints = @UniqueConstraint(columnNames = "currency"))
@@ -20,9 +21,13 @@ public class ExchangeRate {
     @Column(name = "VALUE")
     private double value;
 
-    public ExchangeRate(String currency, int exchangeValue) {
-        this.currency=currency;
+
+    private LocalDateTime localDateTime;
+
+    public ExchangeRate(String currency, int exchangeValue, LocalDateTime localDateTime) {
+        this.currency = currency;
         this.value = exchangeValue;
+        this.localDateTime = localDateTime;
     }
 
     public ExchangeRate() {
@@ -54,5 +59,13 @@ public class ExchangeRate {
 
     public void setValue(double value) {
         this.value = value;
+    }
+
+    public LocalDateTime getLocalDateTime() {
+        return localDateTime;
+    }
+
+    public void setLocalDateTime(LocalDateTime localDateTime) {
+        this.localDateTime = localDateTime;
     }
 }
