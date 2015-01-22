@@ -11,6 +11,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Resources {
     @SuppressWarnings("unused")
@@ -28,5 +30,15 @@ public class Resources {
     public FacesContext produceFacesContext() {
         return FacesContext.getCurrentInstance();
     }
+
+    @Produces
+    public List<String> languages() {
+        List<String> languages = new ArrayList<>();
+        languages.add("ru");
+        languages.add("en");
+        return languages;
+    }
+
+    ;
 
 }

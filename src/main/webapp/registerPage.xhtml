@@ -10,17 +10,33 @@
                 <div class="span4 offset4 log">
                     <h2>#{text.register}</h2>
 
-                    <form action="register" name="register" method="post">
-                        <input type="text" name="firstName" value="" placeholder="#{text.enterLogin}" class="span4"/>
-                        <input type="text" name="password" value="" placeholder="#{text.enterPass}" class="span4"/>
-                        <input type="text" name="repeatPass" value="" placeholder="#{text.repeatPass}>" class="span4"/>
-                        <input type="text" name="email" value="" placeholder="#{text.email}" class="span4"/>
+                    <h:panelGrid columns="3" columnClasses="titleCell">
+                        <h:outputLabel for="name" value="#{text.enterLogin}"/>
+                        <h:inputText id="name" value="#{user.name}"/>
+                        <h:message for="name" errorClass="error"/>
 
-                        <div class="btn-group span4">
-                            <input type="submit" value="#{text.register}" class="btn btn-success"/>
-                            <input type="reset" value="#{text.reset}" class="btn btn-danger"/>
-                        </div>
-                    </form>
+                        <h:outputLabel for="password" value="#{text.enterPass}"/>
+                        <h:inputSecret id="password" value="#{user.password}"/>
+                        <h:message for="password" errorClass="error"/>
+
+                        <h:outputLabel for="repeatPassword" value="#{text.repeatPass}"/>
+                        <h:inputSecret id="repeatPassword" value="#{user.password}"/>
+                        <h:message for="repeatPassword" errorClass="error"/>
+
+                        <h:outputLabel for="email" value="#{text.email}"/>
+                        <h:inputText id="email" value="#{user.email}"/>
+                        <h:message for="email" errorClass="error"/>
+
+                    </h:panelGrid>
+
+                    <p>
+                        <h:panelGrid columns="2">
+                            <div class="btn-group span4">
+                                <h:commandButton type="submit" value="#{text.register}" styleClass="btn btn-success"/>
+                                <h:commandButton type="reset" value="#{text.reset}" styleClass="btn btn-danger"/>
+                            </div>
+                        </h:panelGrid>
+                    </p>
                 </div>
             </div>
         </div>

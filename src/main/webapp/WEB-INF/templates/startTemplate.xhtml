@@ -11,14 +11,16 @@
     <title>Banking: Thanks for visiting</title>
     <base href="/Webapp/"/>
     <h:outputStylesheet library="css" name="bootstrap.css"/>
+    <h:outputScript library="js" name="jquery.js"/>
     <h:outputScript library="js" name="bootstrap.js"/>
 </h:head>
-<h:body style="background-image: #{resource['images/background.jpg']}">
+<h:body>
     <div class="container row span2 well">
-        <h:selectOneMenu value="#{language.localeCode}" onchange="submit()"
-                         valueChangeListener="#{language.countryLocaleCodeChanged}" class="span2">
-            <f:selectItems value="#{language.countries}"/>
-        </h:selectOneMenu>
+        <h:form>
+            <h:selectOneMenu value="#{sessionBean.locale}" onchange="submit()" class="span2">
+                <f:selectItems value="#{sessionBean.languages}"/>
+            </h:selectOneMenu>
+        </h:form>
     </div>
     <div class="container">
         <div id="content">
@@ -28,4 +30,5 @@
         </div>
     </div>
 </h:body>
+<!--style="background-image: #{resource['images/background.jpg']}"-->
 </html>

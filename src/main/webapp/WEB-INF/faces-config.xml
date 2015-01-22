@@ -5,7 +5,7 @@
     http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
     <application>
         <locale-config>
-            <default-locale>ru_RU</default-locale>
+            <supported-locale>ru</supported-locale>
             <supported-locale>en</supported-locale>
         </locale-config>
         <resource-bundle>
@@ -18,16 +18,21 @@
         <navigation-case>
             <from-outcome>admin</from-outcome>
             <to-view-id>/admin/adminMainPage.xhtml</to-view-id>
+            <redirect/>
         </navigation-case>
         <navigation-case>
             <from-outcome>client</from-outcome>
             <to-view-id>/client/clientMainPage.xhtml</to-view-id>
+            <redirect/>
         </navigation-case>
         <navigation-case>
             <from-outcome>register</from-outcome>
             <to-view-id>/registerPage.xhtml</to-view-id>
-            <redirect/>
         </navigation-case>
     </navigation-rule>
+    <lifecycle>
+        <phase-listener>com.epam.javalab.webapp.listner.PRGListener</phase-listener>
+    </lifecycle>
+
 
 </faces-config>

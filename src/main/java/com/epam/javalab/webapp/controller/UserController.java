@@ -43,9 +43,6 @@ public class UserController {
         try {
 
             path = userService.login(user.getName(), user.getPassword());
-            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Logged In", "Success!");
-            facesContext.addMessage(null, facesMessage);
-
 
         } catch (Exception e) {
             String errorMessage = e.getLocalizedMessage();

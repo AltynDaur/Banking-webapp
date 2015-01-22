@@ -70,7 +70,7 @@ public class User {
 
 
     public void setPassword(String password) {
-        this.password = EncryptByMD5.encrypt(password, this.name);
+        this.password = password;
     }
 
     public void setRole(String role) {
