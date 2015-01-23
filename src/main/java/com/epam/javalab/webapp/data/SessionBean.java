@@ -4,22 +4,18 @@ import com.epam.javalab.webapp.user.User;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateful;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ValueChangeEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 @Named
+@Stateful
 @SessionScoped
 public class SessionBean implements Serializable {
-
-    private static final long serialVersionUID = 1L;
 
     private Locale locale;
 
@@ -28,12 +24,11 @@ public class SessionBean implements Serializable {
     @Inject
     private List<String> languages;
 
-    @Inject
-    private FacesContext facesContext;
+
 
     @PostConstruct
     public void init() {
-        locale = facesContext.getViewRoot().getLocale();
+        FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
         user = new User();
     }
 
@@ -67,5 +62,8 @@ public class SessionBean implements Serializable {
     }
 
 
-
+    public void clear() {
+        setUser(null);
+        setLanguage(null);
+    }
 }

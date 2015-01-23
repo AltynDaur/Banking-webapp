@@ -27,14 +27,13 @@
             <li><a href="admin/transactionHistory">#{text.transactionHistory}</a></li>
             <li><a href="userInfoChangePage">#{text.userOption}</a></li>
             <li class="divider-vertical"></li>
-            <li><a href="logout">#{text.logout}</a></li>
+            <li><h:form><h:commandLink action="logout">#{text.logout}</h:commandLink></h:form></li>
         </ul>
 
     </div>
     <div class="container row span2 well">
-        <h:selectOneMenu value="#{language.localeCode}" onchange="submit()"
-                         valueChangeListener="#{language.countryLocaleCodeChanged}" class="span2">
-            <f:selectItems value="#{language.countries}"/>
+        <h:selectOneMenu value="#{sessionBean.locale}" onchange="submit()" class="span2">
+            <f:selectItems value="#{sessionBean.languages}"/>
         </h:selectOneMenu>
     </div>
     <div class="container">

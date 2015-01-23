@@ -11,10 +11,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Resources {
+public class Resources implements Serializable {
     @SuppressWarnings("unused")
     @Produces
     @PersistenceContext(unitName = "Banking")
@@ -26,7 +27,7 @@ public class Resources {
     }
 
     @Produces
-    @RequestScoped
+
     public FacesContext produceFacesContext() {
         return FacesContext.getCurrentInstance();
     }

@@ -36,7 +36,7 @@ public class AdminFilter  implements Filter{
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        String name = null;
+
         if (sessionBean.getUser().getRole().equals(Role.ADMIN)) {
             filterChain.doFilter(servletRequest,servletResponse);
         } else {

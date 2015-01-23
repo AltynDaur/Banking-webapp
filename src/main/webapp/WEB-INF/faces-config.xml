@@ -30,6 +30,14 @@
             <to-view-id>/registerPage.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>logout</from-outcome>
+            <to-view-id>/index.html</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
     <lifecycle>
         <phase-listener>com.epam.javalab.webapp.listner.PRGListener</phase-listener>
     </lifecycle>
