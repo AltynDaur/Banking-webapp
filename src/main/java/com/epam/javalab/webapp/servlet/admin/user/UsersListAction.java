@@ -27,12 +27,9 @@ public class UsersListAction extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<User> resultList = null;
-        try {
+
             resultList = userDAO.getAll();
-        } catch (DAOException e) {
-            req.setAttribute("message", "Database problems");
-            resp.sendRedirect("adminMainPage");
-        }
+
         req.setAttribute("usersList", resultList);
         req.getRequestDispatcher("/WEB-INF/jsp/admin/adminMainPage.jsp").forward(req, resp);
     }

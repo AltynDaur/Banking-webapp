@@ -23,14 +23,10 @@ public class UserDeleteAction extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int userID = Integer.parseInt(req.getParameter("userID"));
-        try {
 
             userDAO.delete(userID);
             req.setAttribute("message", "User successfully deleted");
-        } catch (DAOException e) {
-            req.setAttribute("message", "Database problems");
-            resp.sendRedirect("users");
-        }
+
         resp.sendRedirect("users");
     }
 

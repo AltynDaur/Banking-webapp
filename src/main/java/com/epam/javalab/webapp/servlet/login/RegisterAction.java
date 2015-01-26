@@ -32,13 +32,9 @@ public class RegisterAction extends HttpServlet {
 
             password = EncryptByMD5.encrypt(password, firstName);
             User currentUser = new User(firstName, password, email, Role.CLIENT);
-            try {
+
                 userDAO.add(currentUser);
-            } catch (DAOException e) {
-                req.setAttribute("message", "Database problems");
-                req.setAttribute("errorSet", e.getErrorSet());
-                req.getRequestDispatcher("/WEB-INF/jsp/loginPage.jsp").forward(req, resp);
-            }
+
             req.setAttribute("message", "User successfully registered");
         } else {
             req.setAttribute("message", "Database problems");

@@ -38,13 +38,10 @@ public class UserUpdateAction extends HttpServlet {
         Role role = Role.valueOf(req.getParameter("role").toUpperCase());
         User user = new User(userName, password, email, role);
         user.setId(userID);
-        try {
+
             userDAO.update(user);
             req.setAttribute("message", "User successfully updated");
-        } catch (DAOException e) {
-            req.setAttribute("message", "Database problems");
-            resp.sendRedirect("users");
-        }
+
         resp.sendRedirect("users");
     }
 
