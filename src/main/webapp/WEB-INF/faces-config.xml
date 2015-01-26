@@ -5,7 +5,7 @@
     http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
     <application>
         <locale-config>
-            <supported-locale>ru</supported-locale>
+            <default-locale>ru</default-locale>
             <supported-locale>en</supported-locale>
         </locale-config>
         <resource-bundle>
@@ -34,7 +34,15 @@
         <from-view-id>*</from-view-id>
         <navigation-case>
             <from-outcome>logout</from-outcome>
-            <to-view-id>/index.html</to-view-id>
+            <to-view-id>/loginPage.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/registerPage.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/loginPage.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>

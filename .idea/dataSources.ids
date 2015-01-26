@@ -29,24 +29,6 @@
       <exported-key name="FK_OQ4YYJPARIANTSF3UJVEENUN1" table="ACCOUNTS" schema="PUBLIC" catalog="BANKING" columns="ACCTYPE_ID"/>
       <index name="FK_HU3JSQICX8YDR5PQ1XM2ESSN4_INDEX_C" unique="false" columns="CURRENCY_ID"/>
     </table>
-    <table name="ADMIN" schema="PUBLIC" catalog="BANKING" type="TABLE">
-      <column name="ID" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="EMAIL" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <column name="NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <column name="PASSWORD" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <column name="ROLE" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <primary-key name="CONSTRAINT_3" columns="ID"/>
-      <foreign-key name="FK_7PNWT9CH4QW3WS4DIEWNW8O2B" columns="ID" ref-table="USERS" ref-schema="PUBLIC" ref-catalog="BANKING" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
-    </table>
-    <table name="CLIENT" schema="PUBLIC" catalog="BANKING" type="TABLE">
-      <column name="ID" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="EMAIL" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <column name="NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <column name="PASSWORD" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <column name="ROLE" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <primary-key name="CONSTRAINT_7" columns="ID"/>
-      <foreign-key name="FK_T2QLEFRBXBKW18TSFJAUIF8HR" columns="ID" ref-table="USERS" ref-schema="PUBLIC" ref-catalog="BANKING" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
-    </table>
     <table name="EXCHANGERATESTOTENGE" schema="PUBLIC" catalog="BANKING" type="TABLE">
       <column name="ID" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfRkQ1NUU0M0ZfMDdDRF80QkVEX0ExMTVfOTYxN0U2MDU2OTg5KQ==" autoIncrement="true"/>
       <column name="CURRENCY" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
@@ -78,15 +60,6 @@
       <column name="ROLE" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="CONSTRAINT_4" columns="ID"/>
       <exported-key name="CONSTRAINT_AF" table="ACCOUNTS" schema="PUBLIC" catalog="BANKING" columns="CLIENT_ID"/>
-      <exported-key name="FK_7PNWT9CH4QW3WS4DIEWNW8O2B" table="ADMIN" schema="PUBLIC" catalog="BANKING" columns="ID"/>
-      <exported-key name="FK_T2QLEFRBXBKW18TSFJAUIF8HR" table="CLIENT" schema="PUBLIC" catalog="BANKING" columns="ID"/>
     </table>
-  </data-source>
-  <data-source name="H2 - test" uuid="854a15d6-e3e3-4043-842c-32836a6ca680">
-    <database-info product="H2" version="1.3.175 (2014-01-18)" jdbc-version="4.0" driver-name="H2 JDBC Driver" driver-version="1.3.175 (2014-01-18)">
-      <identifier-quote-string>&quot;</identifier-quote-string>
-    </database-info>
-    <case-sensitivity plain-identifiers="upper" quoted-identifiers="exact"/>
-    <schema name="PUBLIC" catalog="TEST"/>
   </data-source>
 </component>

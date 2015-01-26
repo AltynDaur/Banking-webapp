@@ -14,9 +14,7 @@
     <h:outputScript library="js" name="bootstrap.js"/>
 </h:head>
 <h:body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-
-        <div class="offset3"/>
+    <div class="navbar navbar-inverse navbar-fixed-top offset3">
         <a class="brand" href="admin/adminMainPage">#{text.adminMain}</a>
         <ul class="nav">
             <li class="divider-vertical"></li>
@@ -32,9 +30,11 @@
 
     </div>
     <div class="container row span2 well">
-        <h:selectOneMenu value="#{sessionBean.locale}" onchange="submit()" class="span2">
-            <f:selectItems value="#{sessionBean.languages}"/>
-        </h:selectOneMenu>
+        <h:form>
+            <h:selectOneMenu value="#{sessionBean.language}" onchange="submit()" class="span2">
+                <f:selectItems value="#{sessionBean.languages}"/>
+            </h:selectOneMenu>
+        </h:form>
     </div>
     <div class="container">
         <div id="content">

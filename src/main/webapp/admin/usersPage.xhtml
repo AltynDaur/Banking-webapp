@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="/WEB-INF/templates/startTemplate.xhtml">
+    <ui:define name="content">
+        <div class="container" style="margin-top: 80px">
+            #{text.users}
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
+                    aria-expanded="false" aria-controls="collapse">
+                #{text.add}
+            </button>
+            <div class="collapse" id="collapse">
+                <div class="well row span4 offset4 log">
+                    <h:panelGrid id="addUser" columns="2">
+                        <h:outputLabel value="#{text.firstName}"/>
+                        <h:inputText value="#{addedUser.name}"/>
+                        <h:outputLabel value="#{text.password}"/>
+                        <h:inputSecret value="#{addedUser.password}"/>
+                        <h:outputLabel value="#{text.email}"/>
+                        <h:inputText value="#{addedUser.email}"/>
+                        <h:outputLabel value="#{text.role}"/>
+                        <h:selectOneMenu value="#{addedUser.role}">
+                            <f:selectItems value="#{adminUsersController.roles}"/>
+                        </h:selectOneMenu>
+                        <f:facet name="footer">
+                            <div class="btn-group">
+                                <h:commandButton type="submit" value="#{text.add}" action="#{adminUsersController.add}"
+                                                 styleClass="btn btn-success"/>
+                                <h:commandButton type="reset" value="#{text.reset}" styleClass="btn btn-danger"/>
+                            </div>
+                        </f:facet>
+                    </h:panelGrid>
+
+                </div>
+            </div>
+            <h:dataTable value="#{adminUsersController.users}" var="user" styleClass="table table-hover">
+                <h:column>
+                    <f:facet name="header">
+                        #{text.firstName}
+                    </f:facet>
+                    <h:outputText value="#{user.name}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        #{text.email}
+                    </f:facet>
+                    <h:outputText value="#{user.email}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        #{text.role}
+
+                    </f:facet>
+                    <h:outputText value="#{user.role}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        #{text.update}
+                    </f:facet>
+                    <h:commandButton value="#{text.update}"
+                                     styleClass="btn-warning" data-toggle="modal" data-target="#myModal"/>
+
+
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">#{text.update}</h4>
+                                </div>
+                                <div class="modal-body">
+                                    ...
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="btn-group">
+                                        <input type="submit" value="#{text.update}" class="btn btn-success"
+                                               formaction="#{adminUsersController.update}"/>
+                                        <input type="reset" value="#{text.reset}" class="btn btn-danger"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        #{text.delete}
+                    </f:facet>
+                    <h:commandButton value="#{text.delete}" action="#{adminUsersController.delete(user.id)}"
+                                     styleClass="btn-danger"/>
+                </h:column>
+            </h:dataTable>
+        </div>
+    </ui:define>
+</ui:composition>

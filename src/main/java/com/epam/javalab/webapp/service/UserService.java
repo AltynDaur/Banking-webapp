@@ -4,6 +4,7 @@ import com.epam.javalab.webapp.dao.JPA;
 import com.epam.javalab.webapp.dao.UserDAO;
 import com.epam.javalab.webapp.data.SessionBean;
 import com.epam.javalab.webapp.security.EncryptByMD5;
+import com.epam.javalab.webapp.user.Role;
 import com.epam.javalab.webapp.user.User;
 
 
@@ -24,5 +25,13 @@ public class UserService implements Serializable {
         password = EncryptByMD5.encrypt(password, name);
         User user = userDAO.findByNameAndPass(name, password);
         return user;
+    }
+
+    public void register(User user) {
+        userDAO.add(user);
+    }
+
+    public void delete(int id) {
+        userDAO.delete(id);
     }
 }

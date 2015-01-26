@@ -4,6 +4,7 @@ import com.epam.javalab.webapp.user.User;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateful;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -21,6 +22,9 @@ public class SessionBean implements Serializable {
 
     private User user;
 
+    @RequestScoped
+    private String repeatPassword;
+
     @Inject
     private List<String> languages;
 
@@ -28,7 +32,7 @@ public class SessionBean implements Serializable {
 
     @PostConstruct
     public void init() {
-        FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
+        locale = FacesContext.getCurrentInstance().getApplication().getDefaultLocale();
         user = new User();
     }
 
@@ -61,6 +65,13 @@ public class SessionBean implements Serializable {
         this.user = user;
     }
 
+    public String getRepeatPassword() {
+        return repeatPassword;
+    }
+
+    public void setRepeatPassword(String repeatPassword) {
+        this.repeatPassword = repeatPassword;
+    }
 
     public void clear() {
         setUser(null);

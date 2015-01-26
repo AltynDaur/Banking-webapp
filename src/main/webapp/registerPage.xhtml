@@ -12,19 +12,19 @@
 
                     <h:panelGrid columns="3" columnClasses="titleCell">
                         <h:outputLabel for="name" value="#{text.enterLogin}"/>
-                        <h:inputText id="name" value="#{user.name}"/>
+                        <h:inputText id="name" value="#{newUser.name}"/>
                         <h:message for="name" errorClass="error"/>
 
                         <h:outputLabel for="password" value="#{text.enterPass}"/>
-                        <h:inputSecret id="password" value="#{user.password}"/>
+                        <h:inputSecret id="password" value="#{newUser.password}"/>
                         <h:message for="password" errorClass="error"/>
 
                         <h:outputLabel for="repeatPassword" value="#{text.repeatPass}"/>
-                        <h:inputSecret id="repeatPassword" value="#{user.password}"/>
+                        <h:inputSecret id="repeatPassword" value="#{registerController.repeatPassword}"/>
                         <h:message for="repeatPassword" errorClass="error"/>
 
                         <h:outputLabel for="email" value="#{text.email}"/>
-                        <h:inputText id="email" value="#{user.email}"/>
+                        <h:inputText id="email" value="#{newUser.email}"/>
                         <h:message for="email" errorClass="error"/>
 
                     </h:panelGrid>
@@ -32,7 +32,8 @@
                     <p>
                         <h:panelGrid columns="2">
                             <div class="btn-group span4">
-                                <h:commandButton type="submit" value="#{text.register}" styleClass="btn btn-success"/>
+                                <h:commandButton type="submit" value="#{text.register}"
+                                                 action="#{registerController.register}" styleClass="btn btn-success"/>
                                 <h:commandButton type="reset" value="#{text.reset}" styleClass="btn btn-danger"/>
                             </div>
                         </h:panelGrid>

@@ -18,7 +18,7 @@ public class User {
     @Column(name = "ID")
     private int id;
     @NotNull
-    @Column(name = "NAME")
+    @Column(name = "NAME", unique = true)
     @Size(min = 3, max = 50, message = "Name too small or too big")
     private String name;
     @NotNull
@@ -29,7 +29,7 @@ public class User {
     @NotNull
     private Role role;
     @NotNull
-    @Column(name = "EMAIL")
+    @Column(name = "EMAIL", unique = true)
     @Email
     private String email;
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
@@ -133,5 +133,9 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setRole(Role client) {
+        this.role = client;
     }
 }

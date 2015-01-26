@@ -17,7 +17,7 @@
 <h:body>
     <div class="container row span2 well">
         <h:form>
-            <h:selectOneMenu value="#{sessionBean.locale}" onchange="submit()" class="span2">
+            <h:selectOneMenu value="#{sessionBean.language}" onchange="submit()" class="span2">
                 <f:selectItems value="#{sessionBean.languages}"/>
             </h:selectOneMenu>
         </h:form>
