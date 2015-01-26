@@ -1,8 +1,8 @@
 package com.epam.javalab.webapp.controller;
 
-/*import com.epam.javalab.webapp.servlet.Action;
+import com.epam.javalab.webapp.servlet.Action;
 import com.epam.javalab.webapp.servlet.ActionFactory;
-import com.epam.javalab.webapp.servlet.ActionResult;*/
+import com.epam.javalab.webapp.servlet.ActionResult;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -13,7 +13,7 @@ import java.io.IOException;
 
 public class Controller extends HttpServlet {
 
-    /*ActionFactory actionFactory = new ActionFactory();
+    ActionFactory actionFactory = new ActionFactory();
     private static final Logger LOGGER = Logger.getLogger(Controller.class);
 
     @Override
@@ -48,6 +48,6 @@ public class Controller extends HttpServlet {
         String actionName = req.getPathInfo().substring(1);
         return actionName;
     }
-*/
+
 
 }

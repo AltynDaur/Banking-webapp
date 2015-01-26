@@ -73,7 +73,6 @@
                     <td><fmt:message key="accTypeName"/></td>
                     <td><fmt:message key="amount"/></td>
                     <td><fmt:message key="currency"/></td>
-                    <td><fmt:message key="lastUpdated"/></td>
                     <td><fmt:message key="update"/></td>
                     <td><fmt:message key="delete"/></td>
                 </tr>
@@ -85,7 +84,6 @@
                         <td>${account.getAcctype().getName()}</td>
                         <td>${account.getAmount()}</td>
                         <td>${account.getAcctype().getExchangeRate().getCurrency()}</td>
-                        <td>${account.getLocalDateTime()}</td>
                         <td>
                             <form action="admin/accountsPage" method="post">
                                 <input type="hidden" name="accountID" value="${account.getId()}">
@@ -157,13 +155,11 @@
                 <tr>
                     <td><fmt:message key="currency"/></td>
                     <td><fmt:message key="rate"/></td>
-                    <td><fmt:message key="lastUpdated"/></td>
                 </tr>
                 <c:forEach items="${exchangeRates}" var="rate">
                     <tr>
                         <td>${rate.getCurrency()}</td>
                         <td>${rate.getValue()}</td>
-                        <td>${rate.getLocalDateTime()}</td>
                         <td>
                             <form action="admin/exchangeRatesPage" method="post">
                                 <input type="hidden" name="exchangeRateID" value="${rate.getId()}">
@@ -198,7 +194,6 @@
                     <td><fmt:message key="owner"/></td>
                     <td><fmt:message key="amount"/></td>
                     <td><fmt:message key="currency"/></td>
-                    <td><fmt:message key="time"/></td>
 
                 </tr>
                 <c:forEach items="${transRecordsList}" var="transRecord">
@@ -210,7 +205,6 @@
                         <td>${transRecord.getFinalAcc().getOwner().getName()}</td>
                         <td>${transRecord.getAmount()}</td>
                         <td>${transRecord.getExchangeRate().getCurrency()}</td>
-                        <td>${transRecord.getLocalDateTime()}</td>
                     </tr>
                 </c:forEach>
             </table>

@@ -7,6 +7,8 @@ import com.epam.javalab.webapp.user.Role;
 import com.epam.javalab.webapp.user.User;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.event.Observes;
+import javax.enterprise.event.Reception;
 import javax.enterprise.inject.Model;
 import javax.enterprise.inject.Produces;
 import javax.faces.context.FacesContext;
@@ -60,5 +62,13 @@ public class AdminUsersController {
 
     public void delete(int id) {
         userService.delete(id);
+    }
+
+    public void onUsersListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final User user) {
+        retrieveAllUsers();
+    }
+
+    private void retrieveAllUsers() {
+        users = userService.findAll();
     }
 }

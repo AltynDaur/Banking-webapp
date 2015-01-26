@@ -2,7 +2,6 @@ package com.epam.javalab.webapp.user;
 
 
 import com.epam.javalab.webapp.account.Account;
-import com.epam.javalab.webapp.security.EncryptByMD5;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
@@ -18,7 +17,7 @@ public class User {
     @Column(name = "ID")
     private int id;
     @NotNull
-    @Column(name = "NAME", unique = true)
+    @Column(name = "NAME")
     @Size(min = 3, max = 50, message = "Name too small or too big")
     private String name;
     @NotNull
@@ -29,7 +28,7 @@ public class User {
     @NotNull
     private Role role;
     @NotNull
-    @Column(name = "EMAIL", unique = true)
+    @Column(name = "EMAIL")
     @Email
     private String email;
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
@@ -76,7 +75,6 @@ public class User {
     public void setRole(String role) {
         this.role = Role.valueOf(role.toUpperCase());
     }
-
     public void setRole(int roleId){
         if(roleId == 1){
             this.role = Role.ADMIN;
@@ -133,9 +131,5 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void setRole(Role client) {
-        this.role = client;
     }
 }

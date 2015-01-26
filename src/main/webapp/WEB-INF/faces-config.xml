@@ -46,6 +46,35 @@
             <redirect/>
         </navigation-case>
     </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/admin/*</from-view-id>
+
+        <navigation-case>
+            <from-outcome>adminMain</from-outcome>
+            <to-view-id>/admin/adminMainPage.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>users</from-outcome>
+            <to-view-id>/admin/usersPage.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>accounts</from-outcome>
+            <to-view-id>/admin/accountsPage.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>accountTypes</from-outcome>
+            <to-view-id>/admin/accountTypesPage.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>exchangeRates</from-outcome>
+            <to-view-id>/admin/exchangeRatesPage.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>transactionHistory</from-outcome>
+            <to-view-id>/admin/transactionsHistoryPage.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
     <lifecycle>
         <phase-listener>com.epam.javalab.webapp.listner.PRGListener</phase-listener>
     </lifecycle>
