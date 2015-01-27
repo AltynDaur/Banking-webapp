@@ -2,6 +2,7 @@ package com.epam.javalab.webapp.account;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "TRANSACTIONHISTORY")
@@ -23,11 +24,14 @@ public class TransactionHistoryRecord {
     @OneToOne
     private ExchangeRate exchangeRate;
 
-    public TransactionHistoryRecord(Account currentAccID, Account targetAccID, long amount, ExchangeRate transactionCurrency) {
+    private LocalDateTime localDateTime;
+
+    public TransactionHistoryRecord(Account currentAccID, Account targetAccID, long amount, ExchangeRate transactionCurrency, LocalDateTime localDateTime) {
         this.startAcc = currentAccID;
         this.finalAcc = targetAccID;
         this.amount = amount;
         this.exchangeRate = transactionCurrency;
+        this.localDateTime = localDateTime;
     }
 
     public TransactionHistoryRecord() {
@@ -74,6 +78,13 @@ public class TransactionHistoryRecord {
         this.id = id;
     }
 
+    public LocalDateTime getLocalDateTime() {
+        return localDateTime;
+    }
+
+    public void setLocalDateTime(LocalDateTime localDateTime) {
+        this.localDateTime = localDateTime;
+    }
 
     @Override
     public boolean equals(Object o) {

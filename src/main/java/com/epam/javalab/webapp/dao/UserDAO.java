@@ -11,11 +11,11 @@ public interface UserDAO {
 
     public List<User> getAll();
 
-    public void add(User user) throws DAOException;
+    public void add(User user);
 
     public void delete(int userID);
 
-    public void update(User user) throws DAOException;
+    public void update(User user);
 
     public User findByNameAndPass(String name, String password);
 

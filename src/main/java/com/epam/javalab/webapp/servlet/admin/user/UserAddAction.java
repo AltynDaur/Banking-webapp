@@ -30,13 +30,10 @@ public class UserAddAction extends HttpServlet {
         String email = req.getParameter("email");
         Role role = Role.valueOf(req.getParameter("role").toUpperCase());
         User user = new User(userName, password, email, role);
-        try {
-            userDAO.add(user);
+
+        userDAO.add(user);
             req.setAttribute("message", "User successfully added");
-        } catch (DAOException e) {
-            req.setAttribute("message", "Database problems");
-            resp.sendRedirect("users");
-        }
+
         resp.sendRedirect("users");
     }
 

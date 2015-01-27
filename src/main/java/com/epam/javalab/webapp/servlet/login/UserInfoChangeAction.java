@@ -48,12 +48,10 @@ public class UserInfoChangeAction extends HttpServlet {
             currentUser.setName(firstName);
             currentUser.setPassword(password);
             currentUser.setEmail(email);
-            try {
-                userDAO.update(currentUser);
+
+            userDAO.update(currentUser);
                 req.setAttribute("message", "User successfully updated");
-            } catch (DAOException e) {
-                req.setAttribute("message", "Database problems");
-            }
+
             req.setAttribute("message", "updateSuccess");
             resp.sendRedirect(chooseRole(role));
         } else {
