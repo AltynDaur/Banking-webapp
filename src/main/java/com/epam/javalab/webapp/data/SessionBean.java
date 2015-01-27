@@ -25,22 +25,11 @@ public class SessionBean implements Serializable {
     @RequestScoped
     private String repeatPassword;
 
-    @Inject
-    private List<String> languages;
-
 
     @PostConstruct
     public void init() {
         locale = FacesContext.getCurrentInstance().getApplication().getDefaultLocale();
         user = new User();
-    }
-
-    public List<String> getLanguages() {
-        return languages;
-    }
-
-    public void setLanguages(List<String> languages) {
-        this.languages = languages;
     }
 
     public String getLanguage() {
@@ -72,8 +61,4 @@ public class SessionBean implements Serializable {
         this.repeatPassword = repeatPassword;
     }
 
-    public void clear() {
-        setUser(null);
-        setLanguage(null);
-    }
 }

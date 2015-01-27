@@ -6,22 +6,22 @@
                 template="/WEB-INF/templates/startTemplate.xhtml">
     <ui:define name="content">
         <div class="container">
-            <div class="row">
-                <div class="span4 offset4 log">
-                    <h2>#{text.register}</h2>
+            <div class="row span4 offset4 log" style="margin-top: 80px">
 
-                    <h:panelGrid columns="3" columnClasses="titleCell">
+                <h2>#{text.register}</h2>
+
+                <h:panelGrid columns="3">
                         <h:outputLabel for="name" value="#{text.enterLogin}"/>
                         <h:inputText id="name" value="#{newUser.name}"/>
-                        <h:message for="name" errorClass="error"/>
+                    <h:message for="name" errorClass="label-danger"/>
 
                         <h:outputLabel for="password" value="#{text.enterPass}"/>
                         <h:inputSecret id="password" value="#{newUser.password}"/>
-                        <h:message for="password" errorClass="error"/>
+                    <h:message for="password" errorClass="label-danger"/>
 
                         <h:outputLabel for="repeatPassword" value="#{text.repeatPass}"/>
                         <h:inputSecret id="repeatPassword" value="#{registerController.repeatPassword}"/>
-                        <h:message for="repeatPassword" errorClass="error"/>
+                    <h:message for="repeatPassword" errorClass="label-danger"/>
 
                         <h:outputLabel for="email" value="#{text.email}"/>
                         <h:inputText id="email" value="#{newUser.email}"/>
@@ -38,7 +38,7 @@
                             </div>
                         </h:panelGrid>
                     </p>
-                </div>
+
             </div>
         </div>
     </ui:define>

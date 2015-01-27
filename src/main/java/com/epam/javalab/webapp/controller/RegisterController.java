@@ -38,7 +38,7 @@ public class RegisterController {
             newUser.setPassword(EncryptByMD5.encrypt(newUser.getPassword(), newUser.getName()));
             newUser.setRole(Role.CLIENT);
             userService.register(newUser);
-            return "success";
+            return "loginPage";
         }
         return null;
     }

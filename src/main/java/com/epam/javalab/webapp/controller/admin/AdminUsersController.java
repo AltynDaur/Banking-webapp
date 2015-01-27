@@ -14,6 +14,7 @@ import javax.enterprise.inject.Produces;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.ArrayList;
 import java.util.List;
 
 @Model
@@ -34,9 +35,16 @@ public class AdminUsersController {
 
     private List<User> users;
 
+    private String currentPassword;
+
     @PostConstruct
     private void init() {
         addedUser = new User();
+        retrieveAllUsers();
+        roles = new ArrayList();
+        for (int i = 0; i < Role.values().length; i++) {
+            roles.add(Role.values()[i]);
+        }
     }
 
     @Named
@@ -70,5 +78,13 @@ public class AdminUsersController {
 
     private void retrieveAllUsers() {
         users = userService.findAll();
+    }
+
+    public String getCurrentPassword() {
+        return currentPassword;
+    }
+
+    public void setCurrentPassword(String currentPassword) {
+        this.currentPassword = currentPassword;
     }
 }

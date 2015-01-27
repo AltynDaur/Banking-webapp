@@ -32,14 +32,6 @@ public class Resources implements Serializable {
         return FacesContext.getCurrentInstance();
     }
 
-    @Produces
-    public List<String> languages() {
-        List<String> languages = new ArrayList<>();
-        languages.add("ru");
-        languages.add("en");
-        return languages;
-    }
 
-    ;
 
 }

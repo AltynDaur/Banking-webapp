@@ -13,6 +13,7 @@ html {
 
 body {
     margin: 0;
+
 }
 
 article,
@@ -1400,6 +1401,7 @@ body {
     line-height: 1.42857143;
     color: #333;
     background-color: #fff;
+    background-image: url("#{resource['images/background.jpg']}");
 }
 
 input,

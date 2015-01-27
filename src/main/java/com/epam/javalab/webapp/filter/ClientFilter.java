@@ -1,9 +1,12 @@
 package com.epam.javalab.webapp.filter;
 
+import com.epam.javalab.webapp.data.SessionBean;
 import com.epam.javalab.webapp.user.Role;
 import com.epam.javalab.webapp.user.User;
 import org.apache.log4j.Logger;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -18,6 +21,12 @@ public class ClientFilter implements Filter {
     @Inject
     private Logger LOOGER;
 
+    @Inject
+    private SessionBean sessionBean;
+
+    @Inject
+    private FacesContext facesContext;
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         LOOGER.debug("Client filter starting");
@@ -25,15 +34,12 @@ public class ClientFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        HttpServletRequest request = (HttpServletRequest) servletRequest;
-        HttpServletResponse response = (HttpServletResponse) servletResponse;
-        HttpSession session = request.getSession();
-        User currentUser = (User) session.getAttribute("user");
-        if (currentUser.getRole().equals(Role.CLIENT)) {
+
+        if (sessionBean.getUser().getRole().equals(Role.CLIENT)) {
             filterChain.doFilter(servletRequest, servletResponse);
         } else {
-            request.setAttribute("message", "YOU SHALL NOT PASS!!!");
-            response.sendRedirect(request.getContextPath() + request.getServletContext() + "/loginPage");
+            FacesMessage message = new FacesMessage("You're not client");
+            facesContext.addMessage(null, message);
         }
     }
 

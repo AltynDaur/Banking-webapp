@@ -11,36 +11,36 @@
     <title>Banking: Thanks for visiting</title>
     <base href="/Webapp/"/>
     <h:outputStylesheet library="css" name="bootstrap.css"/>
+    <h:outputScript library="js" name="jquery.js"/>
     <h:outputScript library="js" name="bootstrap.js"/>
 </h:head>
-<h:body>
 
-    <div class="navbar navbar-inverse navbar-fixed-top offset3">
+<body>
 
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <h:form styleClass="navbar-form">
+        <h:selectOneMenu value="#{sessionBean.language}" onchange="submit()" class="span2">
+            <f:selectItem itemValue="en" itemLabel="#{text.english}"/>
+            <f:selectItem itemValue="ru" itemLabel="#{text.russian}"/>
+        </h:selectOneMenu>
+    </h:form>
         <div class="navbar-header">
             <h:link outcome="adminMain" styleClass="navbar-brand">#{text.adminMain}</h:link>
         </div>
-        <ul class="nav">
-
+    <ul class="nav navbar-nav">
             <li class="divider-vertical"/>
-            <li><h:link outcome="users">#{text.users}</h:link></li>
-            <li><h:link outcome="accounts">#{text.accounts}</h:link></li>
-            <li><h:link outcome="accountTypes">#{text.accountsTypes}</h:link></li>
-            <li><h:link outcome="exchangeRates">#{text.exchangeRates}</h:link></li>
-            <li><h:link outcome="transactionHistory">#{text.transactionHistory}</h:link></li>
-            <li><h:link outcome="userInfoChange">#{text.userOption}</h:link></li>
+        <li><h:link outcome="usersPage">#{text.users}</h:link></li>
+        <li><h:link outcome="accountsPage">#{text.accounts}</h:link></li>
+        <li><h:link outcome="accountTypesPage">#{text.accountsTypes}</h:link></li>
+        <li><h:link outcome="exchangeRatesPage">#{text.exchangeRates}</h:link></li>
+        <li><h:link outcome="transactionsHistoryPage">#{text.transactionHistory}</h:link></li>
+        <li><h:link outcome="userInfoChangePage">#{text.userOption}</h:link></li>
             <li class="divider-vertical"/>
-            <li><h:link outcome="logout">#{text.logout}</h:link></li>
+        <li><h:button styleClass="btn btn-danger navbar-btn" action="#{loginController.logout}" value="#{text.logout}"/>
+        </li>
         </ul>
+</nav>
 
-    </div>
-    <div class="container row span2 well">
-        <h:form>
-            <h:selectOneMenu value="#{sessionBean.language}" onchange="submit()" class="span2">
-                <f:selectItems value="#{sessionBean.languages}"/>
-            </h:selectOneMenu>
-        </h:form>
-    </div>
     <div class="container">
         <div id="adminContent">
             <ui:insert name="adminContent">
@@ -48,5 +48,5 @@
             </ui:insert>
         </div>
     </div>
-</h:body>
+</body>
 </html>

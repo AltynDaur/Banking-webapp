@@ -26,7 +26,7 @@ public class UserService implements Serializable {
     private Event<User> userEvent;
 
     public User login(String name, String password) {
-        password = EncryptByMD5.encrypt(password, name);
+
         User user = userDAO.findByNameAndPass(name, password);
         return user;
     }
@@ -38,6 +38,7 @@ public class UserService implements Serializable {
 
     public void delete(int id) {
         userDAO.delete(id);
+        userEvent.fire(new User());
     }
 
     public List<User> findAll() {

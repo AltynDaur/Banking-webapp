@@ -1,6 +1,6 @@
 package com.epam.javalab.webapp.controller;
 
-import com.epam.javalab.webapp.servlet.Action;
+/*import com.epam.javalab.webapp.servlet.Action;
 import com.epam.javalab.webapp.servlet.ActionFactory;
 import com.epam.javalab.webapp.servlet.ActionResult;
 import org.apache.log4j.Logger;
@@ -50,4 +50,4 @@ public class Controller extends HttpServlet {
     }
 
 
-}
+}*/

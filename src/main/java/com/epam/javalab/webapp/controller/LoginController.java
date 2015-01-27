@@ -45,15 +45,15 @@ public class LoginController {
     public String login() {
 
         try {
-
+            loginUser.setPassword(EncryptByMD5.encrypt(loginUser.getPassword(), loginUser.getName()));
             loginUser = userService.login(loginUser.getName(), loginUser.getPassword());
             if (loginUser != null) {
                 if (loginUser.getRole().equals(Role.ADMIN)) {
                     sessionBean.setUser(loginUser);
-                    return "admin";
+                    return "admin/adminMainPage?faces-redirect=true";
                 } else {
                     sessionBean.setUser(loginUser);
-                    return "client";
+                    return "client/clientMainPage?faces-redirect=true";
                 }
             }
 
