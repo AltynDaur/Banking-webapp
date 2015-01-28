@@ -34,8 +34,6 @@ public class AdminUsersController {
 
     private List<Role> roles;
 
-    private List<User> users;
-
     private String oldPassword;
 
     private String currentPassword;
@@ -45,17 +43,10 @@ public class AdminUsersController {
     @PostConstruct
     private void init() {
         addedUser = new User();
-        retrieveAllUsers();
         roles = new ArrayList();
         for (int i = 0; i < Role.values().length; i++) {
             roles.add(Role.values()[i]);
         }
-    }
-
-    @Named
-    @Produces
-    public List<User> getUsers() {
-        return users;
     }
 
     @Named
@@ -88,14 +79,6 @@ public class AdminUsersController {
         } else {
             facesContext.addMessage("oldPass", new FacesMessage("You entered wrong password!"));
         }
-    }
-
-    public void onUsersListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final User user) {
-        retrieveAllUsers();
-    }
-
-    private void retrieveAllUsers() {
-        users = userService.findAll();
     }
 
     public String getOldPassword() {

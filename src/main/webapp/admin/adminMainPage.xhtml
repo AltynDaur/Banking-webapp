@@ -4,7 +4,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      lang="#{sessionBean.language}">
+<f:view locale="#{sessionBean.locale}">
 <h:head>
     <meta name="author" content="Altynbekov Dauren, altyndaur.krg@mail.ru"/>
     <meta name="keywords" content="Banking, accounts"/>
@@ -18,35 +20,41 @@
 <body>
 
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <h:form styleClass="navbar-form">
-        <h:selectOneMenu value="#{sessionBean.language}" onchange="submit()" class="span2">
-            <f:selectItem itemValue="en" itemLabel="#{text.english}"/>
-            <f:selectItem itemValue="ru" itemLabel="#{text.russian}"/>
-        </h:selectOneMenu>
-    </h:form>
+    <div class="col-md-offset-2">
         <div class="navbar-header">
-            <h:link outcome="adminMain" styleClass="navbar-brand">#{text.adminMain}</h:link>
+            <h:link outcome="adminMainPage" styleClass="navbar-brand">#{text.adminMain}</h:link>
         </div>
-    <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav">
             <li class="divider-vertical"/>
-        <li><h:link outcome="usersPage">#{text.users}</h:link></li>
-        <li><h:link outcome="accountsPage">#{text.accounts}</h:link></li>
-        <li><h:link outcome="accountTypesPage">#{text.accountsTypes}</h:link></li>
-        <li><h:link outcome="exchangeRatesPage">#{text.exchangeRates}</h:link></li>
-        <li><h:link outcome="transactionsHistoryPage">#{text.transactionHistory}</h:link></li>
-        <li><h:link outcome="userInfoChangePage">#{text.userOption}</h:link></li>
+            <li><h:link outcome="usersPage">#{text.users}</h:link></li>
+            <li><h:link outcome="accountsPage">#{text.accounts}</h:link></li>
+            <li><h:link outcome="accountTypesPage">#{text.accountsTypes}</h:link></li>
+            <li><h:link outcome="exchangeRatesPage">#{text.exchangeRates}</h:link></li>
+            <li><h:link outcome="transactionsHistoryPage">#{text.transactionHistory}</h:link></li>
+            <li><h:link outcome="userInfoChangePage">#{text.userOption}</h:link></li>
             <li class="divider-vertical"/>
-        <li><h:button styleClass="btn btn-danger navbar-btn" action="#{loginController.logout}" value="#{text.logout}"/>
-        </li>
+
+            <li><h:form styleClass="navbar-form">
+                <h:selectOneMenu value="#{sessionBean.language}" onchange="submit()"
+                                 valueChangeListener="#{sessionBean.changeLocale}" class="span2">
+                    <f:selectItem itemValue="en" itemLabel="#{text.english}"/>
+                    <f:selectItem itemValue="ru" itemLabel="#{text.russian}"/>
+                </h:selectOneMenu>
+            </h:form></li>
+            <li><h:form styleClass="navbar-form navbar-right"><h:commandButton styleClass="btn btn-danger navbar-btn"
+                                                                               action="#{loginController.logout}"
+                                                                               value="#{text.logout}"/></h:form></li>
         </ul>
+    </div>
 </nav>
 
-    <div class="container">
-        <div id="adminContent">
-            <ui:insert name="adminContent">
-                here will be some carousel
-            </ui:insert>
-        </div>
+<div class="container">
+    <div id="adminContent">
+        <ui:insert name="adminContent">
+            here will be some carousel
+        </ui:insert>
     </div>
+</div>
 </body>
+</f:view>
 </html>

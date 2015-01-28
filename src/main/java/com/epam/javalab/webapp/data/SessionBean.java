@@ -7,6 +7,7 @@ import javax.ejb.Stateful;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ValueChangeEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -21,9 +22,6 @@ public class SessionBean implements Serializable {
     private Locale locale;
 
     private User user;
-
-    @RequestScoped
-    private String repeatPassword;
 
 
     @PostConstruct
@@ -41,6 +39,11 @@ public class SessionBean implements Serializable {
         FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
     }
 
+    public void changeLocale(ValueChangeEvent event) {
+        String locale = event.getNewValue().toString();
+        setLanguage(locale);
+    }
+
     public Locale getLocale() {
         return locale;
     }
@@ -53,12 +56,5 @@ public class SessionBean implements Serializable {
         this.user = user;
     }
 
-    public String getRepeatPassword() {
-        return repeatPassword;
-    }
-
-    public void setRepeatPassword(String repeatPassword) {
-        this.repeatPassword = repeatPassword;
-    }
 
 }

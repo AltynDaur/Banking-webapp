@@ -17,7 +17,8 @@
 <h:body>
     <div class="row span2 well">
         <h:form>
-            <h:selectOneMenu value="#{sessionBean.language}" onchange="submit()" class="span2">
+            <h:selectOneMenu value="#{sessionBean.language}" onchange="submit()"
+                             valueChangeListener="#{sessionBean.changeLocale}" class="span2">
                 <f:selectItem itemValue="en" itemLabel="#{text.english}"/>
                 <f:selectItem itemValue="ru" itemLabel="#{text.russian}"/>
             </h:selectOneMenu>

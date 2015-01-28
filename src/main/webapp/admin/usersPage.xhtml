@@ -14,7 +14,7 @@
             </button>
             <div class="collapse" id="collapseExample">
                 <div class="well">
-                    <div class="well row span4 offset4 log">
+                    <div class="well row span4 log col-md-offset-4">
                         <h:form id="addUserForm">
                             <h:panelGrid id="addUserInfo" columns="2">
                                 <h:outputLabel value="#{text.firstName}"/>
@@ -38,7 +38,7 @@
             </div>
 
 
-            <h:dataTable value="#{adminUsersController.users}" var="user" styleClass="table table-hover">
+            <h:dataTable value="#{users}" var="user" styleClass="table table-hover">
                 <h:column>
                     <f:facet name="header">
                         #{text.user}
@@ -60,10 +60,10 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        #{text.changeMail}
+                        #{text.changeUserData}
                     </f:facet>
                     <button type="button" class="btn-warning" data-toggle="modal"
-                            data-target="#myModal">#{text.changeMail}</button>
+                            data-target="#myModal">#{text.update}</button>
                     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                          aria-hidden="true">
                         <div class="modal-dialog">
@@ -74,7 +74,7 @@
                                     <h4 class="modal-title" id="myModalLabel">#{text.update}</h4>
                                 </div>
                                 <h:form id="updateUserForm">
-                                <div class="modal-body">
+                                    <div class="modal-body col-md-offset-2">
                                     <h:panelGrid columns="3">
                                         <h:outputLabel for="name" value="#{text.user}"/>
                                         <h:inputText id="name" value="#{user.name}"/>
@@ -115,7 +115,7 @@
                                 <h:form id="updateUserPassForm">
                                     <input type="hidden" name="userID" value="#{user.id}"/>
 
-                                    <div class="modal-body">
+                                    <div class="modal-body col-md-offset-2">
                                         <h:panelGrid columns="3">
                                             <h:outputLabel for="oldPass" value="#{text.oldPass}"/>
                                             <h:inputSecret id="oldPass" value="#{adminUsersController.oldPassword}"/>
