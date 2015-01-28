@@ -11,6 +11,7 @@ import javax.enterprise.event.Observes;
 import javax.enterprise.event.Reception;
 import javax.enterprise.inject.Model;
 import javax.enterprise.inject.Produces;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -35,7 +36,11 @@ public class AdminUsersController {
 
     private List<User> users;
 
+    private String oldPassword;
+
     private String currentPassword;
+
+    private String repeatedPassword;
 
     @PostConstruct
     private void init() {
@@ -64,12 +69,25 @@ public class AdminUsersController {
         userService.register(addedUser);
     }
 
-    public void update() {
-
+    public void update(User user) {
+        userService.update(user);
     }
 
     public void delete(int id) {
         userService.delete(id);
+    }
+
+    public void updatePassword(User user) {
+        if (user.getPassword().equals(EncryptByMD5.encrypt(oldPassword, user.getName()))) {
+            if (currentPassword.equals(repeatedPassword)) {
+                user.setPassword(EncryptByMD5.encrypt(currentPassword, user.getName()));
+                userService.update(user);
+            } else {
+                facesContext.addMessage("repeatPass", new FacesMessage("Repeated password not equals new password"));
+            }
+        } else {
+            facesContext.addMessage("oldPass", new FacesMessage("You entered wrong password!"));
+        }
     }
 
     public void onUsersListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final User user) {
@@ -80,11 +98,27 @@ public class AdminUsersController {
         users = userService.findAll();
     }
 
+    public String getOldPassword() {
+        return oldPassword;
+    }
+
+    public void setOldPassword(String oldPassword) {
+        this.oldPassword = oldPassword;
+    }
+
     public String getCurrentPassword() {
         return currentPassword;
     }
 
     public void setCurrentPassword(String currentPassword) {
         this.currentPassword = currentPassword;
+    }
+
+    public String getRepeatedPassword() {
+        return repeatedPassword;
+    }
+
+    public void setRepeatedPassword(String repeatedPassword) {
+        this.repeatedPassword = repeatedPassword;
     }
 }

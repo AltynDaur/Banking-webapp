@@ -41,7 +41,7 @@
             <h:dataTable value="#{adminUsersController.users}" var="user" styleClass="table table-hover">
                 <h:column>
                     <f:facet name="header">
-                        #{text.firstName}
+                        #{text.user}
                     </f:facet>
                     <h:outputText value="#{user.name}"/>
                 </h:column>
@@ -60,10 +60,10 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        #{text.update}
+                        #{text.changeMail}
                     </f:facet>
                     <button type="button" class="btn-warning" data-toggle="modal"
-                            data-target="#myModal">#{text.update}</button>
+                            data-target="#myModal">#{text.changeMail}</button>
                     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                          aria-hidden="true">
                         <div class="modal-dialog">
@@ -75,14 +75,69 @@
                                 </div>
                                 <h:form id="updateUserForm">
                                 <div class="modal-body">
-
+                                    <h:panelGrid columns="3">
+                                        <h:outputLabel for="name" value="#{text.user}"/>
+                                        <h:inputText id="name" value="#{user.name}"/>
+                                        <h:message for="name" errorClass="label-danger"/>
+                                        <h:outputLabel for="email" value="#{text.email}"/>
+                                        <h:inputText id="email" value="#{user.email}"/>
+                                        <h:message for="email" errorClass="label-danger"/>
+                                    </h:panelGrid>
                                 </div>
                                 <div class="modal-footer">
                                     <div class="btn-group">
-                                        <input type="submit" value="#{text.update}" class="btn btn-success"/>
+                                        <h:commandButton value="#{text.update}"
+                                                         action="#{adminUsersController.update(user)}"
+                                                         styleClass="btn btn-success"/>
                                         <input type="reset" value="#{text.reset}" class="btn btn-danger"/>
                                     </div>
                                 </div>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        #{text.changePass}
+                    </f:facet>
+                    <button type="button" class="btn-warning" data-toggle="modal"
+                            data-target="#myModal2">#{text.changePass}</button>
+                    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&#215;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel2">#{text.update}</h4>
+                                </div>
+                                <h:form id="updateUserPassForm">
+                                    <input type="hidden" name="userID" value="#{user.id}"/>
+
+                                    <div class="modal-body">
+                                        <h:panelGrid columns="3">
+                                            <h:outputLabel for="oldPass" value="#{text.oldPass}"/>
+                                            <h:inputSecret id="oldPass" value="#{adminUsersController.oldPassword}"/>
+                                            <h:message for="oldPass" errorClass="label-danger"/>
+                                            <h:outputLabel for="newPass" value="#{text.enterPass}"/>
+                                            <h:inputSecret id="newPass"
+                                                           value="#{adminUsersController.currentPassword}"/>
+                                            <h:message for="newPass" errorClass="label-danger"/>
+                                            <h:outputLabel for="repeatPass" value="#{text.repeatPass}"/>
+                                            <h:inputSecret id="repeatPass"
+                                                           value="#{adminUsersController.repeatedPassword}"/>
+                                            <h:message for="repeatPass" errorClass="label-danger"/>
+                                        </h:panelGrid>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="btn-group">
+                                            <h:commandButton value="#{text.update}"
+                                                             action="#{adminUsersController.updatePassword(user)}"
+                                                             styleClass="btn btn-success"/>
+                                            <input type="reset" value="#{text.reset}" class="btn btn-danger"/>
+                                        </div>
+                                    </div>
                                 </h:form>
                             </div>
                         </div>

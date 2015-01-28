@@ -45,4 +45,9 @@ public class UserService implements Serializable {
         return userDAO.getAll();
 
     }
+
+    public void update(User user) {
+        userDAO.update(user);
+        userEvent.fire(user);
+    }
 }
