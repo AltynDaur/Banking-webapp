@@ -6,10 +6,10 @@
                 template="/WEB-INF/templates/startTemplate.xhtml">
 
     <ui:define name="content">
-        <div class="row span4 offset4 log" style="margin-top: 80px">
+        <div class="row col-md-4 col-md-offset-4 log" style="margin-top: 80px">
                 <h2>#{text.autorization}</h2>
                 <h:form id="login">
-                    <h:panelGrid columns="3" columnClasses="titleCell">
+                    <h:panelGrid columns="3" columnClasses="col-md-2">
                         <h:outputLabel for="name" value="#{text.login}"/>
                         <h:inputText id="name" value="#{loginUser.name}"/>
                         <h:message for="name" errorClass="invalid"/>
@@ -20,16 +20,16 @@
                     </h:panelGrid>
 
                     <p>
-                        <h:panelGrid columns="2">
+                        <h:panelGrid columns="2" columnClasses="col-md-2">
                             <h:commandButton id="loginPush"
                                              action="#{loginController.login}"
-                                             value="#{text.login}" styleClass="btn btn-success span4"/>
+                                             value="#{text.login}" styleClass="btn btn-success"/>
                             <h:messages styleClass="messages"
                                         errorClass="invalid" infoClass="valid"
                                         warnClass="warning" globalOnly="true"/>
                             <h:commandButton id="registerPush"
-                                             action="register"
-                                             value="#{text.register}" styleClass="btn btn-info span4"/>
+                                             action="registerPage"
+                                             value="#{text.register}" styleClass="btn btn-info"/>
 
                         </h:panelGrid>
                     </p>

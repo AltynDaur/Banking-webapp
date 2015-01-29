@@ -48,7 +48,7 @@ public class JPAUserDAO implements UserDAO, Serializable {
 
     @Override
     public void add(User user) {
-        em.persist(user);
+        em.merge(user);
     }
 
     @Override

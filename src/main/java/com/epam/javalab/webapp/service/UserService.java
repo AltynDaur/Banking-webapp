@@ -50,4 +50,8 @@ public class UserService implements Serializable {
         userDAO.update(user);
         userEvent.fire(user);
     }
+
+    public User findById(int id) {
+        return userDAO.findUserByID(id);
+    }
 }
