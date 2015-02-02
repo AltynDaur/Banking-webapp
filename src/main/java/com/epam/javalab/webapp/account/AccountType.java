@@ -92,7 +92,7 @@ public class AccountType {
         if (id != that.id) return false;
         if (percent != that.percent) return false;
         if (period != that.period) return false;
-        if (currency != that.currency) return false;
+        if (currency != null ? !currency.equals(that.currency) : that.currency != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
 
         return true;

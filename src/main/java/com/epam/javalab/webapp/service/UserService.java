@@ -16,7 +16,7 @@ import java.util.List;
 
 @RequestScoped
 @Stateless
-public class UserService implements Serializable {
+public class UserService {
 
     @Inject
     @JPA

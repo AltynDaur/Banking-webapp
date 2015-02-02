@@ -14,7 +14,7 @@
             </button>
             <div class="collapse" id="collapseExample">
                 <div class="well">
-                    <div class="well row span4 log col-md-offset-4">
+                    <div class="well col-md-4 log col-md-offset-4">
                         <h:form id="addAccountForm">
                             <h:panelGrid id="addAccountInfo" columns="2">
                                 <h:outputLabel value="#{text.owner}"/>
@@ -40,89 +40,68 @@
                     </div>
                 </div>
             </div>
+            <h:form>
+                <h:dataTable value="#{accounts}" var="account" styleClass="table table-hover">
+                    <h:column>
+                        <f:facet name="header">
+                            #{text.accID}
+                        </f:facet>
+                        <h:outputText value="#{account.id}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            #{text.owner}
+                        </f:facet>
+                        <h:outputText value="#{account.owner.name}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            #{text.accTypeName}
+                        </f:facet>
+                        <h:outputText value="#{account.acctype.name}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            #{text.amount}
+                        </f:facet>
+                        <h:outputText value="#{account.amount}"
+                                      rendered="#{not updateAccountBean.isSelected(account)}"/>
+                        <h:inputText id="amount" value="#{account.amount}"
+                                     rendered="#{updateAccountBean.isSelected(account)}"/>
+                        <h:message for="amount" errorClass="label-danger"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            #{text.currency}
+                        </f:facet>
+                        <h:outputText value="#{account.acctype.currency}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            #{text.update}
+                        </f:facet>
+                        <h:commandButton value="#{text.update}" styleClass="btn btn-warning"
+                                         action="#{updateAccountBean.select(account)}"
+                                         rendered="#{not updateAccountBean.isSelected(account)}"/>
+                        <h:panelGroup layout="block" styleClass="btn-group"
+                                      rendered="#{updateAccountBean.isSelected(account)}">
+                            <h:commandButton value="#{text.update}"
+                                             action="#{updateAccountBean.update(account)}"
+                                             styleClass="btn btn-success"/>
+                            <input type="reset" value="#{text.reset}" class="btn btn-danger"/>
+                        </h:panelGroup>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            #{text.delete}
+                        </f:facet>
 
-
-            <h:dataTable value="#{accounts}" var="account" styleClass="table table-hover">
-                <h:column>
-                    <f:facet name="header">
-                        #{text.accID}
-                    </f:facet>
-                    <h:outputText value="#{account.id}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        #{text.owner}
-                    </f:facet>
-                    <h:outputText value="#{account.owner.name}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        #{text.accTypeName}
-                    </f:facet>
-                    <h:outputText value="#{account.acctype.name}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        #{text.amount}
-                    </f:facet>
-                    <h:outputText value="#{account.amount}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        #{text.update}
-                    </f:facet>
-                    <button type="button" class="btn-warning" data-toggle="modal"
-                            data-target="#myModal">#{text.update}</button>
-                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                         aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                            aria-hidden="true">&#215;</span></button>
-                                    <h4 class="modal-title" id="myModalLabel">#{text.update}</h4>
-                                </div>
-                                <h:form id="updateAccountForm">
-                                    <div class="modal-body col-md-offset-2">
-                                        <h:panelGrid columns="3">
-                                            <h:outputLabel for="owner" value="#{text.owner}"/>
-                                            <h:inputText id="owner" value="#{account.owner.name}" readonly="true"/>
-                                            <h:message for="owner" errorClass="label-danger"/>
-                                            <h:outputLabel for="accType" value="#{text.accTypeName}"/>
-                                            <h:inputText id="accType" value="#{account.acctype.name}" readonly="true"/>
-                                            <h:message for="accType" errorClass="label-danger"/>
-                                            <h:outputLabel for="amount" value="#{text.amount}"/>
-                                            <h:inputText id="amount" value="#{account.amount}"/>
-                                            <h:message for="amount" errorClass="label-danger"/>
-                                            <h:outputLabel for="currency" value="#{text.currency}"/>
-                                            <h:inputText id="currency" value="#{account.acctype.currency}"
-                                                         readonly="true"/>
-                                            <h:message for="currency" errorClass="label-danger"/>
-                                        </h:panelGrid>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <div class="btn-group">
-                                            <h:commandButton value="#{text.update}"
-                                                             action="#{adminAccountsController.update(account)}"
-                                                             styleClass="btn btn-success"/>
-                                            <input type="reset" value="#{text.reset}" class="btn btn-danger"/>
-                                        </div>
-                                    </div>
-                                </h:form>
-                            </div>
-                        </div>
-                    </div>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        #{text.delete}
-                    </f:facet>
-                    <h:form>
                         <h:commandButton value="#{text.delete}" action="#{adminAccountsController.delete(account.id)}"
-                                         styleClass="btn-danger"/>
-                    </h:form>
-                </h:column>
-            </h:dataTable>
+                                         styleClass="btn btn-danger"/>
+
+                    </h:column>
+                </h:dataTable>
+            </h:form>
         </div>
     </ui:define>
 </ui:composition>
