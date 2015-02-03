@@ -3,6 +3,7 @@ package com.epam.javalab.webapp.controller.admin;
 import com.epam.javalab.webapp.account.AccountType;
 import com.epam.javalab.webapp.service.AccountTypeService;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Produces;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -19,6 +20,11 @@ public class AdminAccountTypesController {
     @Named
     @Produces
     private AccountType addedAccountType;
+
+    @PostConstruct
+    private void init() {
+        addedAccountType = new AccountType();
+    }
 
     public void add() {
         accountTypeService.add(addedAccountType);

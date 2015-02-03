@@ -26,13 +26,13 @@ public class AccountType {
     private int period;
     @OneToOne
     @NotNull
-    private ExchangeRate currency;
+    private ExchangeRate exchangeRate;
 
     public AccountType(String accTypeName, int percent, int period, ExchangeRate exchangeRate) {
         this.name = accTypeName;
         this.percent = percent;
         this.period = period;
-        this.currency = exchangeRate;
+        this.exchangeRate = exchangeRate;
     }
 
     public AccountType() {
@@ -59,7 +59,7 @@ public class AccountType {
     }
 
     public ExchangeRate getExchangeRate() {
-        return currency;
+        return exchangeRate;
     }
 
     public void setPercent(int percent) {
@@ -74,12 +74,8 @@ public class AccountType {
         this.period = period;
     }
 
-    public String getCurrency() {
-        return currency.getCurrency();
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = new ExchangeRate(currency);
+    public void setExchangeRate(String currency) {
+        this.exchangeRate = new ExchangeRate(currency);
     }
 
     @Override
@@ -92,7 +88,7 @@ public class AccountType {
         if (id != that.id) return false;
         if (percent != that.percent) return false;
         if (period != that.period) return false;
-        if (currency != null ? !currency.equals(that.currency) : that.currency != null) return false;
+        if (exchangeRate != null ? !exchangeRate.equals(that.exchangeRate) : that.exchangeRate != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
 
         return true;
@@ -104,7 +100,7 @@ public class AccountType {
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + percent;
         result = 31 * result + period;
-        result = 31 * result + (currency != null ? currency.hashCode() : 0);
+        result = 31 * result + (exchangeRate != null ? exchangeRate.hashCode() : 0);
         return result;
     }
 }

@@ -35,6 +35,6 @@ public class ExchangeRateListProducer {
     }
 
     private void retrieveAllExchangeRates() {
-        exchangeRateDAO.findAll();
+        exchangeRates = exchangeRateDAO.findAll();
     }
 }

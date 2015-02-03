@@ -74,7 +74,13 @@
                         <f:facet name="header">
                             #{text.currency}
                         </f:facet>
-                        <h:outputText value="#{account.acctype.currency}"/>
+                        <h:outputText value="#{account.acctype.exchangeRate}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            #{text.updated}
+                        </f:facet>
+                        <h:outputText value="#{account.localDateTime}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
