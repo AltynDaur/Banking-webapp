@@ -9,6 +9,7 @@ import javax.ejb.Stateless;
 import javax.enterprise.event.Event;
 import javax.faces.bean.RequestScoped;
 import javax.inject.Inject;
+import java.time.LocalDateTime;
 
 @RequestScoped
 @Stateless
@@ -23,6 +24,7 @@ public class AccountService {
 
 
     public void add(Account account) {
+        account.setLocalDateTime(LocalDateTime.now());
         accountDAO.add(account);
         accountEvent.fire(account);
     }
@@ -35,5 +37,9 @@ public class AccountService {
     public void delete(int id) {
         accountDAO.delete(id);
         accountEvent.fire(new Account());
+    }
+
+    public Account find(int id) {
+        return accountDAO.findByID(id);
     }
 }

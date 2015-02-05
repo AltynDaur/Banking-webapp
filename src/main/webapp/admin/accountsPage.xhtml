@@ -14,21 +14,27 @@
             </button>
             <div class="collapse" id="collapseExample">
                 <div class="well">
-                    <div class="well col-md-4 log col-md-offset-4">
-                        <h:form id="addAccountForm">
+                    <div class="well col-md-4 col-md-offset-4">
+                        <h:form>
                             <h:panelGrid id="addAccountInfo" columns="2">
                                 <h:outputLabel value="#{text.owner}"/>
-                                <h:selectOneMenu value="#{addedAccount.owner}" data-live-search="true">
+                                <h:selectOneMenu value="#{adminAccountsController.addedAccount.owner}"
+                                                 converter="#{userConverterBean}"
+                                                 validator="#{userValidatorBean.validate}"
+                                                 data-live-search="true">
                                     <f:selectItems value="#{adminAccountsController.clients}" var="client"
-                                                   itemLabel="#{client.name}"/>
+                                                   itemValue="#{client.id}" itemLabel="#{client.name}"/>
                                 </h:selectOneMenu>
                                 <h:outputLabel value="#{text.accTypeName}"/>
-                                <h:selectOneMenu value="#{addedAccount.acctype}" data-live-search="true">
+                                <h:selectOneMenu value="#{adminAccountsController.addedAccount.acctype}"
+                                                 converter="#{accountTypeConverterBean}"
+                                                 validator="#{accountTypeValidatorBean.validate}"
+                                                 data-live-search="true">
                                     <f:selectItems value="#{accountTypes}" var="accountType"
-                                                   itemLabel="#{accountType.name}"/>
+                                                   itemLabel="#{accountType.name}" itemValue="#{accountType.id}"/>
                                 </h:selectOneMenu>
                                 <h:outputLabel value="#{text.amount}"/>
-                                <h:inputText value="#{addedAccount.amount}"/>
+                                <h:inputText value="#{adminAccountsController.addedAccount.amount}"/>
 
                                 <h:commandButton type="submit" value="#{text.add}"
                                                  action="#{adminAccountsController.add}"
@@ -74,7 +80,7 @@
                         <f:facet name="header">
                             #{text.currency}
                         </f:facet>
-                        <h:outputText value="#{account.acctype.exchangeRate}"/>
+                        <h:outputText value="#{account.acctype.exchangeRate.currency}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">

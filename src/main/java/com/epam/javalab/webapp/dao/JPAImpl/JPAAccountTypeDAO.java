@@ -57,4 +57,12 @@ public class JPAAccountTypeDAO implements AccountTypeDAO, Serializable {
     public AccountType findAccTypeByID(int accTypeID) {
         return em.find(AccountType.class, accTypeID);
     }
+
+    public AccountType findByName(String name) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<AccountType> criteriaQuery = cb.createQuery(AccountType.class);
+        Root<AccountType> currentAccountType = criteriaQuery.from(AccountType.class);
+        criteriaQuery.select(currentAccountType).where(cb.equal(currentAccountType.get("name"), name));
+        return em.createQuery(criteriaQuery).getSingleResult();
+    }
 }

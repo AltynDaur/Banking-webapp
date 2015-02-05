@@ -35,4 +35,12 @@ public class AccountTypeService {
         accountTypeDAO.update(accountType);
         accountTypeEvent.fire(accountType);
     }
+
+    public AccountType find(int id) {
+        return accountTypeDAO.findAccTypeByID(id);
+    }
+
+    public AccountType findByName(String value) {
+        return accountTypeDAO.findByName(value);
+    }
 }

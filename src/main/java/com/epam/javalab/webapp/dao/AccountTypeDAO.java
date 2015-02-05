@@ -15,4 +15,6 @@ public interface AccountTypeDAO {
     public void delete(int accountTypeID);
 
     public AccountType findAccTypeByID(int accTypeID);
+
+    public AccountType findByName(String name);
 }

@@ -13,19 +13,19 @@ public class AccountType {
     @Column
     private int id;
     @Column(name = "ACCNAME")
-    @NotNull
-    @Size(min = 3, max = 50)
+    /*@NotNull
+    @Size(min = 3, max = 50)*/
     private String name;
     @Column(name = "PERCENT")
-    @NotNull
-    @Max(100)
+    /*@NotNull
+    @Max(100)*/
     private int percent;
     @Column(name = "PERIOD")
-    @NotNull
-    @Max(100)
+    /*@NotNull
+    @Max(100)*/
     private int period;
     @OneToOne
-    @NotNull
+    /*@NotNull*/
     private ExchangeRate exchangeRate;
 
     public AccountType(String accTypeName, int percent, int period, ExchangeRate exchangeRate) {

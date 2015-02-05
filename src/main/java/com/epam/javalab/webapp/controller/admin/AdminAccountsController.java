@@ -68,4 +68,12 @@ public class AdminAccountsController {
     public void setClients(List<User> clients) {
         this.clients = clients;
     }
+
+    public Account getAddedAccount() {
+        return addedAccount;
+    }
+
+    public void setAddedAccount(Account addedAccount) {
+        this.addedAccount = addedAccount;
+    }
 }

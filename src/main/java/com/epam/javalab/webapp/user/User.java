@@ -18,16 +18,16 @@ public class User {
     private int id;
     @NotNull
     @Column(name = "NAME", unique = true)
-    @Size(min = 3, max = 50, message = "Name too small or too big")
+    /*@Size(min = 3, max = 50, message = "Name too small or too big")*/
     private String name;
-    @NotNull
+    /*@NotNull*/
     @Column(name = "PASSWORD")
     private String password;
     @Enumerated
     @Column(name = "ROLE")
-    @NotNull
+   /* @NotNull*/
     private Role role;
-    @NotNull
+    /*@NotNull*/
     @Column(name = "EMAIL", unique = true)
     @Email
     private String email;
