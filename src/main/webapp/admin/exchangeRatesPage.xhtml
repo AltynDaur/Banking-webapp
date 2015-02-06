@@ -1,11 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-<f:view>
-    <h:outputLabel value="Hello, world"/>
-</f:view>
-</html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="adminMainPage.xhtml">
+    <ui:define name="adminContent">
+        <div class="container" style="margin-top: 80px">
+            <legend>#{text.exchangeRates}</legend>
+            <p/>
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
+                    aria-expanded="false" aria-controls="collapseExample">
+                #{text.add}
+            </button>
+            <div class="collapse" id="collapseExample">
+
+                <div class="well log col-md-4 col-md-offset-4">
+                    <h:form id="addExchangeRateForm">
+                        <h:panelGrid id="addExchangeRateInfo" columns="2">
+                            <h:outputLabel value="#{text.currency}"/>
+                            <h:inputText value="#{adminExchangeRateController.addingExchangeRate.currency}"/>
+                            <h:outputLabel value="#{text.rate}"/>
+                            <h:inputSecret value="#{adminExchangeRateController.addingExchangeRate.value}"/>
+
+                            <h:commandButton type="submit" value="#{text.add}"
+                                             action="#{adminExchangeRateController.add}"
+                                             styleClass="btn btn-success"/>
+                            <h:commandButton type="reset" value="#{text.reset}" styleClass="btn btn-danger"/>
+                        </h:panelGrid>
+                    </h:form>
+
+
+                </div>
+            </div>
+
+            <h:form>
+                <h:dataTable value="#{users}" var="user" styleClass="table table-hover">
+
+                    <h:column>
+                        <f:facet name="header">
+                            #{text.user}
+                        </f:facet>
+                        <h:outputText value="#{user.name}" rendered="#{not updateUserBean.isSelected(user)}"/>
+                        <h:inputText id="name" value="#{user.name}"
+                                     rendered="#{updateUserBean.isSelected(user)}"/>
+                        <h:message for="name" errorClass="label-danger"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            #{text.email}
+                        </f:facet>
+                        <h:outputText value="#{user.email}" rendered="#{not updateUserBean.isSelected(user)}"/>
+                        <h:inputText id="email" value="#{user.email}"
+                                     rendered="#{updateUserBean.isSelected(user)}"/>
+                        <h:message for="email" errorClass="label-danger"/>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            #{text.changeUserData}
+                        </f:facet>
+
+                        <h:commandButton value="#{text.update}"
+                                         action="#{updateUserBean.select(user)}"
+                                         styleClass="btn btn-warning"
+                                         rendered="#{not updateUserBean.isSelected(user)}"/>
+                        <h:panelGroup layout="block" styleClass="btn-group"
+                                      rendered="#{updateUserBean.isSelected(user)}">
+                            <h:commandButton value="#{text.update}"
+                                             action="#{updateUserBean.update(user)}"
+                                             styleClass="btn btn-success"/>
+                            <input type="reset" value="#{text.reset}" class="btn btn-danger"/>
+                        </h:panelGroup>
+
+
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            #{text.changePass}
+                        </f:facet>
+                        <h:commandButton value="#{text.changePass}" action="#{supportBB.onClick(user.id)}"
+                                         styleClass="btn btn-warning"/>
+
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            #{text.delete}
+                        </f:facet>
+
+                        <h:commandButton value="#{text.delete}" action="#{adminUsersController.delete(user.id)}"
+                                         styleClass="btn btn-danger"/>
+
+                    </h:column>
+
+                </h:dataTable>
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>

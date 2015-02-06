@@ -16,4 +16,6 @@ public interface ExchangeRateDAO {
     public void update(ExchangeRate rate);
 
     public ExchangeRate findByID(int currencyID);
+
+    public ExchangeRate findByName(String name);
 }

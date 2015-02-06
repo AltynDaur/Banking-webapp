@@ -77,28 +77,16 @@ public class Account {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        return (o instanceof Account)
+                ? id == (((Account) o).id)
+                : (o == this);
 
-        Account account = (Account) o;
-
-        if (amount != account.amount) return false;
-        if (id != account.id) return false;
-        if (acctype != null ? !acctype.equals(account.acctype) : account.acctype != null) return false;
-        if (client != null ? !client.equals(account.client) : account.client != null) return false;
-        if (localDateTime != null ? !localDateTime.equals(account.localDateTime) : account.localDateTime != null)
-            return false;
-
-        return true;
     }
 
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + (client != null ? client.hashCode() : 0);
-        result = 31 * result + (acctype != null ? acctype.hashCode() : 0);
-        result = 31 * result + (int) (amount ^ (amount >>> 32));
-        result = 31 * result + (localDateTime != null ? localDateTime.hashCode() : 0);
-        return result;
+        return (client.equals(null)) ? result : super.hashCode();
+
     }
 }

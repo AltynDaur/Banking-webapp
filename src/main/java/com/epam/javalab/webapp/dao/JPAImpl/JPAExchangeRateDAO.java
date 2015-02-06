@@ -57,4 +57,13 @@ public class JPAExchangeRateDAO implements ExchangeRateDAO, Serializable {
     public ExchangeRate findByID(int currencyID) {
         return em.find(ExchangeRate.class, currencyID);
     }
+
+    @Override
+    public ExchangeRate findByName(String name) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<ExchangeRate> criteriaQuery = cb.createQuery(ExchangeRate.class);
+        Root<ExchangeRate> currentExchangeRate = criteriaQuery.from(ExchangeRate.class);
+        criteriaQuery.select(currentExchangeRate).where(cb.equal(currentExchangeRate.get("currency"), name));
+        return em.createQuery(criteriaQuery).getSingleResult();
+    }
 }

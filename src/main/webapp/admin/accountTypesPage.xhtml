@@ -13,18 +13,20 @@
                 #{text.add}
             </button>
             <div class="collapse" id="collapseExample">
-                <div class="well">
+
                     <div class="well col-md-4 log col-md-offset-4">
                         <h:form id="addAccountTypeForm">
                             <h:panelGrid id="addAccountTypeInfo" columns="2">
                                 <h:outputLabel value="#{text.accTypeName}"/>
-                                <h:inputText id="accTypeName" value="#{addedAccountType.name}"/>
+                                <h:inputText id="accTypeName"
+                                             value="#{adminAccountTypesController.addedAccountType.name}"/>
                                 <h:outputLabel value="#{text.percent}"/>
-                                <h:inputText value="#{addedAccountType.percent}"/>
+                                <h:inputText value="#{adminAccountTypesController.addedAccountType.percent}"/>
                                 <h:outputLabel value="#{text.period}"/>
-                                <h:inputText value="#{addedAccountType.period}"/>
+                                <h:inputText value="#{adminAccountTypesController.addedAccountType.period}"/>
                                 <h:outputLabel value="#{text.currency}"/>
-                                <h:selectOneMenu value="#{addedAccountType.exchangeRate}" data-live-search="true">
+                                <h:selectOneMenu value="#{adminAccountTypesController.addedAccountType.exchangeRate}"
+                                                 converter="#{exchangeRateConverterBean}" data-live-search="true">
                                     <f:selectItems value="#{exchangeRates}" var="exchangeRate"
                                                    itemLabel="#{exchangeRate.currency}"/>
                                 </h:selectOneMenu>
@@ -36,8 +38,8 @@
                             </h:panelGrid>
                         </h:form>
 
+
                     </div>
-                </div>
             </div>
             <h:form>
                 <h:dataTable value="#{accountTypes}" var="accountType" styleClass="table table-hover">
@@ -78,6 +80,7 @@
                         <h:outputText value="#{accountType.exchangeRate.currency}"
                                       rendered="#{not updateAccountTypeBean.isSelected(accountType)}"/>
                         <h:selectOneMenu id="currency" value="#{addedAccountType.exchangeRate}"
+                                         converter="#{exchangeRateConverterBean}"
                                          styleClass="bootstrap-select" data-live-search="true"
                                          rendered="#{updateAccountTypeBean.isSelected(accountType)}">
                             <f:selectItems value="#{exchangeRates}" var="exchangeRate"

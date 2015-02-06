@@ -12,6 +12,6 @@ import javax.faces.validator.ValidatorException;
 public class AccountTypeValidator implements Validator {
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
-
+        String name = value.toString();
     }
 }

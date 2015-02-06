@@ -20,6 +20,7 @@ public class UserConverter implements Converter {
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
+
         if (value != null && value.trim().length() > 0) {
             return userService.findByName(value);
         }

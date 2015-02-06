@@ -58,9 +58,7 @@ public class AccountType {
         return percent;
     }
 
-    public ExchangeRate getExchangeRate() {
-        return exchangeRate;
-    }
+
 
     public void setPercent(int percent) {
         this.percent = percent;
@@ -74,33 +72,30 @@ public class AccountType {
         this.period = period;
     }
 
+    public ExchangeRate getExchangeRate() {
+        return exchangeRate;
+    }
+
+    public void setExchangeRate(ExchangeRate exchangeRate) {
+        this.exchangeRate = exchangeRate;
+    }
+
     public void setExchangeRate(String currency) {
         this.exchangeRate = new ExchangeRate(currency);
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        return (o instanceof AccountType)
+                ? id == (((AccountType) o).id)
+                : (o == this);
 
-        AccountType that = (AccountType) o;
-
-        if (id != that.id) return false;
-        if (percent != that.percent) return false;
-        if (period != that.period) return false;
-        if (exchangeRate != null ? !exchangeRate.equals(that.exchangeRate) : that.exchangeRate != null) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-
-        return true;
     }
 
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + percent;
-        result = 31 * result + period;
-        result = 31 * result + (exchangeRate != null ? exchangeRate.hashCode() : 0);
-        return result;
+        return (name.equals(null)) ? result : super.hashCode();
+
     }
 }

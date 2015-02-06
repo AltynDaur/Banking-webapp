@@ -14,7 +14,7 @@ public class ExchangeRate {
     private int id;
 
     @NotNull
-    @Column(name = "CURRENCY")
+    @Column(name = "CURRENCY", unique = true)
     private String currency;
 
     @NotNull
@@ -70,29 +70,16 @@ public class ExchangeRate {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        return (o instanceof ExchangeRate)
+                ? id == (((ExchangeRate) o).id)
+                : (o == this);
 
-        ExchangeRate that = (ExchangeRate) o;
-
-        if (id != that.id) return false;
-        if (Double.compare(that.value, value) != 0) return false;
-        if (currency != null ? !currency.equals(that.currency) : that.currency != null) return false;
-        if (localDateTime != null ? !localDateTime.equals(that.localDateTime) : that.localDateTime != null)
-            return false;
-
-        return true;
     }
 
     @Override
     public int hashCode() {
-        int result;
-        long temp;
-        result = id;
-        result = 31 * result + (currency != null ? currency.hashCode() : 0);
-        temp = Double.doubleToLongBits(value);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (localDateTime != null ? localDateTime.hashCode() : 0);
-        return result;
+        int result = id;
+        return (currency.equals(null)) ? result : super.hashCode();
+
     }
 }
