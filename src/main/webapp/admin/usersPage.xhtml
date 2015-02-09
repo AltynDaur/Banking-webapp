@@ -57,6 +57,12 @@
                                  rendered="#{updateUserBean.isSelected(user)}"/>
                     <h:message for="email" errorClass="label-danger"/>
                 </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        #{text.role}
+                    </f:facet>
+                    <h:outputText value="#{user.role}" rendered="#{not updateUserBean.isSelected(user)}"/>
+                </h:column>
 
                 <h:column>
                     <f:facet name="header">

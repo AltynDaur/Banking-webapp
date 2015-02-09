@@ -13,7 +13,6 @@
                 #{text.add}
             </button>
             <div class="collapse" id="collapseExample">
-
                     <div class="well col-md-4 log col-md-offset-4">
                         <h:form id="addAccountTypeForm">
                             <h:panelGrid id="addAccountTypeInfo" columns="2">
@@ -37,8 +36,6 @@
                                 <h:commandButton type="reset" value="#{text.reset}" styleClass="btn btn-danger"/>
                             </h:panelGrid>
                         </h:form>
-
-
                     </div>
             </div>
             <h:form>
@@ -107,11 +104,9 @@
                         <f:facet name="header">
                             #{text.delete}
                         </f:facet>
-
                         <h:commandButton value="#{text.delete}"
                                          action="#{adminAccountTypesController.delete(accountType.id)}"
                                          styleClass="btn btn-danger"/>
-
                     </h:column>
                 </h:dataTable>
             </h:form>

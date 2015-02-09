@@ -1,11 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-<f:view>
-    <h:outputLabel value="Hello, world"/>
-</f:view>
-</html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="adminMainPage.xhtml">
+    <ui:define name="adminContent">
+        <div class="container" style="margin-top: 80px">
+            <legend>#{text.transactionHistory}</legend>
+
+            <h:form>
+                <h:dataTable value="#{transactionHistoryRecords}" var="transactionRecord"
+                             styleClass="table table-hover">
+                    <h:column>
+                        <f:facet name="header">
+                            #{text.transHistRecord}
+                        </f:facet>
+                        <h:outputText value="#{transactionRecord.id}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            #{text.from}
+                        </f:facet>
+                        <h:outputText value="#{transactionRecord.startAcc.id}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            #{text.owner}
+                        </f:facet>
+                        <h:outputText value="#{transactionRecord.startAcc.owner.name}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            #{text.finalAcc}
+                        </f:facet>
+                        <h:outputText value="#{transactionRecord.finalAcc.id}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            #{text.owner}
+                        </f:facet>
+                        <h:outputText value="#{transactionRecord.finalAcc.owner.name}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            #{text.amount}
+                        </f:facet>
+                        <h:outputText value="#{transactionRecord.amount}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            #{text.currency}
+                        </f:facet>
+                        <h:outputText value="#{transactionRecord.exchangeRate.currency}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            #{text.updated}
+                        </f:facet>
+                        <h:outputText value="#{transactionRecord.localDateTime}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>

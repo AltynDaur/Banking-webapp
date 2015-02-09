@@ -56,9 +56,10 @@ public class AdminUsersController {
         return roles;
     }
 
-    public void add() {
+    public String add() {
         addedUser.setPassword(EncryptByMD5.encrypt(addedUser.getPassword(), addedUser.getName()));
         userService.register(addedUser);
+        return "usersPage?faces-redirect=true";
     }
 
 

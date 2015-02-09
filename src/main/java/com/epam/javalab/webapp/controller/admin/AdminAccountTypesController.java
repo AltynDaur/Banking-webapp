@@ -26,8 +26,9 @@ public class AdminAccountTypesController {
         addedAccountType = new AccountType();
     }
 
-    public void add() {
+    public String add() {
         accountTypeService.add(addedAccountType);
+        return "accountTypesPage?faces-redirect=true";
     }
 
     public void delete(int id) {

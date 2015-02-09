@@ -6,6 +6,7 @@ import com.epam.javalab.webapp.service.AccountService;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
+import java.time.LocalDateTime;
 
 @ViewScoped
 @ManagedBean
@@ -17,6 +18,7 @@ public class UpdateAccountBean {
     private Account selectedAccount;
 
     public void update(Account account) {
+        account.setLocalDateTime(LocalDateTime.now());
         accountService.update(account);
         selectedAccount = null;
     }

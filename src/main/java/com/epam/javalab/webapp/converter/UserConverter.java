@@ -22,14 +22,17 @@ public class UserConverter implements Converter {
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
 
         if (value != null && value.trim().length() > 0) {
-            return userService.findByName(value);
+            return userService.find(Integer.parseInt(value));
         }
         return null;
     }
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
-
+        if (value != null) {
+            User user = (User) value;
+            return String.valueOf(user.getId());
+        }
         return null;
     }
 }

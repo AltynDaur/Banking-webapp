@@ -40,8 +40,9 @@ public class AdminAccountsController {
         retrieveAllClients();
     }
 
-    public void add() {
+    public String add() {
         accountService.add(addedAccount);
+        return "accountsPage?faces-redirect=true";
     }
 
     public void update(Account account) {

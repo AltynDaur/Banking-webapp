@@ -1,6 +1,7 @@
 package com.epam.javalab.webapp.converter;
 
 
+import com.epam.javalab.webapp.account.ExchangeRate;
 import com.epam.javalab.webapp.dao.ExchangeRateDAO;
 import com.epam.javalab.webapp.service.ExchangeRateService;
 
@@ -21,13 +22,17 @@ public class ExchangeRateConverter implements Converter {
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
         if (value != null && value.trim().length() > 0) {
-            return exchangeRateService.findByName(value);
+            return exchangeRateService.find(Integer.parseInt(value));
         }
         return null;
     }
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
+        if (value != null) {
+            ExchangeRate exchangeRate = (ExchangeRate) value;
+            return String.valueOf(exchangeRate.getId());
+        }
         return null;
     }
 }

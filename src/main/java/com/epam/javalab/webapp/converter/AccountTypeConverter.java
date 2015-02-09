@@ -19,7 +19,7 @@ public class AccountTypeConverter implements Converter {
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
         if (value != null && value.trim().length() > 0) {
-            AccountType accountType = accountTypeService.findByName(value);
+            AccountType accountType = accountTypeService.find(Integer.parseInt(value));
             return accountType;
         }
         return null;
@@ -27,7 +27,10 @@ public class AccountTypeConverter implements Converter {
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
-
+        if (value != null) {
+            AccountType accountType = (AccountType) value;
+            return String.valueOf(accountType.getId());
+        }
         return null;
     }
 }
