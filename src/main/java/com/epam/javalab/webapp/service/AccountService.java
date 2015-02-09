@@ -2,6 +2,7 @@ package com.epam.javalab.webapp.service;
 
 
 import com.epam.javalab.webapp.account.Account;
+import com.epam.javalab.webapp.account.TransactionHistoryRecord;
 import com.epam.javalab.webapp.dao.AccountDAO;
 import com.epam.javalab.webapp.dao.JPA;
 
@@ -22,6 +23,9 @@ public class AccountService {
     @Inject
     private Event<Account> accountEvent;
 
+    @Inject
+    private Event<TransactionHistoryRecord> transactionHistoryRecordEvent;
+
 
     public void add(Account account) {
         account.setLocalDateTime(LocalDateTime.now());
@@ -39,7 +43,14 @@ public class AccountService {
         accountEvent.fire(new Account());
     }
 
-    public Account find(int id) {
+    public Account findByID(int id) {
         return accountDAO.findByID(id);
+    }
+
+    public boolean transactionBtwnAccounts(Account startAcc, Account finalAcc, long amount) {
+        accountDAO.transaction(startAcc, finalAcc, amount);
+        accountEvent.fire(startAcc);
+        transactionHistoryRecordEvent.fire(new TransactionHistoryRecord());
+        return true;
     }
 }

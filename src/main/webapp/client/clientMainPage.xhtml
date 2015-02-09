@@ -7,6 +7,54 @@
       xmlns:f="http://java.sun.com/jsf/core"
       lang="#{sessionBean.language}">
 <f:view locale="#{sessionBean.locale}">
-    <h:outputLabel value="Hello, world"/>
+    <h:head>
+        <meta name="author" content="Altynbekov Dauren, altyndaur.krg@mail.ru"/>
+        <meta name="keywords" content="Banking, accounts"/>
+        <title>Banking: Thanks for visiting</title>
+        <base href="/Webapp/"/>
+        <h:outputStylesheet library="css" name="bootstrap.css"/>
+        <h:outputStylesheet library="css" name="bootstrap-select.css"/>
+        <h:outputScript library="js" name="jquery.js"/>
+        <h:outputScript library="js" name="bootstrap.js"/>
+        <h:outputScript library="js" name="bootstrap-select.js"/>
+    </h:head>
+    <h:body>
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="col-md-offset-2">
+                <div class="navbar-header">
+                    <h:link outcome="clientMainPage" styleClass="navbar-brand">#{text.clientMain}</h:link>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="divider-vertical"/>
+                    <li><h:link outcome="clientAccountsPage">#{text.accounts}</h:link></li>
+                    <li><h:link outcome="transactionHistoryPage">#{text.transactionHistory}</h:link></li>
+                    <li><h:link outcome="accountTypesPage">#{text.accountsTypes}</h:link></li>
+                    <li><h:link outcome="exchangeRatesPage">#{text.exchangeRates}</h:link></li>
+                    <li><h:link outcome="userInfoChangePage">#{text.userOption}</h:link></li>
+                    <li class="divider-vertical"/>
+
+                    <li><h:form styleClass="navbar-form">
+                        <h:selectOneMenu value="#{sessionBean.language}" onchange="submit()"
+                                         valueChangeListener="#{sessionBean.changeLocale}" class="span2">
+                            <f:selectItem itemValue="en" itemLabel="#{text.english}"/>
+                            <f:selectItem itemValue="ru" itemLabel="#{text.russian}"/>
+                        </h:selectOneMenu>
+                    </h:form></li>
+                    <li><h:form styleClass="navbar-form navbar-right"><h:commandButton
+                            styleClass="btn btn-danger navbar-btn"
+                            action="#{loginController.logout}"
+                            value="#{text.logout}"/></h:form></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div id="clientContent">
+                <ui:insert name="clientContent">
+                    here will be some carousel
+                </ui:insert>
+            </div>
+        </div>
+    </h:body>
 </f:view>
 </html>

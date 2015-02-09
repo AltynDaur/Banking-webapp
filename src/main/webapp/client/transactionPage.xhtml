@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="clientMainPage.xhtml">
+    <ui:define name="clientContent">
+        <div class="container" style="margin-top: 80px">
+            <legend>#{text.transaction}</legend>
+            <h:form>
+                <h:panelGrid columns="3">
+                    <h:outputLabel for="currentAccountID" value="#{text.from}"/>
+                    <h:outputText id="currentAccountID" label="#{supportBB.someValue}"
+                                  value="#{transactionHistoryRecord.startAcc.id}"/>
+                    <h:message for="currentAccountID" errorClass="label-danger"/>
+
+                    <h:outputLabel for="targetAccountID" value="#{text.to}"/>
+                    <h:inputText id="targetAccountID" value="#{transactionHistoryRecord.finalAcc.id}"/>
+                    <h:message for="targetAccountID" errorClass="label-danger"/>
+
+                    <h:outputLabel for="transactionAmount" value="#{text.amount}"/>
+                    <h:inputSecret id="transactionAmount" value="#{transactionHistoryRecord.amount}"/>
+                    <h:message for="transactionAmount" errorClass="label-danger"/>
+
+                    <h:outputLabel for="transactionCurrency" value="#{text.currency}"/>
+                    <h:selectOneMenu value="#{transactionHistoryRecord.exchangeRate}"
+                                     converter="#{exchangeRateConverterBean}"
+                                     id="transactionCurrency"
+                                     data-live-search="true">
+                        <f:selectItems value="#{exchangeRates}" var="exchangeRate"
+                                       itemValue="#{exchangeRate}" itemLabel="#{exchangeRate.currency}"/>
+                    </h:selectOneMenu>
+                    <h:message for="transactionCurrency" errorClass="error"/>
+
+                </h:panelGrid>
+                <h:panelGrid columns="2">
+                    <div class="btn-group span4">
+                        <h:commandButton type="submit" value="#{text.transaction}"
+                                         action="#{clientTransactionController.transaction}"
+                                         styleClass="btn btn-success"/>
+                        <h:commandButton type="reset" value="#{text.reset}" styleClass="btn btn-danger"/>
+                    </div>
+                </h:panelGrid>
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>

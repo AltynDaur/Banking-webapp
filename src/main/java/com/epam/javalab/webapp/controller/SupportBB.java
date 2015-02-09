@@ -1,4 +1,4 @@
-package com.epam.javalab.webapp.controller.admin.updatedatabeans;
+package com.epam.javalab.webapp.controller;
 
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
@@ -24,18 +24,16 @@ public class SupportBB implements Serializable {
     }
 
 
-    public String onClick(int id) {
+    public void onStart(int id) {
         if (conversation == null) {
-            return "";
+            return;
         }
         start();
         someValue = id;
-        return "editPasswordPage?faces-redirect=true";
     }
 
-    public String onFinish() {
+    public void onFinish() {
         end();
-        return "usersPage?faces-redirect=true";
     }
 
 

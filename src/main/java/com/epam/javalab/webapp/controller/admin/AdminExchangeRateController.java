@@ -5,13 +5,13 @@ import com.epam.javalab.webapp.dao.JPA;
 import com.epam.javalab.webapp.service.ExchangeRateService;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.inject.Model;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import java.time.LocalDateTime;
 
-@ViewScoped
-@ManagedBean
+@Model
 public class AdminExchangeRateController {
 
     @Inject

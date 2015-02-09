@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="clientMainPage.xhtml">
+    <ui:define name="clientContent">
+        <div class="container" style="margin-top: 80px">
+            <legend>#{text.accounts}</legend>
+            <h:form>
+                <h:dataTable value="#{currentAccounts}" var="account" styleClass="table table-hover">
+                    <h:column>
+                        <f:facet name="header">
+                            #{text.accID}
+                        </f:facet>
+                        <h:outputText value="#{account.id}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            #{text.owner}
+                        </f:facet>
+                        <h:outputText value="#{account.owner.name}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            #{text.accTypeName}
+                        </f:facet>
+                        <h:outputText value="#{account.acctype.name}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            #{text.amount}
+                        </f:facet>
+                        <h:outputText value="#{account.amount}"/>
+
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            #{text.currency}
+                        </f:facet>
+                        <h:outputText value="#{account.acctype.exchangeRate.currency}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            #{text.updated}
+                        </f:facet>
+                        <h:outputText value="#{account.localDateTime}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            #{text.transaction}
+                        </f:facet>
+                        <h:commandButton value="#{text.transaction}"
+                                         action="#{clientAccountsController.startTransaction(account.id)}"
+                                         styleClass="btn btn-danger"/>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>

@@ -4,14 +4,14 @@ import com.epam.javalab.webapp.account.AccountType;
 import com.epam.javalab.webapp.service.AccountTypeService;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.inject.Model;
 import javax.enterprise.inject.Produces;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-@ViewScoped
-@ManagedBean
+@Model
 public class AdminAccountTypesController {
 
     @Inject

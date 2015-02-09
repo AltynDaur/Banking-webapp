@@ -3,6 +3,7 @@ package com.epam.javalab.webapp.producer;
 import com.epam.javalab.webapp.account.Account;
 import com.epam.javalab.webapp.dao.AccountDAO;
 import com.epam.javalab.webapp.dao.JPA;
+import com.epam.javalab.webapp.data.SessionBean;
 
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.event.Observes;
@@ -18,6 +19,9 @@ public class AccountListProducer {
     @Inject
     @JPA
     private AccountDAO accountDAO;
+
+    @Inject
+    private SessionBean sessionBean;
 
 
     private List<Account> accounts;
@@ -36,9 +40,9 @@ public class AccountListProducer {
     }
 
 
-    public List<Account> getCurrentAccounts(int id) {
+    public List<Account> getCurrentAccounts() {
         if (currentAccounts == null) {
-            retrieveCurrentUserAccounts(id);
+            retrieveCurrentUserAccounts(sessionBean.getUser().getId());
         }
         return currentAccounts;
     }

@@ -1,5 +1,6 @@
 package com.epam.javalab.webapp.controller.admin.updatedatabeans;
 
+import com.epam.javalab.webapp.controller.SupportBB;
 import com.epam.javalab.webapp.security.EncryptByMD5;
 import com.epam.javalab.webapp.service.UserService;
 import com.epam.javalab.webapp.user.User;
@@ -36,7 +37,8 @@ public class UpdateUserBean {
             if (currentPassword.equals(repeatedPassword)) {
                 user.setPassword(EncryptByMD5.encrypt(currentPassword, user.getName()));
                 userService.update(user);
-                return supportBB.onFinish();
+                supportBB.onFinish();
+                return "usersPage?faces-redirect=true";
             } else {
                 FacesContext.getCurrentInstance().addMessage("repeatPass", new FacesMessage("Repeated password not equals new password"));
             }
@@ -44,6 +46,11 @@ public class UpdateUserBean {
             FacesContext.getCurrentInstance().addMessage("oldPass", new FacesMessage("You entered wrong password!"));
         }
         return null;
+    }
+
+    public String startChangePassword(int id) {
+        supportBB.onStart(id);
+        return "editPasswordPage?faces-redirect=true";
     }
 
 

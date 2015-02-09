@@ -86,7 +86,7 @@
                     <f:facet name="header">
                         #{text.changePass}
                     </f:facet>
-                    <h:commandButton value="#{text.changePass}" action="#{supportBB.onClick(user.id)}"
+                    <h:commandButton value="#{text.changePass}" action="#{updateUserBean.startChangePassword(user.id)}"
                                      styleClass="btn btn-warning"/>
 
                 </h:column>
