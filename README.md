@@ -1,0 +1,3 @@
+# Banking-webapp
+<p></p>
+All application logic and architecture made by myself. Application has 5 main types of entities: User, Account, AccountType, ExchangeRate, TransactionRecord. I created two versions of application: 1) First version works with JDBC, single servlet with many actions and JSP on frontend. 2) Second version is refactored from first, and it uses JPA(Hibernate), EB and JSF on frontend. All parts in frontend and middleend connected using CDI beans. All frontend made using CSS framework Twitter Bootstrap. All application work at Apache Tomcat and Wildfly application servers. As database I used H2 database.
