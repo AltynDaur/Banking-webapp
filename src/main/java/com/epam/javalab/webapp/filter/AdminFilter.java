@@ -2,8 +2,6 @@ package com.epam.javalab.webapp.filter;
 
 import com.epam.javalab.webapp.user.Role;
 import com.epam.javalab.webapp.user.User;
-import com.sun.deploy.net.HttpRequest;
-import com.sun.deploy.net.HttpResponse;
 import org.apache.log4j.Logger;
 
 import javax.servlet.*;

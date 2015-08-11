@@ -15,7 +15,7 @@
                            class="span4">
                     <input type="password" name="password" value="" placeholder="<fmt:message key="enterPass"/>"
                            class="span4">
-                    <input type="submit" value="<fmt:message key="login"/>" class="btn btn-success span4">
+                    <input type="submit" id="loginBtn" value="<fmt:message key="login"/>" class="btn btn-success span4">
                 </form>
                 <form action="controller/registerPage" name="registerPage" method="get">
                     <input type="submit" value="<fmt:message key="register"/>" class="btn btn-info span4">

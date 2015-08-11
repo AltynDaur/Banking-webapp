@@ -1,6 +1,5 @@
 package com.epam.javalab.webapp.filter;
 
-import com.sun.deploy.net.HttpResponse;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletResponse;
