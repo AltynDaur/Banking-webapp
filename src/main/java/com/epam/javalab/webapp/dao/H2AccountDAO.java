@@ -38,6 +38,8 @@ public class H2AccountDAO implements AccountDAO {
         } catch (SQLException e) {
             LOGGER.error("Can't find all your accounts by ID");
             e.printStackTrace();
+        } catch (Exception e){
+            e.printStackTrace();
         }
 
         return resultList;
@@ -122,6 +124,8 @@ public class H2AccountDAO implements AccountDAO {
             preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e){
             e.printStackTrace();
         }
         connectionPool.realeseConnection(connection);
