@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 public class AccountsTypeInfoAction implements Action {
-    @Override
+
     public com.epam.javalab.webapp.action.ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
         H2AccountTypeDAO h2AccountTypeDAO = new H2AccountTypeDAO();
         List<AccountType> accountTypeList = h2AccountTypeDAO.findAll();

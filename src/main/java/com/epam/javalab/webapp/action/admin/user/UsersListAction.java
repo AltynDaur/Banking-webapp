@@ -13,15 +13,10 @@ import java.util.List;
 import static java.util.Collections.*;
 
 public class UsersListAction implements Action {
-    final static int  number =100;
-    @Override
+
     public ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
         H2UserDAO h2UserDAO = new H2UserDAO();
-
         List<User> resultList = h2UserDAO.getAll();
-        sort(null);
-
-
         req.setAttribute("usersList",resultList);
         req.setAttribute("accTypeList", null);
         req.setAttribute("accList", null);

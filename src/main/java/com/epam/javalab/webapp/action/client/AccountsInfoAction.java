@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 public class AccountsInfoAction implements Action {
-    @Override
-    public com.epam.javalab.webapp.action.ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
+
+    public ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
         User currentUser = (User) req.getSession().getAttribute("user");
         int currentID = currentUser.getId();
         H2AccountDAO h2AccountDAO = new H2AccountDAO();

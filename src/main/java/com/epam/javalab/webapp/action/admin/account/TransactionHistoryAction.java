@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 public class TransactionHistoryAction implements Action {
-    @Override
+
     public ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
         H2TransactionHistoryDAO h2TransactionHistoryDAO = new H2TransactionHistoryDAO();
         List<TransactionHistoryRecord> currentList = h2TransactionHistoryDAO.findAll();

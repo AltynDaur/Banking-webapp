@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 public class AccountsListAction implements Action {
-    @Override
+
     public com.epam.javalab.webapp.action.ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
         H2AccountDAO h2AccountDAO = new H2AccountDAO();
         List<Account> accountList = h2AccountDAO.findAll();

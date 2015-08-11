@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class AccountsPageAction  implements Action{
-    @Override
+
     public ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
         String action = req.getParameter("action");
         ActionResult result = new ActionResult();

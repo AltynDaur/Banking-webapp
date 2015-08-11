@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class UserUpdateAction implements Action {
-    @Override
+
     public ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
         String userName = req.getParameter("userName");
         String password = null;
@@ -25,7 +25,6 @@ public class UserUpdateAction implements Action {
         Role role = Role.valueOf(req.getParameter("role").toUpperCase());
         H2UserDAO h2UserDAO = new H2UserDAO();
         h2UserDAO.update(userName,password,email,role,userID);
-        ActionResult result = new ActionResult("admin/users", true);
-        return result;
+        return new ActionResult("admin/users", true);
     }
 }

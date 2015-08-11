@@ -13,7 +13,7 @@ public class H2TransactionHistoryDAO implements TransactionHistoryDAO {
     ResourceBundle sqlBundle = ResourceBundle.getBundle("sql");
     private static final Logger LOGGER = Logger.getLogger(H2TransactionHistoryDAO.class);
 
-    @Override
+
     public void add(TransactionHistoryRecord record) {
         LOGGER.debug("TransactionHistoryRecord adding started");
         Connection connection = connectionPool.takeConnection();
@@ -34,7 +34,7 @@ public class H2TransactionHistoryDAO implements TransactionHistoryDAO {
 
     }
 
-    @Override
+
     public List<TransactionHistoryRecord> find(int accID) {
         LOGGER.debug("Finding TransactionHistoryRecord started");
         List<TransactionHistoryRecord> currentList = new ArrayList<TransactionHistoryRecord>();

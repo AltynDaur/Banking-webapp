@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 public class ExchangeRatesAction implements Action {
-    @Override
+
     public ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
         H2ExchangeRateDAO h2ExchangeRateDAO = new H2ExchangeRateDAO();
         List<ExchangeRate> currentList = h2ExchangeRateDAO.findAll();

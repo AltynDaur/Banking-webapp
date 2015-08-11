@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class AccountUpdateAction implements Action {
-    @Override
+
     public ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
         int accID = Integer.parseInt(req.getParameter("accID"));
         long amount = Long.parseLong(req.getParameter("amount"));

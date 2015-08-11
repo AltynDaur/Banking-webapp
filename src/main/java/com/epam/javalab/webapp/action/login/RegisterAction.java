@@ -12,7 +12,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class RegisterAction implements Action {
-    @Override
+
     public com.epam.javalab.webapp.action.ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
         String firstName = req.getParameter("firstName");
         String password = req.getParameter("password");

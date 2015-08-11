@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class AccTypeDeleteAction implements Action {
-    @Override
+
     public ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
         int accTypeID = Integer.parseInt(req.getParameter("accTypeID"));
         H2AccountTypeDAO h2AccountTypeDAO = new H2AccountTypeDAO();

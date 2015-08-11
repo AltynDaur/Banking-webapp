@@ -26,6 +26,8 @@
         <module name="Webapp" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Banking" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
-

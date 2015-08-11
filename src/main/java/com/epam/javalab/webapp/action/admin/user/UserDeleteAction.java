@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class UserDeleteAction implements Action {
-    @Override
+
     public ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
         int userID = Integer.parseInt(req.getParameter("userID"));
         H2UserDAO h2UserDAO = new H2UserDAO();

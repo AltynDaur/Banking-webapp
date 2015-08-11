@@ -12,7 +12,7 @@ public class H2AccountTypeDAO implements AccountTypeDAO {
     ConnectionPool connectionPool = ConnectionPool.getInstance();
     ResourceBundle sqlBundle = ResourceBundle.getBundle("sql");
     private static final Logger LOGGER = Logger.getLogger(H2AccountTypeDAO.class);
-    @Override
+
     public List<AccountType> findAll() {
         LOGGER.debug("Find all account types started");
         Connection connection = connectionPool.takeConnection();
@@ -41,7 +41,7 @@ public class H2AccountTypeDAO implements AccountTypeDAO {
         return resultList;
     }
 
-    @Override
+
     public void add(AccountType accountType) {
         LOGGER.debug("Add account type started");
         Connection connection = connectionPool.takeConnection();
@@ -61,7 +61,7 @@ public class H2AccountTypeDAO implements AccountTypeDAO {
         connectionPool.realeseConnection(connection);
     }
 
-    @Override
+
     public void update(AccountType targetAccType) {
         LOGGER.debug("Update account type by ID started");
         Connection connection = connectionPool.takeConnection();
@@ -81,7 +81,7 @@ public class H2AccountTypeDAO implements AccountTypeDAO {
         connectionPool.realeseConnection(connection);
     }
 
-    @Override
+
     public void delete(int accTypeID) {
         LOGGER.debug("Delete account type started");
         Connection connection = connectionPool.takeConnection();
@@ -98,7 +98,7 @@ public class H2AccountTypeDAO implements AccountTypeDAO {
         connectionPool.realeseConnection(connection);
     }
 
-    @Override
+
     public AccountType findAccTypeByID(int accTypeID) {
         LOGGER.debug("Find account type by ID started");
         Connection connection = connectionPool.takeConnection();

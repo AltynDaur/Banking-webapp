@@ -12,7 +12,7 @@ public class H2ExchangeRateDAO implements ExchangeRateDAO{
     ConnectionPool connectionPool = ConnectionPool.getInstance();
     private static final Logger LOGGER = Logger.getLogger(H2ExchangeRateDAO.class);
     ResourceBundle sqlBundle = ResourceBundle.getBundle("sql");
-    @Override
+
     public List<ExchangeRate> findAll() {
         Connection connection = connectionPool.takeConnection();
         String sql = sqlBundle.getString("findAllExchangeRates");
@@ -39,7 +39,7 @@ public class H2ExchangeRateDAO implements ExchangeRateDAO{
         return currentList;
     }
 
-    @Override
+
     public void add(ExchangeRate rate) {
         Connection connection = connectionPool.takeConnection();
         String sql = sqlBundle.getString("addExchangeRate");
@@ -56,7 +56,7 @@ public class H2ExchangeRateDAO implements ExchangeRateDAO{
         connectionPool.realeseConnection(connection);
     }
 
-    @Override
+
     public void deleteByID(int id) {
         Connection connection = connectionPool.takeConnection();
         String sql = sqlBundle.getString("deleteExchangeRateByID");
@@ -73,7 +73,7 @@ public class H2ExchangeRateDAO implements ExchangeRateDAO{
         connectionPool.realeseConnection(connection);
     }
 
-    @Override
+
     public void update(ExchangeRate rate) {
         Connection connection = connectionPool.takeConnection();
         String sql = sqlBundle.getString("updateExchangeRate");

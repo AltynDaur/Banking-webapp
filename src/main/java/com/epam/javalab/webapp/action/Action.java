@@ -7,7 +7,5 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 public interface Action {
-    int x = 0;
-    Set set = new LinkedHashSet();
-    abstract ActionResult execute(HttpServletRequest req, HttpServletResponse resp);
+    ActionResult execute(HttpServletRequest request,HttpServletResponse response);
 }

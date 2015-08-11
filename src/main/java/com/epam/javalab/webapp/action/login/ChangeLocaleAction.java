@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ChangeLocaleAction implements Action {
     private static final Logger LOGGER = Logger.getLogger(ChangeLocaleAction.class);
 
-    @Override
+
     public ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
         LOGGER.info("language: " + req.getParameter("language"));
         req.getSession().setAttribute("language", req.getParameter("language"));

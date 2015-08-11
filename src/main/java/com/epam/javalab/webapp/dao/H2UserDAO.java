@@ -51,7 +51,7 @@ public class H2UserDAO implements UserDAO {
         return currentUser;
     }
 
-    @Override
+
     public List<User> getAll() {
         LOGGER.debug("Find all users started");
         Connection connection = connectionPool.takeConnection();
@@ -85,7 +85,7 @@ public class H2UserDAO implements UserDAO {
         return resultList;
     }
 
-    @Override
+
     public void add(String firstName, String password, Role role, String email) {
         LOGGER.debug("Add user started");
         Connection connection = connectionPool.takeConnection();
@@ -123,7 +123,7 @@ public class H2UserDAO implements UserDAO {
     }
 
 
-    @Override
+
     public void deleteByID(int userID) {
         LOGGER.debug("Delete user by ID started");
         Connection connection = connectionPool.takeConnection();
@@ -139,7 +139,7 @@ public class H2UserDAO implements UserDAO {
         connectionPool.realeseConnection(connection);
     }
 
-    @Override
+
     public void update(String firstName, String password, String email, Role role, int userID) {
         LOGGER.debug("Update user started");
         Connection connection = connectionPool.takeConnection();
@@ -161,7 +161,7 @@ public class H2UserDAO implements UserDAO {
         connectionPool.realeseConnection(connection);
     }
 
-    @Override
+
     public User findUserByID(int accID) {
         LOGGER.debug("Find user by ID started");
         Connection connection = connectionPool.takeConnection();

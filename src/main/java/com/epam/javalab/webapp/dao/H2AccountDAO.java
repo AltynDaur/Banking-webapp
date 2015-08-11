@@ -1,7 +1,6 @@
 package com.epam.javalab.webapp.dao;
 
 import com.epam.javalab.webapp.account.Account;
-import com.epam.javalab.webapp.exception.DAOException;
 import org.apache.log4j.Logger;
 
 import java.sql.*;
@@ -14,7 +13,7 @@ public class H2AccountDAO implements AccountDAO {
     ResourceBundle SQLBundle = ResourceBundle.getBundle("sql");
     ResourceBundle currencyBundle = ResourceBundle.getBundle("currency");
     private static final Logger LOGGER = Logger.getLogger(H2AccountDAO.class);
-    @Override
+
     public List<Account> findAllByUserID(int id) {
         LOGGER.debug("findAllByUserID started");
         Connection connection = connectionPool.takeConnection();
@@ -71,7 +70,7 @@ public class H2AccountDAO implements AccountDAO {
         return resultList;
     }
 
-    @Override
+
     public void update(int accID, long amount) {
         LOGGER.debug("Update account by ID started");
         Connection connection = connectionPool.takeConnection();
@@ -90,7 +89,7 @@ public class H2AccountDAO implements AccountDAO {
 
     }
 
-    @Override
+
     public void deleteByID(int account) {
         LOGGER.debug("Delete account by ID started");
         Connection connection = connectionPool.takeConnection();
@@ -109,7 +108,7 @@ public class H2AccountDAO implements AccountDAO {
 
     }
 
-    @Override
+
     public void add(Account account) {
         LOGGER.debug("Add account started");
         Connection connection = connectionPool.takeConnection();
@@ -129,7 +128,7 @@ public class H2AccountDAO implements AccountDAO {
 
     }
 
-    @Override
+
     public boolean transaction(int currentAccID, int targetAccID, long amount) {
         LOGGER.debug("Transaction between accounts started");
         boolean result = false;
@@ -181,7 +180,6 @@ public class H2AccountDAO implements AccountDAO {
             preparedStatement.close();
             connection.commit();
         } catch (SQLException e) {
-            throw new DAOException(e);
             try {
                 connection.rollback(savepoint);
             } catch (SQLException e1) {

@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ActionFactory {
-    Map<String,Action> actions = new HashMap<>();
+    Map<String,Action> actions = new HashMap<String, Action>();
     {
         actions.put("login",new LoginAction());
         actions.put("loginPage", new LoginPageAction());

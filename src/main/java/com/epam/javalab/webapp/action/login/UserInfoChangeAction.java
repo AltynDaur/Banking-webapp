@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class UserInfoChangeAction implements Action {
-    @Override
+
     public com.epam.javalab.webapp.action.ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
         EncryptByMD5 security = new EncryptByMD5();
         ActionResult result = new ActionResult();

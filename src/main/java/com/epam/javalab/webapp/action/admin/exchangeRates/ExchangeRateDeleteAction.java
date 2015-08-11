@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class ExchangeRateDeleteAction implements Action {
-    @Override
+
     public ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
         int exchangeRateID = Integer.parseInt(req.getParameter("exchangeRateID"));
         H2ExchangeRateDAO h2ExchangeRateDAO = new H2ExchangeRateDAO();

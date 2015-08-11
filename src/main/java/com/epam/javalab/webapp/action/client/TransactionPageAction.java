@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class TransactionPageAction implements Action {
-    @Override
+
     public ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
         int currentAccID = Integer.parseInt(req.getParameter("accID"));
         req.setAttribute("currentAccID",currentAccID);

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class ExchangeRateAddAction implements Action {
-    @Override
+
     public ActionResult execute(HttpServletRequest req, HttpServletResponse resp) {
         String currency = req.getParameter("currency");
         int exchangeValue = Integer.parseInt(req.getParameter("exchangeValue"));

@@ -6,11 +6,8 @@
       <synchronize>true</synchronize>
       <jdbc-driver>org.h2.Driver</jdbc-driver>
       <jdbc-url>jdbc:h2:C:\Users\Dauren\IdeaProjects\Webapp\banking</jdbc-url>
-      <user-name>admin</user-name>
-      <user-password>dfcbdfcedfc7dfc3dfc4</user-password>
       <default-dialect>TEXT</default-dialect>
       <libraries />
     </data-source>
   </component>
 </project>
-
