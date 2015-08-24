@@ -10833,3 +10833,47 @@ SELECT a.ID, b.NAME, c.ACCNAME,  a.AMOUNT,d.CURRENCY, d.VALUE FROM ACCOUNTS a IN
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
 	at java.lang.Thread.run(Thread.java:744)
+08-13 13:51:16 database: close
+org.h2.message.DbException: IO Exception: "java.io.EOFException"; "D:/Java/Banking-webapp/banking.h2.db" [90031-176]
+	at org.h2.message.DbException.get(DbException.java:167)
+	at org.h2.message.DbException.convertIOException(DbException.java:329)
+	at org.h2.store.FileStore.readFully(FileStore.java:276)
+	at org.h2.store.PageStore.readPage(PageStore.java:1326)
+	at org.h2.store.PageStore.getPage(PageStore.java:750)
+	at org.h2.store.PageStreamTrunk$Iterator.next(PageStreamTrunk.java:252)
+	at org.h2.store.PageLog.free(PageLog.java:214)
+	at org.h2.store.PageStore.compact(PageStore.java:499)
+	at org.h2.engine.Database.closeOpenFilesAndUnlock(Database.java:1301)
+	at org.h2.engine.Database.close(Database.java:1251)
+	at org.h2.engine.DatabaseCloser.run(DatabaseCloser.java:64)
+Caused by: org.h2.jdbc.JdbcSQLException: IO Exception: "java.io.EOFException"; "D:/Java/Banking-webapp/banking.h2.db" [90031-176]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:344)
+	... 11 more
+Caused by: java.io.EOFException
+	at org.h2.store.fs.FileUtils.readFully(FileUtils.java:347)
+	at org.h2.store.FileStore.readFully(FileStore.java:274)
+	... 8 more
+08-24 10:57:45 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLException: Value too long for column "NAME VARCHAR(50)": "'SomeGuy10000000000000000000000000000000000000000000' (51)"; SQL statement:
+INSERT INTO USERS(NAME,PASSWORD,EMAIL,ROLEID) VALUES (?,?,?,?) [22001-176]
+08-24 10:59:29 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Value too long for column "NAME VARCHAR(50)": "'SomeGuy10000000000000000000000000000000000000000000' (51)"; SQL statement:
+INSERT INTO USERS(NAME,PASSWORD,EMAIL,ROLEID) VALUES (?,?,?,?) [22001-176]
+08-24 11:00:45 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Value too long for column "NAME VARCHAR(50)": "'SomeGuy10000000000000000000000000000000000000000000' (51)"; SQL statement:
+INSERT INTO USERS(NAME,PASSWORD,EMAIL,ROLEID) VALUES (?,?,?,?) [22001-176]
+08-24 11:01:46 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Value too long for column "NAME VARCHAR(50)": "'SomeGuy10000000000000000000000000000000000000000000' (51)"; SQL statement:
+INSERT INTO USERS(NAME,PASSWORD,EMAIL,ROLEID) VALUES (?,?,?,?) [22001-176]
+08-24 11:03:09 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Value too long for column "NAME VARCHAR(50)": "'SomeGuy10000000000000000000000000000000000000000000' (51)"; SQL statement:
+INSERT INTO USERS(NAME,PASSWORD,EMAIL,ROLEID) VALUES (?,?,?,?) [22001-176]
+08-24 11:03:28 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLException: Value too long for column "NAME VARCHAR(50)": "'SomeGuy10000000000000000000000000000000000000000000' (51)"; SQL statement:
+INSERT INTO USERS(NAME,PASSWORD,EMAIL,ROLEID) VALUES (?,?,?,?) [22001-176]
+08-24 11:21:01 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Value too long for column "NAME VARCHAR(50)": "'SomeGuy10000000000000000000000000000000000000000000' (51)"; SQL statement:
+INSERT INTO USERS(NAME,PASSWORD,EMAIL,ROLEID) VALUES (?,?,?,?) [22001-176]
+08-24 11:21:47 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Value too long for column "NAME VARCHAR(50)": "'SomeGuy10000000000000000000000000000000000000000000' (51)"; SQL statement:
+INSERT INTO USERS(NAME,PASSWORD,EMAIL,ROLEID) VALUES (?,?,?,?) [22001-176]

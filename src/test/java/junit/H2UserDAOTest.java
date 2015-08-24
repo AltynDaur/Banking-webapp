@@ -14,7 +14,7 @@ import java.util.List;
  * Created by Dauren_Altynbekov on 8/11/2015.
  */
 @RunWith(JUnit4.class)
-public class H2UserDAOTest {
+public class H2UserDAOTest{
     H2UserDAO h2UserDAO = new H2UserDAO();
 
     @Test
@@ -25,18 +25,29 @@ public class H2UserDAOTest {
 
     @Test
     public void testAddUser(){
-        List<User> users = h2UserDAO.getAll();
-        h2UserDAO.add("SomeGuy","123", Role.CLIENT,"lalala@mail.com");
-        List<User> usersAfterAdding  = h2UserDAO.getAll();
-        Assert.assertTrue(usersAfterAdding.size() - users.size() == 1);
+        h2UserDAO.add("SomeGuy", "123", Role.CLIENT, "lalala@mail.com");
+        User someUser = h2UserDAO.findUser("SomeGuy", "123");
+        Assert.assertEquals(someUser.getEmail(), "lalala@mail.com");
     }
 
     @Test
+    public void testNegativeAddUser(){
+        h2UserDAO.add("SomeGuy10000000000000000000000000000000000000000000", "123", Role.CLIENT, "lalala@mail.com");
+        User someUser = h2UserDAO.findUser("SomeGuy10000000000000000000000000000000000000000000", "123");
+        Assert.assertNull(someUser);
+    }
+
+    @Test(expected = NullPointerException.class)
     public void testDeleteUser(){
-        List<User> users = h2UserDAO.getAll();
         User user = h2UserDAO.findUser("SomeGuy", "123");
         h2UserDAO.deleteByID(user.getId());
-        List<User> usersAfterDeleting = h2UserDAO.getAll();
-        Assert.assertTrue(users.size() - usersAfterDeleting.size() == 1);
+        User userAfterDeleting = h2UserDAO.findUserByID(user.getId());
+        Assert.assertTrue(userAfterDeleting.equals(null));
+    }
+
+    @Test
+    public void testNegativeDeleteUser(){
+        h2UserDAO.deleteByID(-1);
+        Assert.assertNull(h2UserDAO.findUserByID(-1));
     }
 }

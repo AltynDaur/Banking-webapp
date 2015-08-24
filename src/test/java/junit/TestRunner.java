@@ -11,7 +11,7 @@ import org.junit.runners.JUnit4;
 public class TestRunner {
 
     public static void main(String[] args) {
-        Result result = JUnitCore.runClasses(H2UserDAOTest.class);
+        Result result = JUnitCore.runClasses(AccountCategoriesTest.class);
 
         for (Failure failure : result.getFailures()) {
             System.out.println(failure.toString());

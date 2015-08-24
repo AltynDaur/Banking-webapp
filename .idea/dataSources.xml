@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="727224602">
+  <component name="DataSourceManagerImpl" format="xml" hash="1102425248">
     <data-source source="LOCAL" name="database-banking" uuid="f4629e5e-45ac-434b-b1b0-a20cea18c131">
       <driver-ref>h2.remote</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.h2.Driver</jdbc-driver>
-      <jdbc-url>jdbc:h2:C:\Users\Dauren\IdeaProjects\Webapp\banking</jdbc-url>
+      <jdbc-url>jdbc:h2:D:\Java\Banking-webapp\banking.h2.db</jdbc-url>
       <default-dialect>TEXT</default-dialect>
       <libraries />
     </data-source>
