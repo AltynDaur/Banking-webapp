@@ -37,12 +37,12 @@ public class H2UserDAOTest{
         Assert.assertNull(someUser);
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void testDeleteUser(){
         User user = h2UserDAO.findUser("SomeGuy", "123");
         h2UserDAO.deleteByID(user.getId());
         User userAfterDeleting = h2UserDAO.findUserByID(user.getId());
-        Assert.assertTrue(userAfterDeleting.equals(null));
+        Assert.assertNull(userAfterDeleting);
     }
 
     @Test
