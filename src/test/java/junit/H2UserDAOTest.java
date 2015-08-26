@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
+import org.openqa.selenium.NotFoundException;
 
 import java.util.List;
 
@@ -37,15 +38,15 @@ public class H2UserDAOTest{
         Assert.assertNull(someUser);
     }
 
-    @Test
+    @Test(expected = NotFoundException.class)
     public void testDeleteUser(){
         User user = h2UserDAO.findUser("SomeGuy", "123");
         h2UserDAO.deleteByID(user.getId());
         User userAfterDeleting = h2UserDAO.findUserByID(user.getId());
-        Assert.assertNull(userAfterDeleting);
+        Assert.assertNotEquals(user.getId(), userAfterDeleting.getId());
     }
 
-    @Test
+    @Test(expected = NotFoundException.class)
     public void testNegativeDeleteUser(){
         h2UserDAO.deleteByID(-1);
         Assert.assertNull(h2UserDAO.findUserByID(-1));

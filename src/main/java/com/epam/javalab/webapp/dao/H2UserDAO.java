@@ -5,6 +5,7 @@ import com.epam.javalab.webapp.user.Client;
 import com.epam.javalab.webapp.user.Role;
 import com.epam.javalab.webapp.user.User;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.NotFoundException;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -117,8 +118,8 @@ public class H2UserDAO implements UserDAO {
                 preparedStatement.setInt(4, 2);
             }
             preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e){
+            System.out.println("Could not execute this statement:"+preparedStatement.toString());
         }
     }
 
@@ -128,13 +129,14 @@ public class H2UserDAO implements UserDAO {
         LOGGER.debug("Delete user by ID started");
         Connection connection = connectionPool.takeConnection();
         String sql = sqlBundle.getString("deleteUserByID");
+
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1,userID);
             preparedStatement.executeUpdate();
             preparedStatement.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println("Exception: "+ e.getMessage());
         }
         connectionPool.realeseConnection(connection);
     }
@@ -190,6 +192,9 @@ public class H2UserDAO implements UserDAO {
             preparedStatement.close();
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+        if(currentUser == null){
+            throw new NotFoundException("Could not find user with id: "+accID);
         }
         connectionPool.realeseConnection(connection);
         return currentUser;
