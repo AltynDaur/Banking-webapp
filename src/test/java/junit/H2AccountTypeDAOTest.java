@@ -6,6 +6,7 @@ import com.epam.javalab.webapp.dao.H2AccountTypeDAO;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
+import org.openqa.selenium.NotFoundException;
 
 import java.util.List;
 
@@ -21,5 +22,10 @@ public class H2AccountTypeDAOTest {
     public void testGetAllAccounts(){
         List<AccountType> accountsTypes = h2AccountTypeDAO.findAll();
         Assert.assertNotNull(accountsTypes);
+    }
+
+    @Test(expected = NotFoundException.class)
+    public void testFindNotExistAccountType(){
+        h2AccountTypeDAO.findAccTypeByID(-1);
     }
 }

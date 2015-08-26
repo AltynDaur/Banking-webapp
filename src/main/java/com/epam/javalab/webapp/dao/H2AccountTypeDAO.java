@@ -2,6 +2,7 @@ package com.epam.javalab.webapp.dao;
 
 import com.epam.javalab.webapp.account.AccountType;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.NotFoundException;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -105,12 +106,13 @@ public class H2AccountTypeDAO implements AccountTypeDAO {
         String sql = sqlBundle.getString("findAccTypeByID");
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        AccountType accountType = new AccountType();
+        AccountType accountType = null;
         try {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1,accTypeID);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
+                accountType = new AccountType();
                 accountType.setId(resultSet.getInt(1));
                 accountType.setName(resultSet.getString(2));
                 accountType.setPercent(resultSet.getInt(3));
@@ -121,6 +123,9 @@ public class H2AccountTypeDAO implements AccountTypeDAO {
             preparedStatement.close();
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+        if(accountType == null){
+            throw new NotFoundException("AccountType not found");
         }
         connectionPool.realeseConnection(connection);
         return accountType;
