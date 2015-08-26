@@ -9,6 +9,6 @@ import org.junit.runners.Suite;
  */
 @RunWith(Categories.class)
 @Categories.IncludeCategory(AccountTest.class)
-@Suite.SuiteClasses({H2UserDAOTest.class,H2AccountDAOTest.class,H2AccountTypeDAOTest.class})
+@Suite.SuiteClasses({H2AccountDAOTest.class,H2AccountTypeDAOTest.class})
 public class AccountCategoriesTest {
 }

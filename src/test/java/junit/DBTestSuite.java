@@ -9,8 +9,7 @@ import org.junit.runners.Suite;
  * Created by Dauren_Altynbekov on 8/24/2015.
  */
 @RunWith(Suite.class)
-@Categories.IncludeCategory(AccountTest.class)
-@Suite.SuiteClasses({H2UserDAOTest.class,Categories.class})
+@Suite.SuiteClasses({H2UserDAOTest.class,AccountCategoriesTest.class})
 public class DBTestSuite {
 
 }
