@@ -46,9 +46,4 @@ public class H2UserDAOTest{
         Assert.assertNotEquals(user.getId(), userAfterDeleting.getId());
     }
 
-    @Test(expected = NotFoundException.class)
-    public void testNegativeDeleteUser(){
-        h2UserDAO.deleteByID(-1);
-        Assert.assertNull(h2UserDAO.findUserByID(-1));
-    }
 }
